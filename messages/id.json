@@ -1,0 +1,270 @@
+{
+  "meta": {
+    "title": "UNANG LOJA — Jelajah Tanpa Koper",
+    "description": "Pemandu wisata lokal serta penitipan dan antar bagasi di Pulau Samosir, Danau Toba. Pesan mudah, bagasi bersegel dan beresmi."
+  },
+  "nav": {
+    "home": "Beranda",
+    "services": "Layanan",
+    "guides": "Profil Pemandu",
+    "book": "Pesan",
+    "status": "Status Pesanan",
+    "help": "Bantuan & Ulasan",
+    "menu": "Menu"
+  },
+  "common": {
+    "dummy": "Data contoh — Fase 1",
+    "perBooking": "per pesanan",
+    "perSuitcaseDay": "per koper / hari",
+    "perTrip": "per pengantaran",
+    "bookNow": "Pesan layanan ini",
+    "whatsapp": "Tanya via WhatsApp",
+    "currencyNote": "Tarif dapat berubah; harga final muncul saat pemesanan."
+  },
+  "home": {
+    "heroEyebrow": "Pulau Samosir, Danau Toba",
+    "heroTitle": "Jelajah Tanpa Koper",
+    "heroSubtitle": "Pemandu lokal, penitipan bagasi bersegel, dan pengantaran bagasi — semua dalam satu pemesanan. Nikmati Danau Toba tanpa dibebani koper.",
+    "heroCtaPrimary": "Pesan Sekarang",
+    "heroCtaSecondary": "Lihat Layanan",
+    "stats": {
+      "guides": "pemandu lokal terlatih",
+      "quota": "koper per hari",
+      "languages": "bahasa: Indonesia & Inggris",
+      "sealed": "bagasi bersegel & beresmi"
+    },
+    "featuresTitle": "Kenapa UNANG LOJA",
+    "features": [
+      {
+        "title": "Satu platform",
+        "desc": "Pemanduan, penitipan, dan pengantaran bagasi dipesan sekaligus — tanpa mengatur banyak penyedia secara terpisah."
+      },
+      {
+        "title": "Bagasi aman & beresmi",
+        "desc": "Koper difoto dari empat sisi, dipasang segel bernomor, dan Anda menerima resi digital."
+      },
+      {
+        "title": "Pemandu lokal terlatih",
+        "desc": "Pemandu Samosir yang mengenal budaya Batak, sejarah, dan kuliner — dilatih dengan standar layanan."
+      },
+      {
+        "title": "Mudah & dua bahasa",
+        "desc": "Pesan dari ponsel dalam bahasa Indonesia atau Inggris, dibantu admin via WhatsApp bila perlu."
+      }
+    ],
+    "servicesTitle": "Layanan & Tarif",
+    "servicesSubtitle": "Pilih satu layanan atau paket bundel. Harga transparan, tanpa biaya tersembunyi.",
+    "servicesCta": "Lihat semua layanan",
+    "stepsTitle": "Cara Pemesanan — 4 Langkah",
+    "steps": [
+      { "title": "Pilih layanan", "desc": "Layanan tunggal atau paket Jelajah Fleksibel / Mystery Tour." },
+      { "title": "Tanggal & lokasi", "desc": "Tentukan tanggal dan titik temu: Tomok, Tuk Tuk, atau Ambarita." },
+      { "title": "Data pelanggan", "desc": "Isi nama, kontak, dan kode referensi (opsional)." },
+      { "title": "Pembayaran", "desc": "Transfer bank atau dompet digital, lalu unggah bukti bayar." }
+    ],
+    "stepsCta": "Mulai pesan",
+    "testimonialsTitle": "Kata Wisatawan",
+    "testimonials": [
+      { "name": "Sarah, Jakarta", "text": "Koper dititip, saya bebas keliling Tomok dan Tuk Tuk. Segel dan resinya membuat tenang." },
+      { "name": "Marco, Italia", "text": "The guide explained Batak history so well. Booking was easy even from my phone." },
+      { "name": "Keluarga Nainggolan", "text": "Bagasi langsung diantar ke penginapan berikutnya di Simanindo. Praktis sekali." }
+    ],
+    "testimonialsNote": "Ulasan contoh (data dummy).",
+    "ctaTitle": "Siap jelajah tanpa koper?",
+    "ctaSubtitle": "Pesan sekarang — konfirmasi melalui WhatsApp setelah pembayaran diverifikasi admin."
+  },
+  "services": {
+    "title": "Layanan & Tarif",
+    "subtitle": "Semua tarif di bawah ini adalah harga awal dan akan dikelola oleh admin melalui sistem (data contoh Fase 1).",
+    "items": {
+      "pemanduan": {
+        "name": "Pemanduan Setengah Hari",
+        "desc": "Didampingi pemandu lokal sekitar 4 jam: budaya Batak, sejarah, dan kuliner Samosir. Titik temu disepakati saat pemesanan.",
+        "includes": ["Pemandu lokal (Indonesia/Inggris)", "Rute: Tomok, Ambarita, Tuk Tuk", "Durasi ± 4 jam"]
+      },
+      "penitipan": {
+        "name": "Penitipan Bagasi (Jelajah Tanpa Koper)",
+        "desc": "Koper difoto dari empat sisi, dipasang segel bernomor, lalu Anda menerima resi. Diambil kembali di titik yang sama.",
+        "includes": ["Dokumentasi foto 4 sisi", "Segel bernomor + resi digital", "Kuota 20 koper per hari"]
+      },
+      "antarDekat": {
+        "name": "Antar Bagasi — Zona Dekat",
+        "desc": "Pengantaran bagasi antar penginapan di zona Tuk Tuk – Tomok – Ambarita.",
+        "includes": ["Zona dekat", "Diantara kurir mitra", "Sesuai jadwal yang disepakati"]
+      },
+      "antarLintas": {
+        "name": "Antar Bagasi — Zona Lintas",
+        "desc": "Pengantaran bagasi hingga Simanindo atau Pangururan.",
+        "includes": ["Zona lintas", "Diantara kurir mitra", "Sesuai jadwal yang disepakati"]
+      },
+      "fleksibel": {
+        "name": "Jelajah Fleksibel",
+        "desc": "Paket bundel: pemanduan setengah hari + satu kali antar bagasi zona dekat. Lebih hemat dibanding beli terpisah.",
+        "includes": ["Pemandu setengah hari", "1x antar zona dekat", "Hemat Rp25.000"]
+      },
+      "mystery": {
+        "name": "Mystery Tour",
+        "desc": "Paket wisata bertema pilihan. Urutan lokasi dirahasiakan dan dibuka H-1 lewat WhatsApp.",
+        "includes": ["Pemandu lokal", "Itinerary rahasia, dibuka H-1", "Tema: Jejak Situs / Senja Danau"]
+      }
+    },
+    "mysteryThemes": {
+      "situs": "Jejak Situs — situs sejarah & rumah adat",
+      "senja": "Senja Danau — sunset point & cerita rakyat"
+    },
+    "upsellTitle": "Hemat dengan paket",
+    "upsellText": "Pemanduan + antar bagasi zona dekat = Jelajah Fleksibel Rp350.000 (hemat Rp25.000 dibanding beli terpisah Rp375.000)."
+  },
+  "guides": {
+    "title": "Profil Pemandu",
+    "subtitle": "Pemandu lokal Samosir dengan standar layanan UNANG LOJA. Kalender di bawah adalah ketersediaan contoh (data dummy) — slot dikunci otomatis saat pesanan lunas.",
+    "languages": "Bahasa",
+    "experience": "{years} tahun pengalaman",
+    "rating": "Rating",
+    "specialties": {
+      "budaya": "Budaya & adat Batak",
+      "sejarah": "Sejarah & situs",
+      "kuliner": "Kuliner lokal",
+      "alam": "Alam & danau",
+      "foto": "Spot fotografi"
+    },
+    "book": "Pesan dengan pemandu ini",
+    "calendar": {
+      "title": "Ketersediaan {month}",
+      "available": "Tersedia",
+      "limited": "Terbatas",
+      "full": "Penuh",
+      "legend": "Ketersediaan contoh — dikonfirmasi ulang saat pemesanan."
+    }
+  },
+  "booking": {
+    "title": "Pesan Layanan",
+    "steps": ["Pilih Layanan", "Tanggal & Lokasi", "Data Pelanggan", "Pembayaran"],
+    "step": "Langkah {current} dari {total}",
+    "back": "Kembali",
+    "next": "Lanjut",
+    "step1": {
+      "title": "Pilih layanan atau paket",
+      "select": "Pilih salah satu layanan di bawah.",
+      "theme": "Pilih tema Mystery Tour",
+      "suggestions": "Saran untuk Anda",
+      "add": "Tambahkan",
+      "switch": "Ganti ke paket ini",
+      "added": "Ditambahkan",
+      "upsellNote": "Lebih hemat {saving} dibanding beli terpisah."
+    },
+    "step2": {
+      "title": "Tanggal & lokasi",
+      "date": "Tanggal layanan",
+      "dateMin": "Pesanan minimal untuk keesokan hari.",
+      "meetingPoint": "Titik temu",
+      "zone": "Zona pengantaran",
+      "zones": { "dekat": "Zona dekat (Tuk Tuk – Tomok – Ambarita)", "lintas": "Zona lintas (hingga Simanindo / Pangururan)" },
+      "suitcases": "Jumlah koper",
+      "participants": "Jumlah peserta",
+      "notes": "Catatan (opsional)",
+      "notesPlaceholder": "Contoh: jam kedatangan, penginapan tujuan…"
+    },
+    "step3": {
+      "title": "Data pelanggan",
+      "name": "Nama lengkap",
+      "phone": "Nomor WhatsApp",
+      "email": "Email (opsional)",
+      "referral": "Kode referensi (opsional)",
+      "referralNote": "Kode referensi hanya dicatat untuk program rekomendasi — tanpa diskon.",
+      "summary": "Ringkasan pesanan"
+    },
+    "step4": {
+      "title": "Pembayaran",
+      "method": "Metode pembayaran",
+      "methods": {
+        "bca": "Transfer Bank BCA",
+        "bsi": "Transfer Bank BSI / Syariah",
+        "gopay": "Dompet digital GoPay",
+        "ovo": "Dompet digital OVO",
+        "dana": "Dompet digital DANA"
+      },
+      "account": "Nomor tujuan",
+      "holder": "a.n. UNANG LOJA",
+      "amount": "Total yang harus dibayar",
+      "upload": "Unggah bukti pembayaran",
+      "uploadHint": "Format JPG/PNG maksimal 5 MB. Anda juga dapat mengirimnya ke WhatsApp admin.",
+      "note": "Pembayaran diverifikasi manual oleh admin (tanpa payment gateway). Setelah lunas, pesanan mengunci slot pemandu dan Anda menerima konfirmasi.",
+      "submit": "Kirim pesanan & bukti bayar",
+      "uploading": "Bukti dipilih: {file}"
+    },
+    "success": {
+      "title": "Pemesanan diterima!",
+      "orderNo": "Nomor pesanan",
+      "next": "Admin akan memverifikasi pembayaran dan mengonfirmasi melalui WhatsApp maksimal 2 jam (08.00–20.00 WIB). Simpan nomor pesanan Anda untuk cek status.",
+      "checkStatus": "Cek status pesanan",
+      "home": "Kembali ke beranda",
+      "simulate": "Ini simulasi Fase 1 — belum tersimpan ke database."
+    },
+    "errors": {
+      "service": "Silakan pilih layanan terlebih dahulu.",
+      "date": "Pilih tanggal layanan.",
+      "contact": "Isi nama dan nomor WhatsApp.",
+      "payment": "Unggah bukti pembayaran atau pilih kirim via WhatsApp."
+    }
+  },
+  "status": {
+    "title": "Status Pesanan & Bagasi",
+    "subtitle": "Masukkan nomor pesanan atau nomor resi bagasi Anda.",
+    "placeholder": "Contoh: UL-20261112-0001 atau RSI-0042",
+    "search": "Cari",
+    "sample": "Coba contoh resi",
+    "notFound": "Pesanan tidak ditemukan. Periksa kembali nomor pesanan/resi Anda atau hubungi admin via WhatsApp.",
+    "order": "Pesanan",
+    "service": "Layanan",
+    "date": "Tanggal",
+    "timeline": "Status pesanan",
+    "states": {
+      "diterima": "Diterima",
+      "lunas": "Lunas",
+      "terjadwal": "Terjadwal",
+      "berjalan": "Sedang berjalan",
+      "selesai": "Selesai"
+    },
+    "luggage": "Bagasi",
+    "luggageResi": "Nomor resi",
+    "luggageSeal": "Nomor segel",
+    "luggagePhotos": "Dokumentasi foto 4 sisi tersimpan",
+    "manualNote": "Status diperbarui manual oleh admin — bukan pelacakan GPS real-time.",
+    "demoNote": "Hasil pencarian adalah data contoh (Fase 1).",
+    "resiHint": "Coba: UL-20261112-0001, UL-20261111-0002, atau RSI-0042."
+  },
+  "help": {
+    "title": "Bantuan & Ulasan",
+    "subtitle": "Pertanyaan umum, kontak cepat, dan tempat memberi penilaian setelah menggunakan layanan.",
+    "faqTitle": "Pertanyaan Umum",
+    "faq": [
+      { "q": "Bagaimana cara memesan?", "a": "Pilih layanan di halaman Pesan, ikuti 4 langkah: pilih layanan, tanggal & lokasi, data pelanggan, lalu pembayaran. Jika kesulitan, admin siap membantu via WhatsApp." },
+      { "q": "Bagaimana cara pembayarannya?", "a": "Pembayaran dilakukan manual melalui transfer bank atau dompet digital. Setelah membayar, unggah bukti pembayaran di langkah terakhir atau kirim via WhatsApp." },
+      { "q": "Bagaimana keamanan koper saya?", "a": "Koper difoto dari empat sisi, dipasang segel bernomor, dan Anda menerima resi digital. Serah terima hanya dilakukan setelah mencocokkan nomor resi dan identitas." },
+      { "q": "Berapa lama penitipan bagasi?", "a": "Penitipan dihitung per koper per hari. Kuota penitipan 20 koper per hari — pastikan memesan lebih awal." },
+      { "q": "Apa itu Mystery Tour?", "a": "Paket wisata bertema Jejak Situs atau Senja Danau. Urutan lokasi dirahasiakan dan dibuka H-1 melalui WhatsApp." },
+      { "q": "Apakah kode referensi memberi diskon?", "a": "Tidak. Kode referensi dari pelanggan atau mitra hanya dicatat untuk program rekomendasi dan komisi mitra — harga publik tetap sama." }
+    ],
+    "whatsappTitle": "Masih ada pertanyaan?",
+    "whatsappText": "Admin kami siap membantu dalam bahasa Indonesia dan Inggris, setiap hari 08.00–20.00 WIB.",
+    "ratingTitle": "Beri Ulasan",
+    "ratingSubtitle": "Sudah menggunakan layanan UNANG LOJA? Beri penilaian 1–5.",
+    "ratingLabel": "Penilaian Anda",
+    "ratingOrder": "Nomor pesanan (opsional)",
+    "ratingComment": "Komentar (opsional)",
+    "ratingSubmit": "Kirim ulasan",
+    "ratingThanks": "Terima kasih! Ulasan Anda telah diterima. (Simulasi Fase 1 — ulasan belum tersimpan.)"
+  },
+  "footer": {
+    "about": "UNANG LOJA — platform tour guide lokal dan penitipan bagasi \"Jelajah Tanpa Koper\" di Pulau Samosir, Danau Toba.",
+    "contactTitle": "Kontak",
+    "address": "Tomok, Pulau Samosir, Kabupaten Samosir, Sumatera Utara",
+    "hours": "Setiap hari 08.00–20.00 WIB",
+    "linksTitle": "Tautan",
+    "socialTitle": "Media Sosial",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "copyright": "© {year} UNANG LOJA. Semua hak dilindungi."
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "meta": {
+    "title": "UNANG LOJA — Travel Without Your Suitcase",
+    "description": "Local tour guides plus luggage storage and delivery on Samosir Island, Lake Toba. Easy booking, sealed and documented luggage."
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "guides": "Our Guides",
+    "book": "Book",
+    "status": "Order Status",
+    "help": "Help & Reviews",
+    "menu": "Menu"
+  },
+  "common": {
+    "dummy": "Sample data — Phase 1",
+    "perBooking": "per booking",
+    "perSuitcaseDay": "per suitcase / day",
+    "perTrip": "per delivery",
+    "bookNow": "Book this service",
+    "whatsapp": "Ask via WhatsApp",
+    "currencyNote": "Rates may change; the final price is shown at booking."
+  },
+  "home": {
+    "heroEyebrow": "Samosir Island, Lake Toba",
+    "heroTitle": "Travel Without Your Suitcase",
+    "heroSubtitle": "Local guides, sealed luggage storage, and luggage delivery — all in one booking. Enjoy Lake Toba without carrying your bags around.",
+    "heroCtaPrimary": "Book now",
+    "heroCtaSecondary": "See services",
+    "stats": {
+      "guides": "trained local guides",
+      "quota": "suitcases per day",
+      "languages": "languages: Indonesian & English",
+      "sealed": "sealed & documented luggage"
+    },
+    "featuresTitle": "Why UNANG LOJA",
+    "features": [
+      {
+        "title": "One platform",
+        "desc": "Book guiding, luggage storage, and delivery together — no need to juggle separate providers."
+      },
+      {
+        "title": "Safe, documented luggage",
+        "desc": "Your suitcase is photographed from four sides, fitted with a numbered seal, and you get a digital receipt."
+      },
+      {
+        "title": "Trained local guides",
+        "desc": "Samosir guides who know Batak culture, history, and cuisine — trained to a service standard."
+      },
+      {
+        "title": "Easy & bilingual",
+        "desc": "Book from your phone in Indonesian or English, with admin help over WhatsApp whenever needed."
+      }
+    ],
+    "servicesTitle": "Services & Rates",
+    "servicesSubtitle": "Choose a single service or a bundle. Transparent prices, no hidden fees.",
+    "servicesCta": "See all services",
+    "stepsTitle": "How Booking Works — 4 Steps",
+    "steps": [
+      { "title": "Choose a service", "desc": "A single service or the Flexible Tour / Mystery Tour bundle." },
+      { "title": "Date & location", "desc": "Pick a date and a meeting point: Tomok, Tuk Tuk, or Ambarita." },
+      { "title": "Customer details", "desc": "Fill in your name, contact, and an optional referral code." },
+      { "title": "Payment", "desc": "Bank transfer or e-wallet, then upload your payment proof." }
+    ],
+    "stepsCta": "Start booking",
+    "testimonialsTitle": "What Travelers Say",
+    "testimonials": [
+      { "name": "Sarah, Jakarta", "text": "I left my suitcase behind and explored Tomok and Tuk Tuk freely. The seal and receipt put me at ease." },
+      { "name": "Marco, Italy", "text": "The guide explained Batak history so well. Booking was easy even from my phone." },
+      { "name": "The Nainggolan Family", "text": "Our luggage was delivered straight to our next guesthouse in Simanindo. So convenient." }
+    ],
+    "testimonialsNote": "Sample reviews (dummy data).",
+    "ctaTitle": "Ready to explore without your suitcase?",
+    "ctaSubtitle": "Book now — we confirm via WhatsApp once the admin verifies your payment."
+  },
+  "services": {
+    "title": "Services & Rates",
+    "subtitle": "The rates below are launch prices and will be managed by the admin through the system (Phase 1 sample data).",
+    "items": {
+      "pemanduan": {
+        "name": "Half-Day Guided Tour",
+        "desc": "About 4 hours with a local guide: Batak culture, history, and Samosir cuisine. Meeting point agreed at booking.",
+        "includes": ["Local guide (Indonesian/English)", "Route: Tomok, Ambarita, Tuk Tuk", "Duration ± 4 hours"]
+      },
+      "penitipan": {
+        "name": "Luggage Storage (Travel Without Your Suitcase)",
+        "desc": "Your suitcase is photographed from four sides, fitted with a numbered seal, and you receive a receipt. Pick it up at the same point.",
+        "includes": ["4-side photo documentation", "Numbered seal + digital receipt", "Quota: 20 suitcases per day"]
+      },
+      "antarDekat": {
+        "name": "Luggage Delivery — Near Zone",
+        "desc": "Delivery between guesthouses within the Tuk Tuk – Tomok – Ambarita zone.",
+        "includes": ["Near zone", "Partner courier delivery", "By agreed schedule"]
+      },
+      "antarLintas": {
+        "name": "Luggage Delivery — Cross Zone",
+        "desc": "Delivery as far as Simanindo or Pangururan.",
+        "includes": ["Cross zone", "Partner courier delivery", "By agreed schedule"]
+      },
+      "fleksibel": {
+        "name": "Flexible Tour",
+        "desc": "Bundle: a half-day guided tour + one near-zone luggage delivery. Cheaper than buying separately.",
+        "includes": ["Half-day guide", "1x near-zone delivery", "Save Rp25,000"]
+      },
+      "mystery": {
+        "name": "Mystery Tour",
+        "desc": "A themed surprise tour. The order of the locations is secret and revealed one day before (H-1) via WhatsApp.",
+        "includes": ["Local guide", "Secret itinerary, revealed H-1", "Themes: Heritage Trail / Lake Sunset"]
+      }
+    },
+    "mysteryThemes": {
+      "situs": "Heritage Trail — historic sites & traditional houses",
+      "senja": "Lake Sunset — sunset spots & local legends"
+    },
+    "upsellTitle": "Save with the bundle",
+    "upsellText": "Guided tour + near-zone luggage delivery = Flexible Tour Rp350,000 (save Rp25,000 vs Rp375,000 separately)."
+  },
+  "guides": {
+    "title": "Our Guides",
+    "subtitle": "Local Samosir guides under the UNANG LOJA service standard. The calendars below show sample availability (dummy data) — slots are locked automatically when an order is paid.",
+    "languages": "Languages",
+    "experience": "{years} years of experience",
+    "rating": "Rating",
+    "specialties": {
+      "budaya": "Batak culture & customs",
+      "sejarah": "History & heritage sites",
+      "kuliner": "Local cuisine",
+      "alam": "Nature & the lake",
+      "foto": "Photo spots"
+    },
+    "book": "Book with this guide",
+    "calendar": {
+      "title": "Availability — {month}",
+      "available": "Available",
+      "limited": "Limited",
+      "full": "Full",
+      "legend": "Sample availability — reconfirmed at booking."
+    }
+  },
+  "booking": {
+    "title": "Book a Service",
+    "steps": ["Choose Service", "Date & Location", "Your Details", "Payment"],
+    "step": "Step {current} of {total}",
+    "back": "Back",
+    "next": "Continue",
+    "step1": {
+      "title": "Choose a service or bundle",
+      "select": "Pick one of the services below.",
+      "theme": "Choose a Mystery Tour theme",
+      "suggestions": "Suggestions for you",
+      "add": "Add",
+      "switch": "Switch to this bundle",
+      "added": "Added",
+      "upsellNote": "Save {saving} compared to buying separately."
+    },
+    "step2": {
+      "title": "Date & location",
+      "date": "Service date",
+      "dateMin": "Bookings start from the next day.",
+      "meetingPoint": "Meeting point",
+      "zone": "Delivery zone",
+      "zones": { "dekat": "Near zone (Tuk Tuk – Tomok – Ambarita)", "lintas": "Cross zone (up to Simanindo / Pangururan)" },
+      "suitcases": "Number of suitcases",
+      "participants": "Number of participants",
+      "notes": "Notes (optional)",
+      "notesPlaceholder": "e.g. arrival time, destination guesthouse…"
+    },
+    "step3": {
+      "title": "Your details",
+      "name": "Full name",
+      "phone": "WhatsApp number",
+      "email": "Email (optional)",
+      "referral": "Referral code (optional)",
+      "referralNote": "Referral codes are only recorded for our recommendation program — no discounts.",
+      "summary": "Booking summary"
+    },
+    "step4": {
+      "title": "Payment",
+      "method": "Payment method",
+      "methods": {
+        "bca": "Bank transfer — BCA",
+        "bsi": "Bank transfer — BSI",
+        "gopay": "E-wallet — GoPay",
+        "ovo": "E-wallet — OVO",
+        "dana": "E-wallet — DANA"
+      },
+      "account": "Account number",
+      "holder": "a.n. UNANG LOJA",
+      "amount": "Total to pay",
+      "upload": "Upload payment proof",
+      "uploadHint": "JPG/PNG up to 5 MB. You can also send it to the admin via WhatsApp.",
+      "note": "Payments are verified manually by the admin (no payment gateway). Once paid, your booking locks the guide slot and you receive a confirmation.",
+      "submit": "Send booking & payment proof",
+      "uploading": "Selected file: {file}"
+    },
+    "success": {
+      "title": "Booking received!",
+      "orderNo": "Order number",
+      "next": "The admin will verify your payment and confirm via WhatsApp within 2 hours (08:00–20:00 WIB). Keep your order number to check the status.",
+      "checkStatus": "Check order status",
+      "home": "Back to home",
+      "simulate": "This is a Phase 1 simulation — nothing is saved to a database yet."
+    },
+    "errors": {
+      "service": "Please choose a service first.",
+      "date": "Please choose a service date.",
+      "contact": "Please fill in your name and WhatsApp number.",
+      "payment": "Please upload payment proof or choose to send it via WhatsApp."
+    }
+  },
+  "status": {
+    "title": "Order & Luggage Status",
+    "subtitle": "Enter your order number or luggage receipt number.",
+    "placeholder": "e.g. UL-20261112-0001 or RSI-0042",
+    "search": "Search",
+    "sample": "Try a sample receipt",
+    "notFound": "Order not found. Check your order/receipt number again or contact the admin via WhatsApp.",
+    "order": "Order",
+    "service": "Service",
+    "date": "Date",
+    "timeline": "Order status",
+    "states": {
+      "diterima": "Received",
+      "lunas": "Paid",
+      "terjadwal": "Scheduled",
+      "berjalan": "In progress",
+      "selesai": "Completed"
+    },
+    "luggage": "Luggage",
+    "luggageResi": "Receipt no.",
+    "luggageSeal": "Seal no.",
+    "luggagePhotos": "4-side photo documentation on file",
+    "manualNote": "Status is updated manually by the admin — not real-time GPS tracking.",
+    "demoNote": "This result is sample data (Phase 1).",
+    "resiHint": "Try: UL-20261112-0001, UL-20261111-0002, or RSI-0042."
+  },
+  "help": {
+    "title": "Help & Reviews",
+    "subtitle": "Frequently asked questions, quick contact, and a place to rate us after using the service.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      { "q": "How do I book?", "a": "Pick a service on the Booking page and follow 4 steps: choose a service, date & location, your details, then payment. If you get stuck, the admin is ready to help via WhatsApp." },
+      { "q": "How do I pay?", "a": "Payment is manual via bank transfer or e-wallet. After paying, upload your payment proof in the last step or send it via WhatsApp." },
+      { "q": "Is my luggage safe?", "a": "Your suitcase is photographed from four sides, fitted with a numbered seal, and you receive a digital receipt. Handover only happens after matching the receipt number and your identity." },
+      { "q": "How long can I store luggage?", "a": "Storage is charged per suitcase per day. The daily quota is 20 suitcases — book early to be sure." },
+      { "q": "What is the Mystery Tour?", "a": "A themed tour: Heritage Trail or Lake Sunset. The order of the locations is secret and revealed one day before (H-1) via WhatsApp." },
+      { "q": "Does a referral code give a discount?", "a": "No. Referral codes from customers or partners are only recorded for our recommendation program and partner commissions — public prices stay the same." }
+    ],
+    "whatsappTitle": "Still have questions?",
+    "whatsappText": "Our admin is ready to help in Indonesian and English, every day 08:00–20:00 WIB.",
+    "ratingTitle": "Leave a Review",
+    "ratingSubtitle": "Already used UNANG LOJA? Give us a rating from 1 to 5.",
+    "ratingLabel": "Your rating",
+    "ratingOrder": "Order number (optional)",
+    "ratingComment": "Comment (optional)",
+    "ratingSubmit": "Send review",
+    "ratingThanks": "Thank you! Your review has been received. (Phase 1 simulation — reviews are not stored yet.)"
+  },
+  "footer": {
+    "about": "UNANG LOJA — local tour guides and luggage services \"Travel Without Your Suitcase\" on Samosir Island, Lake Toba.",
+    "contactTitle": "Contact",
+    "address": "Tomok, Samosir Island, Samosir Regency, North Sumatra",
+    "hours": "Every day 08:00–20:00 WIB",
+    "linksTitle": "Links",
+    "socialTitle": "Social Media",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "copyright": "© {year} UNANG LOJA. All rights reserved."
+  }
+}
