@@ -7,10 +7,10 @@ export default async function StatusPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; resi?: string }>;
 }) {
   const { locale } = await params;
-  const { q } = await searchParams;
+  const { q, resi } = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations("status");
   const tnav = await getTranslations("nav");
@@ -29,7 +29,7 @@ export default async function StatusPage({
           </p>
         </div>
       </div>
-      <StatusLookup initialQuery={q ?? ""} />
+      <StatusLookup initialQuery={resi ?? q ?? ""} />
     </div>
   );
 }

@@ -1,14 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
   DEMO_ORDERS,
   formatIDR,
   getService,
   type DemoOrder,
+  type ServiceKey,
 } from "@/lib/data";
+import type { OrderRow } from "@/lib/supabase";
 import { Eyebrow, StarRow } from "@/components/ui";
+
+/** Petakan baris database → bentuk tampilan DemoOrder (Fase 2A). */
+function dbToDemo(o: OrderRow): DemoOrder {
+  const STATE_OF_STATUS: Record<string, number> = {
+    BARU: 0,
+    DIKONFIRMASI: 1,
+    DITUGASKAN: 2,
+    DIJEMPUT: 3,
+    SELESAI: 4,
+    BATAL: 0,
+  };
+  return {
+    orderNo: o.resi,
+    resi: o.resi,
+    sealNo: `SLG-${o.resi.slice(-4).padStart(4, "0")}`,
+    serviceKey: o.service_key as ServiceKey,
+    zone: undefined,
+    date: o.date,
+    stateIndex: STATE_OF_STATUS[o.status] ?? 0,
+    owner: o.name,
+    guide: "-",
+    luggage: o.suitcases > 0,
+  };
+}
 
 /** Barcode dummy deterministik dari string resi. */
 function Barcode({ seed, className = "" }: { seed: string; className?: string }) {
@@ -75,26 +101,39 @@ export default function StatusLookup({
     initialQuery ? undefined : undefined,
   );
 
-  function search(q: string) {
+  async function search(q: string) {
     const s = q.trim().toUpperCase();
+    // 1) Coba database live (Fase 2A)
+    try {
+      const res = await fetch(`/api/orders?resi=${encodeURIComponent(s)}`);
+      if (res.ok) {
+        const data = (await res.json()) as { order: OrderRow };
+        setResult(dbToDemo(data.order));
+        return;
+      }
+      // 404 = resi tidak ada di database → tampilkan tidak ditemukan
+      if (res.status === 404) {
+        setResult(null);
+        return;
+      }
+      // 503 = database belum dikonfigurasi → lanjut ke fallback demo
+    } catch {
+      /* koneksi gagal → fallback demo */
+    }
+    // 2) Fallback: data demo Fase 1
     const found = DEMO_ORDERS.find(
       (o) => o.orderNo === s || o.resi === s || o.sealNo === s,
     );
     setResult(found ?? null);
   }
 
-  const firstSearch = () => search(query);
+  const firstSearch = () => void search(query);
 
-  // Jika halaman dibuka dengan ?q=…, lakukan pencarian awal sekali.
-  if (initialQuery && result === undefined) {
-    const q = initialQuery.trim().toUpperCase();
-    const found = DEMO_ORDERS.find(
-      (o) => o.orderNo === q || o.resi === q || o.sealNo === q,
-    );
-    // Inisialisasi sekali di render pertama (sebelum interaksi).
-    setResult(found ?? null);
-    return null;
-  }
+  // Pencarian awal jika dibuka dengan ?q=…
+  useEffect(() => {
+    if (initialQuery) void search(initialQuery);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /* ---------- Tampilan hasil ---------- */
   if (result) {

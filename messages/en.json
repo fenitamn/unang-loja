@@ -562,5 +562,42 @@
     "copyright": "© {year} UNANG LOJA Samosir · Horas! Verified Lake Toba Tourism & Luggage Handling Services.",
     "langCurrent": "Bahasa Indonesia",
     "langOther": "English/EN"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "subtitle": "Manage incoming UNANG LOJA orders — update status, assign guides, contact customers.",
+    "login": {
+      "heading": "Admin Login",
+      "desc": "Enter the admin password to view all orders.",
+      "password": "Admin Password",
+      "button": "Sign In",
+      "logout": "Sign Out",
+      "wrong": "Wrong password.",
+      "notConfigured": "ADMIN_PASSWORD is not set in the environment."
+    },
+    "table": {
+      "resi": "Resi",
+      "customer": "Customer",
+      "service": "Service",
+      "date": "Date",
+      "detail": "Details",
+      "total": "Total",
+      "status": "Status",
+      "empty": "No orders yet.",
+      "loading": "Loading orders…",
+      "contact": "Contact via WA"
+    },
+    "statusLabels": {
+      "BARU": "New",
+      "DIKONFIRMASI": "Confirmed",
+      "DITUGASKAN": "Assigned",
+      "DIJEMPUT": "Picked Up",
+      "SELESAI": "Completed",
+      "BATAL": "Cancelled"
+    },
+    "setup": {
+      "db": "Database (Supabase) not connected — set SUPABASE_URL & SUPABASE_SERVICE_ROLE_KEY on Vercel.",
+      "wa": "WhatsApp notifications (Fonnte) inactive — set FONTE_TOKEN & ADMIN_WA."
+    }
   }
 }

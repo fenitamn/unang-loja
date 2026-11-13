@@ -562,5 +562,42 @@
     "copyright": "© {year} UNANG LOJA Samosir · Horas! Layanan Wisata & Pengamanan Bagasi Terverifikasi Danau Toba.",
     "langCurrent": "Bahasa Indonesia",
     "langOther": "English/EN"
+  },
+  "admin": {
+    "title": "Dashboard Admin",
+    "subtitle": "Kelola pesanan masuk UNANG LOJA — perbarui status, tugaskan pemandu, hubungi pemesan.",
+    "login": {
+      "heading": "Masuk Admin",
+      "desc": "Masukkan password admin untuk melihat semua pesanan.",
+      "password": "Password Admin",
+      "button": "Masuk",
+      "logout": "Keluar",
+      "wrong": "Password salah.",
+      "notConfigured": "ADMIN_PASSWORD belum diset di environment."
+    },
+    "table": {
+      "resi": "Resi",
+      "customer": "Pemesan",
+      "service": "Layanan",
+      "date": "Tanggal",
+      "detail": "Detail",
+      "total": "Total",
+      "status": "Status",
+      "empty": "Belum ada pesanan masuk.",
+      "loading": "Memuat pesanan…",
+      "contact": "Hubungi WA"
+    },
+    "statusLabels": {
+      "BARU": "Baru",
+      "DIKONFIRMASI": "Dikonfirmasi",
+      "DITUGASKAN": "Ditugaskan",
+      "DIJEMPUT": "Dijemput",
+      "SELESAI": "Selesai",
+      "BATAL": "Batal"
+    },
+    "setup": {
+      "db": "Database (Supabase) belum terhubung — set SUPABASE_URL & SUPABASE_SERVICE_ROLE_KEY di Vercel.",
+      "wa": "Notifikasi WhatsApp (Fonnte) belum aktif — set FONTE_TOKEN & ADMIN_WA."
+    }
   }
 }

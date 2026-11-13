@@ -162,10 +162,47 @@ export default function BookingWizard() {
     return true;
   }
 
-  function next() {
+  async function next() {
     if (!validate(step)) return;
     if (step === 3) {
-      // Simulasi nomor pesanan otomatis (Fase 1; Fase 2 dibuat server).
+      // Fase 2A: kirim pesanan ke server (Supabase + notifikasi WA admin).
+      // Jika database belum dikonfigurasi, fallback ke simulasi lokal (Fase 1).
+      try {
+        const res = await fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            serviceKey: form.serviceKey,
+            serviceLabel: service ? t(`items.${service.key}.name`) : form.serviceKey,
+            addOns: form.addOns,
+            date: form.date,
+            meetingPoint: form.meetingPoint,
+            zone: form.zone,
+            suitcases: form.suitcases,
+            participants: form.participants,
+            notes: form.notes || null,
+            name: form.name,
+            phone: form.phone,
+            email: form.email || null,
+            paymentMethod: form.method,
+            total,
+          }),
+        });
+        if (res.ok) {
+          const data = (await res.json()) as { order: { resi: string } };
+          setOrderNo(data.order.resi);
+          setStep(4);
+          return;
+        }
+        if (res.status !== 503) {
+          const data = (await res.json()) as { error?: string };
+          setError(data.error ?? "Gagal mengirim pesanan.");
+          return;
+        }
+      } catch {
+        /* koneksi gagal → fallback simulasi */
+      }
+      // Fallback Fase 1: simulasi nomor pesanan lokal
       const d = new Date();
       const stamp = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
       const seq = String(Math.floor(Math.random() * 9000) + 1000);
