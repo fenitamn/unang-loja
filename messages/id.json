@@ -1,134 +1,304 @@
 {
   "meta": {
     "title": "UNANG LOJA — Jelajah Tanpa Koper",
-    "description": "Pemandu wisata lokal serta penitipan dan antar bagasi di Pulau Samosir, Danau Toba. Pesan mudah, bagasi bersegel dan beresmi."
+    "description": "Pemandu wisata lokal serta penitipan dan antar bagasi bersegel di Pulau Samosir, Danau Toba. Resi digital, foto 4 sisi, pembayaran mudah."
   },
   "nav": {
     "home": "Beranda",
     "services": "Layanan",
     "guides": "Profil Pemandu",
     "book": "Pesan",
-    "status": "Status Pesanan",
+    "status": "Status Resi",
     "help": "Bantuan & Ulasan",
-    "menu": "Menu"
+    "menu": "Menu",
+    "bookCta": "Pesan Sekarang"
   },
   "common": {
     "dummy": "Data contoh — Fase 1",
     "perBooking": "per pesanan",
-    "perSuitcaseDay": "per koper / hari",
-    "perTrip": "per pengantaran",
+    "perSuitcaseDay": "/koper/hari",
+    "perTrip": "/pengantaran",
+    "perTripShort": "/trip",
     "bookNow": "Pesan layanan ini",
     "whatsapp": "Tanya via WhatsApp",
-    "currencyNote": "Tarif dapat berubah; harga final muncul saat pemesanan."
+    "currencyNote": "Tarif dapat berubah; harga final muncul saat pemesanan.",
+    "gratis": "Gratis",
+    "included": "Termasuk"
   },
   "home": {
-    "heroEyebrow": "Pulau Samosir, Danau Toba",
-    "heroTitle": "Jelajah Tanpa Koper",
-    "heroSubtitle": "Pemandu lokal, penitipan bagasi bersegel, dan pengantaran bagasi — semua dalam satu pemesanan. Nikmati Danau Toba tanpa dibebani koper.",
-    "heroCtaPrimary": "Pesan Sekarang",
-    "heroCtaSecondary": "Lihat Layanan",
-    "stats": {
-      "guides": "pemandu lokal terlatih",
-      "quota": "koper per hari",
-      "languages": "bahasa: Indonesia & Inggris",
-      "sealed": "bagasi bersegel & beresmi"
+    "eyebrow": "Layanan Wisata & Logistik Bagasi Resmi Pulau Samosir",
+    "heroTitle": "Jelajah Tanpa Koper, Temukan Rahasia Toba",
+    "heroSubtitle": "Solusi terpadu penitipan koper bersegel 4-sisi, pengantaran antar-dermaga ke penginapan, dan pemandu lokal berlisensi budaya Batak.",
+    "widget": {
+      "tabService": "Cek Penitipan & Antar Bagasi",
+      "tabResi": "Cek Status Resi Bagasi",
+      "origin": "Titik Jemput Dermaga",
+      "destination": "Tujuan Penginapan / Hotel",
+      "destinationPlaceholder": "Pilih penginapan tujuan…",
+      "date": "Tanggal",
+      "suitcases": "Jumlah Bagasi / Koper",
+      "searchCta": "Cari Ketersediaan Layanan",
+      "resiPlaceholder": "Contoh: UL-20261112-0001",
+      "resiCta": "Cek Status Resi"
     },
-    "featuresTitle": "Kenapa UNANG LOJA",
-    "features": [
-      {
-        "title": "Satu platform",
-        "desc": "Pemanduan, penitipan, dan pengantaran bagasi dipesan sekaligus — tanpa mengatur banyak penyedia secara terpisah."
+    "heroCard": {
+      "badgeTitle": "Pemandu Bersertifikat",
+      "badgeDesc": "HPI Samosir Terpercaya",
+      "sealTitle": "Segel 4-Sisi Anti-Buka",
+      "sealDesc": "Setiap koper difoto & difoto 360° sebelum transit."
+    },
+    "trust": [
+      { "title": "100% Bersegel Khusus", "desc": "Garansi tanpa dibuka" },
+      { "title": "Pemandu Batak Asli", "desc": "Berlisensi budaya resmi" },
+      { "title": "Asuransi Terprotokoli", "desc": "Manajer TPI Juta koper" },
+      { "title": "Rating 4.8 / 5.0", "desc": "3.200+ Wisatawan puas" }
+    ],
+    "features": {
+      "eyebrow": "Keunggulan Unang Loja",
+      "title": "Perjalanan Nyaman Tanpa Beban Logistik",
+      "subtitle": "Didesain khusus untuk mengatasi perpindahan feri dan transportasi lokal berat, menghubungkan kenyamanan Arcta, keamanan, dan keindahan Danau Toba.",
+      "items": [
+        {
+          "title": "Pemandu Lokal Terlatih",
+          "desc": "Pemanduwisata (Practical guiding) menguasai keli Budaya Batak, bahasa (sering melayani pengunjung) yang ramah, menjelaskan sejarah peninggalan yang menarik wisatawan mancanegara.",
+          "link": "Akreditasi HPI Batak"
+        },
+        {
+          "title": "Bagasi Bersegel & Foto 4 Sisi",
+          "desc": "Seluruh koper disegel berkode nomor seri & kodok dokumen sebelum transit. Foto arsip dikirim otomatis via WhatsApp pemegang koper untuk transparansi keamanan penuh.",
+          "link": "Digital Photo Log"
+        },
+        {
+          "title": "Antar Bagasi Lintas Zona",
+          "desc": "Diantar langsung dari dermaga (Ferry Tomok, Ambarita) ke lobi hotel pertama di Tuk-Tuk, kecamatan Pangururan berdiri. Anti-kusut.",
+          "link": "Dermaga ke Kamar Hotel"
+        },
+        {
+          "title": "Paket Fleksibel & Transparan",
+          "desc": "Pilihan layanan setengah hari, penitipan harian, maupun paket tur siulan. Rayon Tanoh GRS/RSM dengaa.",
+          "link": "Tarif Resmi & Terbuka"
+        }
+      ]
+    },
+    "packages": {
+      "eyebrow": "Tarif Bersahabat & Garansi",
+      "title": "Paket Unggulan Unang Loja",
+      "viewAll": "Lihat Semua Layanan & Tarif",
+      "featured": "Paling Hemat & Populer",
+      "featuredSub": "All-In Combo",
+      "badges": {
+        "penitipan": "Loket Tomok · Ambarita",
+        "antarDekat": "Antar Dermaga · Hotel",
+        "pemanduan": "Tur Budaya & Sejarah",
+        "fleksibel": "All-In Combo"
       },
-      {
-        "title": "Bagasi aman & beresmi",
-        "desc": "Koper difoto dari empat sisi, dipasang segel bernomor, dan Anda menerima resi digital."
-      },
-      {
-        "title": "Pemandu lokal terlatih",
-        "desc": "Pemandu Samosir yang mengenal budaya Batak, sejarah, dan kuliner — dilatih dengan standar layanan."
-      },
-      {
-        "title": "Mudah & dua bahasa",
-        "desc": "Pesan dari ponsel dalam bahasa Indonesia atau Inggris, dibantu admin via WhatsApp bila perlu."
+      "descs": {
+        "penitipan": "Loker sehat berpengolih ruangan eksklusive & nomor unik & CCTV 24 jam.",
+        "antarDekat": "Diantar ke feri langsung tipe jokby van, kamar sontari Anda di Tuk-Tuk.",
+        "pemanduan": "4 Jam kecilup: bolon & situs bagasi bersama pemandu berlisensi.",
+        "fleksibel": "Konlcuri bentan bagasi van Tuk-Tuk + voucher panduan siula."
       }
-    ],
-    "servicesTitle": "Layanan & Tarif",
-    "servicesSubtitle": "Pilih satu layanan atau paket bundel. Harga transparan, tanpa biaya tersembunyi.",
-    "servicesCta": "Lihat semua layanan",
-    "stepsTitle": "Cara Pemesanan — 4 Langkah",
-    "steps": [
-      { "title": "Pilih layanan", "desc": "Layanan tunggal atau paket Jelajah Fleksibel / Mystery Tour." },
-      { "title": "Tanggal & lokasi", "desc": "Tentukan tanggal dan titik temu: Tomok, Tuk Tuk, atau Ambarita." },
-      { "title": "Data pelanggan", "desc": "Isi nama, kontak, dan kode referensi (opsional)." },
-      { "title": "Pembayaran", "desc": "Transfer bank atau dompet digital, lalu unggah bukti bayar." }
-    ],
-    "stepsCta": "Mulai pesan",
-    "testimonialsTitle": "Kata Wisatawan",
-    "testimonials": [
-      { "name": "Sarah, Jakarta", "text": "Koper dititip, saya bebas keliling Tomok dan Tuk Tuk. Segel dan resinya membuat tenang." },
-      { "name": "Marco, Italia", "text": "The guide explained Batak history so well. Booking was easy even from my phone." },
-      { "name": "Keluarga Nainggolan", "text": "Bagasi langsung diantar ke penginapan berikutnya di Simanindo. Praktis sekali." }
-    ],
-    "testimonialsNote": "Ulasan contoh (data dummy).",
+    },
+    "testimonials": {
+      "ratingLabel": "4.8 / 5.0 (3.200+ ulasan)",
+      "title": "Cerita Wisatawan yang Menikmati Toba Lebih Luasa",
+      "items": [
+        { "text": "Tur dari dermaga Tomok jam 10 pagi, koper langsung dibawa di koper, kunci kamar, lalu pemandu, kembali kami jalan jalan desa Sigale-gale, makan ulos dan kembali lagi koper sudah ada di kamar hotel Tuk-Tuk!", "name": "Andi R. & Keluarga", "role": "Wisatawan asal Jakarta" },
+        { "text": "The 4-side photo verification via WhatsApp brought peace of mind. Luggage was delivered spotless. Our local Batak guide, Bang Togar, was encyclopedic about Siagal-gal this history. Highly recommended!", "name": "Claire & Liam", "role": "Travelers from Melbourne, Australia" },
+        { "text": "Sangat membantu saat bawa orang tua & anak. Tak perlu angkat koper berat di dermaga, langsung tiba di Ambarita. Pemandunya sabar, dan tahu tempat makan enak di Pangururan.", "name": "Dina Siregar", "role": "Wisatawan asal Medan" }
+      ],
+      "note": "Ulasan contoh (data dummy)."
+    },
     "ctaTitle": "Siap jelajah tanpa koper?",
     "ctaSubtitle": "Pesan sekarang — konfirmasi melalui WhatsApp setelah pembayaran diverifikasi admin."
   },
   "services": {
-    "title": "Layanan & Tarif",
-    "subtitle": "Semua tarif di bawah ini adalah harga awal dan akan dikelola oleh admin melalui sistem (data contoh Fase 1).",
+    "eyebrow": "Standar Logistik Terpadu Danau Toba & Pemandu Lisensi Resmi",
+    "title": "Tarif Terbuka & Layanan Terpercaya Pulau Samosir",
+    "subtitle": "Nikmati keindahan Danau Toba tanpa beban bawaan. Pilih layanan satuan atau paket hemat dengan kepatuhan tarif tanpa pungli.",
+    "trust": [
+      "Segel Digital 4-Sisi Anti-Rusak",
+      "Garansi Antar Maks. 90 Menit",
+      "100% Bebas Biaya Tambahan di Dermaga"
+    ],
+    "tabs": {
+      "all": "Semua Layanan",
+      "storage": "Penitipan & Logistik Bagasi",
+      "guide": "Pemandu Wisata Budaya",
+      "bundle": "Paket Bundling Hemat"
+    },
+    "badges": {
+      "pemanduan": "Budaya & Sejarah",
+      "penitipan": "Tetap di Dermaga",
+      "antarDekat": "Zona Dekat",
+      "antarLintas": "Zona Lintas",
+      "fleksibel": "Paket Bundling",
+      "mystery": "Eksplor Petualang"
+    },
     "items": {
       "pemanduan": {
-        "name": "Pemanduan Setengah Hari",
-        "desc": "Didampingi pemandu lokal sekitar 4 jam: budaya Batak, sejarah, dan kuliner Samosir. Titik temu disepakati saat pemesanan.",
-        "includes": ["Pemandu lokal (Indonesia/Inggris)", "Rute: Tomok, Ambarita, Tuk Tuk", "Durasi ± 4 jam"]
+        "name": "Pemandu Wisata Setengah Hari",
+        "code": "PW-01",
+        "rating": "4.9 (104 ulasan)",
+        "desc": "Pemandu lokal terlatih budaya Batak. Fleksibel keluarakn Danau Tomok, Situs Ambarita, Huta Bolon.",
+        "bullets": [
+          "Fleksibel kemudahan/batu bersejarah",
+          "Dokumentasi foto perjalanan gratis",
+          "Rommbongan privat hingga maks. 5 orang"
+        ]
       },
       "penitipan": {
-        "name": "Penitipan Bagasi (Jelajah Tanpa Koper)",
-        "desc": "Koper difoto dari empat sisi, dipasang segel bernomor, lalu Anda menerima resi. Diambil kembali di titik yang sama.",
-        "includes": ["Dokumentasi foto 4 sisi", "Segel bernomor + resi digital", "Kuota 20 koper per hari"]
+        "name": "Penitipan Bagasi Bersegel",
+        "code": "BS-01",
+        "rating": "4.8 (86 ulasan)",
+        "desc": "Penyimpanan menggunakan loker & CCTV di pelabuhan, Ambarita, atau Tuk Tuk dengan pengamanan tepat waktu.",
+        "bullets": [
+          "Segel berkode nomor 4-sisi anti-rusak",
+          "Foto dokumentasi kondisi resi masuk-keluar",
+          "Ruang penyimpanan ber-AC & CCTV 24/7"
+        ]
       },
       "antarDekat": {
-        "name": "Antar Bagasi — Zona Dekat",
-        "desc": "Pengantaran bagasi antar penginapan di zona Tuk Tuk – Tomok – Ambarita.",
-        "includes": ["Zona dekat", "Diantara kurir mitra", "Sesuai jadwal yang disepakati"]
+        "name": "Antar Bagasi Zona Dekat",
+        "code": "LG-02",
+        "rating": "4.9 (92 ulasan)",
+        "desc": "Area: Tuk-Tuk, Tomok & Ambarita. Diantar langsung dari dermaga kadang ke lobi hotel/homestay Anda.",
+        "bullets": [
+          "Diantar ke lobi hotel / homestay",
+          "Update GPS Real-time via WhatsApp",
+          "Kapasitas paket mencakup hingga 2 koper"
+        ]
       },
       "antarLintas": {
-        "name": "Antar Bagasi — Zona Lintas",
-        "desc": "Pengantaran bagasi hingga Simanindo atau Pangururan.",
-        "includes": ["Zona lintas", "Diantara kurir mitra", "Sesuai jadwal yang disepakati"]
+        "name": "Antar Bagasi Zona Lintas",
+        "code": "LG-03",
+        "rating": "4.8 (64 ulasan)",
+        "desc": "Layanan penitipan & logistik bagasi lintas penjelasan Tele, Pangururan, hingga tepat antar-jemput puncak.",
+        "bullets": [
+          "Jangkauanarea terjauh & tepat Samosir",
+          "Perlindungan tepat anti-hujan & guncangan",
+          "Asuransi proteksi penuh perjalanan"
+        ]
       },
       "fleksibel": {
-        "name": "Jelajah Fleksibel",
-        "desc": "Paket bundel: pemanduan setengah hari + satu kali antar bagasi zona dekat. Lebih hemat dibanding beli terpisah.",
-        "includes": ["Pemandu setengah hari", "1x antar zona dekat", "Hemat Rp25.000"]
+        "name": "Paket Jelajah Fleksibel",
+        "code": "PK-FLX",
+        "rating": "5.0 (118 ulasan)",
+        "desc": "Pemandu Wisata 4 Jam | Penitipan & Antar 2 Koper langsung ke Hotel di Tuk-Tuk/Tomok. Bebas eksplorasi di bawah pemantauan pelan.",
+        "bullets": [
+          "Pemandu Wisata Berlisensi (4 Jam Rute Bebas)",
+          "Logistik | Pengantaran 2 Koper ke Hotel",
+          "Prioritas handling kapal feri & welcome drink"
+        ],
+        "saveLabel": "Hemat Rp50.000"
       },
       "mystery": {
-        "name": "Mystery Tour",
-        "desc": "Paket wisata bertema pilihan. Urutan lokasi dirahasiakan dan dibuka H-1 lewat WhatsApp.",
-        "includes": ["Pemandu lokal", "Itinerary rahasia, dibuka H-1", "Tema: Jejak Situs / Senja Danau"]
+        "name": "Paket Mystery Tour Toba",
+        "code": "PX-MYST",
+        "rating": "4.9 (71 ulasan)",
+        "desc": "Rute rahasia: tema Jejak Situs Sejarah (Sitombak) & Petualakan Rahasia). Dibuka H-1 via WhatsApp.",
+        "bullets": [
+          "Terseuk pemandu lokal berlisensi & tiket tersembunyik",
+          "Akses ke lokasi privasi non-komersial Samosir",
+          "Termasuk penitipan 1 tas/koper per peserta"
+        ]
       }
     },
     "mysteryThemes": {
       "situs": "Jejak Situs — situs sejarah & rumah adat",
       "senja": "Senja Danau — sunset point & cerita rakyat"
     },
-    "upsellTitle": "Hemat dengan paket",
-    "upsellText": "Pemanduan + antar bagasi zona dekat = Jelajah Fleksibel Rp350.000 (hemat Rp25.000 dibanding beli terpisah Rp375.000)."
+    "sop": {
+      "eyebrow": "SOP Keamanan International",
+      "title": "Transparansi Keamanan & Prosedur Resi 4-Sisi",
+      "subtitle": "Setiap koper Anda melewati pengamanan digital ketat tanpa celah dari saat serah terima di dermaga hingga tiba di tangan Anda di hotel.",
+      "steps": [
+        { "no": "01", "title": "Drop & Segel", "desc": "Koper diserahkan di konter resmi dermaga Tomok/Ambarita. Petugas memverifikasi kondisi fisik dan menempel 4 segel tamper-evident tahan air bernomor seri khusus.", "note": "Nomor segel unik tercatat di sistem Cloud" },
+        { "no": "02", "title": "Verifikasi Foto 4 Sudut", "desc": "Petugas mengambil foto 4 sisi (depan, belakang, keseling, dan bawah) koper. Dokumen ini dikirim ke WhatsApp Anda sebagai bukti keadaan awal bagasi.", "note": "Bukti Wajib real-time dikirim tanpa potongan" },
+        { "no": "03", "title": "Penyerahan di Hotel", "desc": "Kurir mengantar tas ke resepsionis atau langsung ke kamar. Segel dibuka oleh Anda — jika segel koyak, Anda berhak klaim garansi penuh sesuai ketentuan.", "note": "Serasi klaim instan jika integritas segel terganggu" }
+      ]
+    },
+    "assurance": {
+      "title": "Asuransi Perlindungan Penuh UNANG LOJA Guard",
+      "desc": "Kompensasi hingga Rp10.000.000,00 untuk kerusakan atau kehilangan lebih dari batas toleransi.",
+      "cta": "Lihat Polis Asuransi"
+    },
+    "faq": {
+      "eyebrow": "Pusat Informasi",
+      "title": "Pertanyaan Umum (FAQ)",
+      "subtitle": "Hal-hal yang sering ditanyakan seputar pengantaran, biaya, dan titik temu.",
+      "items": [
+        { "q": "Bagaimana jika kapal feri saya mengalami keterlambatan mendarat di Tomok/Ambarita?", "a": "Tim UNANG LOJA memantau jadwal kedatangan kapal feri secara langsung dari pelabuhan Ajibata dan Tigaras. Petugas kami akan tetap standby di dermaga kesetengah tanpa ada biaya biaya keterlambatan." },
+        { "q": "Di mana titik temu penyerahan koper di dermaga Tomok dan Tuk-Tuk?", "a": "Titik temu utama kami di Loker Hub Dermaga Tomok (dekat dermaga feri) dan titik satelit di resepsionis penginapan mitra di Tuk-Tuk. Lokasi lengkap dikirim via WhatsApp setelah pesanan lunas." },
+        { "q": "Apakah barang berharga (laptop, kamera, perhiasan) boleh dititipkan?", "a": "Kami menyarankan barang berharga dibawa sendiri. Untuk perhiasan dan elektronik, penitipan wajib menggunakan opsi asuransi penuh dan didokumentasikan foto 4 sisi." },
+        { "q": "Bagaimana kebijakan pembatalan (cancellation policy) jika jadwal tour berubah?", "a": "Pembatalan gratis hingga H-1 sebelum layanan. Setelah itu, biaya admin 10% untuk layanan pemandu dan pengantaran. Penitipan harian dapat dibatalkan kapan saja." }
+      ],
+      "customTitle": "Butuh bantuan rute kustom atau rombongan bus wisata?",
+      "customDesc": "Hubungi Customer Service Pier UNANG LOJA 24 Jam via WhatsApp.",
+      "customCta": "Chat WhatsApp Pier"
+    }
   },
   "guides": {
-    "title": "Profil Pemandu",
-    "subtitle": "Pemandu lokal Samosir dengan standar layanan UNANG LOJA. Kalender di bawah adalah ketersediaan contoh (data dummy) — slot dikunci otomatis saat pesanan lunas.",
-    "languages": "Bahasa",
-    "experience": "{years} tahun pengalaman",
-    "rating": "Rating",
-    "specialties": {
-      "budaya": "Budaya & adat Batak",
-      "sejarah": "Sejarah & situs",
-      "kuliner": "Kuliner lokal",
-      "alam": "Alam & danau",
-      "foto": "Spot fotografi"
+    "eyebrow": "Himpunan Pramuwisata Indonesia (HPI) Samosir",
+    "title": "Pemandu Lokal Berlisensi HPI Samosir",
+    "subtitle": "Eksplorasi sejarah magelitik, Hutan Rumah Bolon, dan keindahan tersembunyi Pulau Samosir bersama purna desain yang bersertifikasi resmi.",
+    "trust": [
+      { "title": "100% Pemandu Terverifikasi", "desc": "Sertifikasi lisensi HPI aktif" },
+      { "title": "Multibahasa Fasih", "desc": "Batak, ID, Inggris, & Deutsch" },
+      { "title": "Garansi Budaya Orientasi", "desc": "Sejarah dan adat dilakukan dibahas" },
+      { "title": "Rute Wisata Kolaborasi", "desc": "Rute aman dan terlindas" }
+    ],
+    "searchPlaceholder": "Cari nama pemandu atau keahlian spesifik…",
+    "filterArea": "Wilayah / Fokus Area",
+    "filterLang": "Semua Bahasa",
+    "categories": {
+      "all": "Semua Pemandu",
+      "history": "Sejarah & Megalitikum",
+      "photo": "Fotografi & Landskap",
+      "culinary": "Kuliner & Kerajinan Ulos",
+      "nature": "Trekking & Alam Samosir"
     },
-    "book": "Pesan dengan pemandu ini",
+    "directory": {
+      "title": "Direktori Pramuwisata Terverifikasi",
+      "subtitle": "Menampilkan pemandu terbaik yang siap menginspirasi perjalanan Anda hari ini."
+    },
+    "card": {
+      "experience": "Pengalaman",
+      "languages": "Bahasa",
+      "focus": "Fokus Lokasi",
+      "viewProfile": "Lihat Profil",
+      "choose": "Pilih Pemandu"
+    },
+    "sortLabel": "Urutkan",
+    "sortDefault": "Rating Tertinggi",
+    "standards": {
+      "eyebrow": "Kolaborasi Resmi DPC HPI Kabupaten Samosir",
+      "title": "Standar Ketat & Perlindungan Wisatawan",
+      "subtitle": "Setiap pramuwisata yang bergabung dalam platform UNANG LOJA wajib melewati proses akreditasi berikut untuk memastikan pelayanan budaya Batak Toba yang menjunjung tinggi etika kekerabatan \"Dalihan Na Tolu\".",
+      "items": [
+        { "title": "Pelatihan P3K Parawisata", "desc": "Sertifikasi pertolongan pertama dan penanganan evakuasi darurat dari pos pantauan medis terdekat.", "note": "Standar DSPF / PMI" },
+        { "title": "Sejarah Bebas Distorsi", "desc": "Materi cetak divalidasi langsung oleh tetua adat & Dinas Pariwisata agar tidak menyimpalkan nilai purba dan nenek moyang.", "note": "Validasi Kurator Sejarah" },
+        { "title": "Transparansi Tarif 100%", "desc": "Harga tertera di sistem tanpa biaya tersembunyi. Tips Sukarela dibagi 2 antara pemandu dan kas desa adat.", "note": "Garansi Bebas Biaya Gab" },
+        { "title": "Etika Dalihan Na Tolu", "desc": "Memperlakukan setiap tamu seperti keluarga sendiri: hatur, syukur, menjunjung tinggi adat dan cerita leluhur.", "note": "Kode Etik Budaya Lokal" }
+      ]
+    },
+    "testimonials": {
+      "eyebrow": "Pendalaman Nyata Wisatawan",
+      "title": "Ulasan Spesifik Tamu UNANG LOJA",
+      "subtitle": "Cerita otentik wisatawan domestik dan mancanegara setelah menjelajah Pulau Samosir bersama pemandu kami.",
+      "items": [
+        { "text": "We booked Bang Togar right after dropping our large suitcases at the Tomok lockers—secure service. His depth of knowledge about Batak rituals and tomb structures was superb. Perfect English and very respectful. Best decision ever!", "name": "Marcus & Helena Weber", "role": "Backpacker dari Hamburg, Jerman" },
+        { "text": "Ibu Dame menjelaskan keunikan ulos Samosir yang benar tidak sepenuh kuliner di Simanindo. Beliau sangat teliti menjelaskan makna motif ulos. Sudah lama in berbelanja suvenir sejak pulang ke hotel saya pun jadi lebih bermakna sebagai suvenir koper.", "name": "Ari Prasetyo", "role": "Peneliti sejarah — Tur Budaya & Ulos" },
+        { "text": "Trekking bukit Barisan dengan Le Ucok senjala kami. Gudang dokup 4 spot foto sunrise Sadap Toba yang kami sekit jadi wallpaper di Google Maps. Beliau juga tahu detail jalan alternatif ke Tanjung Unte.", "name": "David & Kevin Sim", "role": "Backpacker · Trekking & Fotografer" }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Terkoneksi Stip Bagasi",
+      "title": "Jelajah Tanpa Koper, Temukan Rahasia Toba",
+      "subtitle": "Aman dari bawaan kendi di dermaga Tomok atau Ajibata dengan teknologi segel QR 4-sisi. Menanti kerenjakian Samosir bersama pemandu pilihan dengan langsung ngarai.",
+      "primary": "Pesan Paket Wisata + Loker",
+      "secondary": "Pelajari Sistem Keamanan"
+    },
     "calendar": {
       "title": "Ketersediaan {month}",
       "available": "Tersedia",
@@ -138,13 +308,14 @@
     }
   },
   "booking": {
-    "title": "Pesan Layanan",
+    "title": "Formulir Pemesanan & Penitipan Bagasi Bersegel",
+    "subtitle": "Titipan koper di dermaga, nikmati keindahan Danau Toba tanpa beban, koper kami antar langsung ke kamar hotel Anda dengan aman.",
     "steps": ["Pilih Layanan", "Tanggal & Lokasi", "Data Pelanggan", "Pembayaran"],
-    "step": "Langkah {current} dari {total}",
+    "stepOf": "Langkah {current} dari {total}",
     "back": "Kembali",
     "next": "Lanjut",
     "step1": {
-      "title": "Pilih layanan atau paket",
+      "title": "1. Pilih Layanan",
       "select": "Pilih salah satu layanan di bawah.",
       "theme": "Pilih tema Mystery Tour",
       "suggestions": "Saran untuk Anda",
@@ -154,7 +325,7 @@
       "upsellNote": "Lebih hemat {saving} dibanding beli terpisah."
     },
     "step2": {
-      "title": "Tanggal & lokasi",
+      "title": "2. Titik Penitipan & Tujuan Pengantaran",
       "date": "Tanggal layanan",
       "dateMin": "Pesanan minimal untuk keesokan hari.",
       "meetingPoint": "Titik temu",
@@ -162,24 +333,24 @@
       "zones": { "dekat": "Zona dekat (Tuk Tuk – Tomok – Ambarita)", "lintas": "Zona lintas (hingga Simanindo / Pangururan)" },
       "suitcases": "Jumlah koper",
       "participants": "Jumlah peserta",
-      "notes": "Catatan (opsional)",
-      "notesPlaceholder": "Contoh: jam kedatangan, penginapan tujuan…"
+      "notes": "Catatan khusus untuk kurir dermaga",
+      "notesPlaceholder": "Contoh: Koper warna navy, berisi kamera…"
     },
     "step3": {
-      "title": "Data pelanggan",
-      "name": "Nama lengkap",
-      "phone": "Nomor WhatsApp",
-      "email": "Email (opsional)",
+      "title": "3. Informasi Kontak Pemesan",
+      "name": "Nama Lengkap (sesuai KTP / Paspor)",
+      "phone": "Nomor WhatsApp Aktif",
+      "email": "Alamat Email",
       "referral": "Kode referensi (opsional)",
       "referralNote": "Kode referensi hanya dicatat untuk program rekomendasi — tanpa diskon.",
       "summary": "Ringkasan pesanan"
     },
     "step4": {
-      "title": "Pembayaran",
+      "title": "4. Konfirmasi & Pembayaran",
       "method": "Metode pembayaran",
       "methods": {
         "bca": "Transfer Bank BCA",
-        "bsi": "Transfer Bank BSI / Syariah",
+        "bsi": "Transfer Bank BSI",
         "gopay": "Dompet digital GoPay",
         "ovo": "Dompet digital OVO",
         "dana": "Dompet digital DANA"
@@ -190,16 +361,81 @@
       "upload": "Unggah bukti pembayaran",
       "uploadHint": "Format JPG/PNG maksimal 5 MB. Anda juga dapat mengirimnya ke WhatsApp admin.",
       "note": "Pembayaran diverifikasi manual oleh admin (tanpa payment gateway). Setelah lunas, pesanan mengunci slot pemandu dan Anda menerima konfirmasi.",
-      "submit": "Kirim pesanan & bukti bayar",
+      "submit": "Kirim Pesanan & Buat Resi",
       "uploading": "Bukti dipilih: {file}"
     },
+    "sidebar": {
+      "title": "Ringkasan Reservasi",
+      "calc": "Kalkulator Transparan",
+      "total": "Total Pembayaran",
+      "totalNote": "*Harga final sudah termasuk biaya penanganan & segel kemewahan PPN 11%.",
+      "cta": "Lanjut Pembayaran & Buat Resi",
+      "methods": "Metode Pembayaran Resmi",
+      "guarantees": {
+        "title": "Jaminan Layanan UNANG LOJA",
+        "items": [
+          { "title": "Segel Keamanan 4-Sisi Terintegrasi", "desc": "Koper tidak dapat dibuka tanpa merusak nomor seremi tercanturbarcode." },
+          { "title": "Garansi Tepat Waktu Check-In", "desc": "Koper tiba di lobi hotel sebelum jadwal istirahat Anda tiba." },
+          { "title": "Petugas Resmi HPI Samosir", "desc": "Seluruh pemandu terdaftar dan berlisensi DPC HPI Kabupaten Samosir." }
+        ]
+      }
+    },
     "success": {
-      "title": "Pemesanan diterima!",
-      "orderNo": "Nomor pesanan",
-      "next": "Admin akan memverifikasi pembayaran dan mengonfirmasi melalui WhatsApp maksimal 2 jam (08.00–20.00 WIB). Simpan nomor pesanan Anda untuk cek status.",
-      "checkStatus": "Cek status pesanan",
-      "home": "Kembali ke beranda",
-      "simulate": "Ini simulasi Fase 1 — belum tersimpan ke database."
+      "eyebrow": "Pembayaran Berhasil & Terverifikasi",
+      "title": "Horas, {name}! Reservasi Titip & Antar Bagasi Anda Telah Dikonfirmasi",
+      "subtitle": "Koper Anda siap dijemput di titik temu dan diantarkan langsung ke hotel tujuan dengan garansi segel keamanan 4-sisi berstandar pariwisata.",
+      "downloadPdf": "Unduh Voucher Resi (PDF)",
+      "sendWa": "Kirim Bukti ke WhatsApp",
+      "trackCta": "Lacak Status Koper Real-Time",
+      "voucherTitle": "Voucher Bagasi Resi (Boarding Pass Format)",
+      "voucherNote": "Format Siap Scan Petugas Loker",
+      "boarding": "Boarding Pass Bagasi Samosir",
+      "secureTag": "UNANG LOJA SECURE-TAG",
+      "codeLabel": "Kode Reservasi Unang Loka Resi",
+      "dropoff": "Drop-Off Titik Awal",
+      "dropoffDesc": "Loker Hub Dermaga Tomok — Pintu Keluar Ferry KMP Tao Toba.",
+      "destination": "Tujuan Pengantaran",
+      "destinationDesc": "Resepsionis hotel tujuan Anda.",
+      "tiles": {
+        "bagasi": { "title": "Rincian Bagasi", "desc": "Sesuai pesanan Anda" },
+        "protocol": { "title": "Protokol Keamanan", "desc": "Segel 4-Sisi Anti-Tamper · Garansi" },
+        "guide": { "title": "Pemandu Terkoneksi", "desc": "Berlisensi Resmi HPI Samosir" }
+      },
+      "note": "Tunjukkan kode voucher ini kepada petugas loker berpengaman resmi UNANG LOJA saat Anda turun dari kapal feri.",
+      "qr": "E-Voucher Digital Resi",
+      "scan": "Scan di Pier Hub",
+      "staffLabel": "Petugas Standby Tomok",
+      "stepsTitle": "3 Langkah Mudah Penyerahan Koper di Pelabuhan",
+      "steps": [
+        { "title": "Tiba di Dermaga Tomok", "desc": "Begitu Anda turun dari Kapal Ferry KMP Tao Toba, cari Loker Hub resmi UNANG LOJA di pintu keluar. Tunjukkan QR Code voucher pada layar ponsel atau cetak fisik kepada staf berjeragam rompi navy.", "note": "Estimasi proses: < 2 Menit" },
+        { "title": "Pemasangan 4 Segel & Foto Arsip", "desc": "Saksikan staf kami memasang pita segel bernomor seri khusus padat ritsleting, gagang, sisi belakang, dan dasar koper. Foto dokumentasi 4-sisi beresolusi tinggi langsung dikirim ke WhatsApp Anda.", "note": "Bergaransi Anti-Tamper Resmi" },
+        { "title": "Jelajah Samosir Tanpa Beban", "desc": "Mulai petualangan Anda menjelajahi Makam Raja Sidabutar, desa adat Sigale-gale, atau kuliner Huta Bolon sambil menunggu koper tiba di resepsionis hotel sebelum waktu check-in.", "note": "Tiba di Hotel Pukul 13:30 WIB" }
+      ],
+      "recap": {
+        "title": "Rincian Pembayaran Resmi",
+        "refLabel": "Nomor referensi transaksi",
+        "statusLunas": "STATUS: LUNAS",
+        "colItem": "Deskripsi Item Layanan",
+        "colQty": "QTY",
+        "colPrice": "Harga Satuan",
+        "colSubtotal": "Subtotal",
+        "method": "Metode Pembayaran",
+        "time": "Waktu Pembayaran",
+        "ppn": "Pajak Pertambahan Nilai (PPN 11%)",
+        "totalLabel": "Total Dibayar",
+        "totalNote": "Lunas Tanpa Biaya Tambahan di Lapangan"
+      },
+      "tracking": {
+        "title": "Live Tracking Hub",
+        "resiLabel": "Resi",
+        "openLink": "Buka Peta Pelacakan Lengkap"
+      },
+      "protocol": {
+        "title": "Protokol Keamanan Wajib",
+        "desc": "Jangan terima koper Anda di resepsionis hotel jika salasatu pita segel telah robek atau nomor seri tidak sesuai dengan foto arsip WhatsApp Anda.",
+        "staff": "Staff Hub Tomok",
+        "courier": "Kurir Antar Lapangan"
+      }
     },
     "errors": {
       "service": "Silakan pilih layanan terlebih dahulu.",
@@ -209,33 +445,90 @@
     }
   },
   "status": {
-    "title": "Status Pesanan & Bagasi",
+    "title": "Pelacakan Status Pengantaran Koper",
+    "badge": "Segel Anti-Tamper Aktif",
     "subtitle": "Masukkan nomor pesanan atau nomor resi bagasi Anda.",
     "placeholder": "Contoh: UL-20261112-0001 atau RSI-0042",
-    "search": "Cari",
+    "search": "Cek Resi",
+    "otherCta": "Cek Resi Lain",
+    "downloadCta": "Unduh Surat Jalan",
     "sample": "Coba contoh resi",
     "notFound": "Pesanan tidak ditemukan. Periksa kembali nomor pesanan/resi Anda atau hubungi admin via WhatsApp.",
-    "order": "Pesanan",
-    "service": "Layanan",
-    "date": "Tanggal",
-    "timeline": "Status pesanan",
-    "states": {
-      "diterima": "Diterima",
-      "lunas": "Lunas",
-      "terjadwal": "Terjadwal",
-      "berjalan": "Sedang berjalan",
-      "selesai": "Selesai"
+    "hero": {
+      "liveBadge": "LIVE SAMOSIR FLEET",
+      "owner": "Pemilik",
+      "route": "Rute",
+      "etaLabel": "Estimasi Tiba di Hotel",
+      "current": "Status Sekarang"
     },
-    "luggage": "Bagasi",
-    "luggageResi": "Nomor resi",
-    "luggageSeal": "Nomor segel",
-    "luggagePhotos": "Dokumentasi foto 4 sisi tersimpan",
+    "timeline": {
+      "steps": [
+        { "title": "Diterima di Tomok", "desc": "Petugas loker Dermaga Tomok memeriksa bagasi, menimbang koper, dan mencetak barcode resi digital." },
+        { "title": "Segel 4-Sisi Dipasang", "desc": "Pemasangan 4 pita segel tamper-evident bernomor seri unik & perekaman foto arsip cloud." },
+        { "title": "Menuju Hotel", "desc": "Armada melewat jalur pesisir Danau Toba. Dilengkapi pelacak GPS aktif & kabin tertutup tahan hujan." },
+        { "title": "Serah Terima Resepsionis", "desc": "Diserahkan ke staf front-desk Carolina Hotel. Anda menerima notifikasi WhatsApp saat koper aman di lobi." }
+      ]
+    },
+    "crew": {
+      "courier": "Kurir Logistik Dermaga Tomok",
+      "rating": "5.0 · (310+ Antar Berhasil)",
+      "guideLabel": "Pemandu Budaya HPI Terkoneksi",
+      "guideLicense": "Lisensi #HPI-TB-1902",
+      "contact": "Hubungi Pemandu"
+    },
+    "seals": {
+      "eyebrow": "Integritas Keamanan Maksimal",
+      "title": "Dokumentasi Foto Segel 4-Sisi Anti-Tamper",
+      "subtitle": "Setiap koper yang dititipkan disegel dengan pita kabel bernomor seri unik dan difoto dalam resolusi tinggi di Pelabuhan Tomok sebelum dimuat ke armada.",
+      "refreshCta": "Perbesar Semua Foto HD",
+      "reportCta": "Lapor Segel Rusak (Klaim Rp10 Juta)",
+      "sides": [
+        { "label": "SISI 1: DEPAN", "title": "Tampak Depan", "chip": "UTUH", "desc": "Koper Navy Samsonite 24\" milik tamu gress baru, segel barcode merketsan sempurna di sambungan badi." },
+        { "label": "SISI 2: RITSLETING", "title": "Ritsleting & Gembok", "chip": "TERKUNCI", "desc": "Kabel baja segel mengunci dua kepala ritsleting pada tetap di slot kombinasi angka bawaan koper." },
+        { "label": "SISI 3: BELAKANG", "title": "Handle & Teleskopik", "chip": "UTUH", "desc": "Segel barcode melintang di pangkal telescopic memastikan kompartemen tidak dapat dibuka paksa." },
+        { "label": "SISI 4: BAWAH & RODA", "title": "Roda & Engsel Bawah", "chip": "BERSIH", "desc": "Keempat roda spinner berputar lancar tanpa kotranjau jahitan, engsel lipat bawah tersegel rapat." }
+      ],
+      "note": "Prosedur Pengambilan di Meja Hotel: Cocokkan 4 nomor seri di atas (#SG-8842-A1 s.d A4) dengan pita segel fisik pada koper Anda. Apabila terdapat pita segel yang sobek, terbuka \"OPENED\", atau nomor tidak cocok, jangan terima koper dan segera tekan tombol pelaporan di atas untuk mengaktifkan klaim garansi perlindungan senilai hingga Rp10.000.000."
+    },
+    "route": {
+      "title": "Detail Rute & Penerima Hotel",
+      "origin": {
+        "label": "LOKASI PENYERAHAN BAGASI (ASAL)",
+        "name": "Loker Hub Dermaga Wisata Tomok",
+        "desc": "Loket Penitipan Mandiri #02, Area Gerbang Masuk Kapal Ferry Tomok Touris Pier, Simanindo."
+      },
+      "dest": {
+        "label": "TUJUAN AKHIR & PENERIMA",
+        "name": "Meja Resepsionis Hotel Carolina Samosir",
+        "desc": "Jl. Lingkungan Tuk Suk Sialiang, Kelurahan Tuk Suk, Pulau Samosir."
+      },
+      "instructions": "Instruksi Khusus Tamu & Kurir: Koper dititipkan ke resepsionis atas nama pemilik (Room Booking). Tanda terima fisik dititipkan di amplop kunci kamar resepsionis.",
+      "weather": "Jaminan Perlindungan Cuaca Danau Toba: Bagasi dilapisi cover anti-air sekunder di dalam van tertutup untuk mengantisipasi hujan dan angin lembab Danau Toba."
+    },
+    "cost": {
+      "title": "Rincian Paket & Biaya",
+      "statusLunas": "LUNAS",
+      "totalLabel": "Total Dibayar",
+      "barcodeLabel": "KODE RESI DIGITAL TERENKRIPSI",
+      "methodLabel": "Metode Pembayaran",
+      "items": [
+        { "title": "2x Koper Standar (20\"–24\")", "desc": "Bagasi disegel & difoto 4 sisi" },
+        { "title": "4x Segel Barcode Anti-Tamper", "desc": "Termasuk dokumentasi foto 4-sisi" },
+        { "title": "Antar Dermaga → Tuk-Tuk", "desc": "Zona 1 langsung ke lobi hotel" }
+      ]
+    },
+    "helpCard": {
+      "title": "Pusat Bantuan Dermaga & Resi",
+      "desc": "Perlu mengubah jadwal antar atau koper tiba sebelum jam check-in di Hotel Anda? Hubungi kami langsung di pelabuhan jam:",
+      "phone": "+62 812-3456-7890",
+      "whatsapp": "WhatsApp Live CS"
+    },
     "manualNote": "Status diperbarui manual oleh admin — bukan pelacakan GPS real-time.",
     "demoNote": "Hasil pencarian adalah data contoh (Fase 1).",
     "resiHint": "Coba: UL-20261112-0001, UL-20261111-0002, atau RSI-0042."
   },
   "help": {
-    "title": "Bantuan & Ulasan",
+    "title": "Pusat Bantuan, FAQ & Ulasan Komunitas",
     "subtitle": "Pertanyaan umum, kontak cepat, dan tempat memberi penilaian setelah menggunakan layanan.",
     "faqTitle": "Pertanyaan Umum",
     "faq": [
@@ -257,14 +550,17 @@
     "ratingThanks": "Terima kasih! Ulasan Anda telah diterima. (Simulasi Fase 1 — ulasan belum tersimpan.)"
   },
   "footer": {
-    "about": "UNANG LOJA — platform tour guide lokal dan penitipan bagasi \"Jelajah Tanpa Koper\" di Pulau Samosir, Danau Toba.",
+    "slogan": "Jelajah Tanpa Koper, Temukan Rahasia Toba",
+    "about": "Layanan penitipan dan pengantaran bagasi bersegel berstandar pariwisata Danau Toba. Jelajahi keindahan Pulau Samosir tanpa terbebani barang bawaan Anda.",
+    "tagSamosir": "Horas Samosir!",
+    "tagMitra": "Mitra Resmi Pier Danu Toba",
+    "linksTitle": "Tautan",
     "contactTitle": "Kontak",
     "address": "Tomok, Pulau Samosir, Kabupaten Samosir, Sumatera Utara",
+    "hotline": "Hotline Bantuan Pier 24 Jam: +62 812-3456-7890",
     "hours": "Setiap hari 08.00–20.00 WIB",
-    "linksTitle": "Tautan",
-    "socialTitle": "Media Sosial",
-    "instagram": "Instagram",
-    "tiktok": "TikTok",
-    "copyright": "© {year} UNANG LOJA. Semua hak dilindungi."
+    "copyright": "© {year} UNANG LOJA Samosir · Horas! Layanan Wisata & Pengamanan Bagasi Terverifikasi Danau Toba.",
+    "langCurrent": "Bahasa Indonesia",
+    "langOther": "English/EN"
   }
 }

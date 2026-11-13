@@ -126,6 +126,7 @@ export interface DemoOrder {
   zone?: ZoneKey;
   date: string;
   stateIndex: number; // 0..4 pada STATUS_STATES
+  owner: string;
   guide: string;
   luggage: boolean;
 }
@@ -146,6 +147,7 @@ export const DEMO_ORDERS: DemoOrder[] = [
     serviceKey: "fleksibel",
     date: "2026-11-12",
     stateIndex: 3,
+    owner: "Andi Pratama",
     guide: "Ria Butarbutar",
     luggage: true,
   },
@@ -156,6 +158,7 @@ export const DEMO_ORDERS: DemoOrder[] = [
     serviceKey: "penitipan",
     date: "2026-11-11",
     stateIndex: 4,
+    owner: "Sarah Hutabarat",
     guide: "-",
     luggage: true,
   },
@@ -167,6 +170,7 @@ export const DEMO_ORDERS: DemoOrder[] = [
     zone: "dekat",
     date: "2026-11-13",
     stateIndex: 1,
+    owner: "Claire Thompson",
     guide: "Hotman Siregar",
     luggage: false,
   },

@@ -18,8 +18,8 @@ const MONTHS_EN = [
 
 const STYLE: Record<Availability, string> = {
   available: "bg-lake-500 text-white",
-  limited: "bg-sand-200 text-ink",
-  full: "bg-neutral-100 text-neutral-400 line-through",
+  limited: "bg-cream-deep text-ink",
+  full: "bg-navy-50 text-ink-soft line-through",
 };
 
 export default function AvailabilityCalendar({ guideId }: { guideId: string }) {
@@ -104,7 +104,7 @@ export default function AvailabilityCalendar({ guideId }: { guideId: string }) {
           <span className="h-3 w-3 rounded bg-lake-500" /> {t("available")}
         </span>
         <span className="flex items-center gap-1">
-          <span className="h-3 w-3 rounded bg-sand-200" /> {t("limited")}
+          <span className="h-3 w-3 rounded bg-cream-deep" /> {t("limited")}
         </span>
         <span className="flex items-center gap-1">
           <span className="h-3 w-3 rounded bg-neutral-100" /> {t("full")}

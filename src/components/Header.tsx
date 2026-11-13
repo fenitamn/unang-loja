@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link, usePathname } from "@/i18n/navigation";
 
 const NAV = [
@@ -18,72 +18,69 @@ function LangSwitch() {
   const locale = useLocale();
   const other = locale === "id" ? "en" : "id";
   return (
-    <Link
-      href={pathname}
-      locale={other}
-      className="rounded-full border border-lake-200 px-3 py-1.5 text-xs font-semibold text-lake-700 hover:bg-lake-50"
-    >
-      {other.toUpperCase()}
-    </Link>
+    <span className="hidden items-center gap-1 rounded-full border border-line bg-white px-2.5 py-1.5 text-[10px] font-bold text-navy-800 md:inline-flex">
+      <span>{locale.toUpperCase()}</span>
+      <span className="text-line">|</span>
+      <Link href={pathname} locale={other} className="text-ink-soft hover:text-navy-700">
+        {other.toUpperCase()}
+      </Link>
+    </span>
   );
 }
 
 export default function Header() {
   const t = useTranslations("nav");
-  const tc = useTranslations("common");
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-lake-100 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
-        <Link href="/" className="flex items-center gap-2">
+    <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5">
+        <Link href="/" className="flex items-center">
           <Image
             src="/logo.png"
             alt="Logo UNANG LOJA"
-            width={40}
-            height={40}
+            width={48}
+            height={48}
             priority
-            className="h-10 w-10 rounded-full border border-lake-100 bg-white object-cover"
+            className="h-12 w-12 rounded-lg border border-line object-cover shadow-sm"
           />
-          <span className="leading-tight">
-            <span className="block text-sm font-extrabold tracking-wide text-lake-900">
+          <span className="ml-2.5 hidden leading-none sm:block">
+            <span className="block font-serif text-base font-bold tracking-wide text-navy-900">
               UNANG LOJA
             </span>
-            <span className="block text-[10px] font-medium text-ulos-600">
-              Jelajah Tanpa Koper
+            <span className="mt-1 block text-[9px] font-semibold uppercase tracking-[0.18em] text-gold-600">
+              Samosir · Danau Toba
             </span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.key}
               href={item.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-ink hover:bg-lake-50 hover:text-lake-800"
+              className="rounded-full px-3.5 py-2 text-[13px] font-medium text-ink transition hover:bg-cream hover:text-navy-700"
             >
               {t(item.key)}
             </Link>
           ))}
-          <Link
-            href="/pesan"
-            className="ml-2 rounded-full bg-ulos-500 px-4 py-2 text-sm font-semibold text-white hover:bg-ulos-600"
-          >
-            {t("book")}
-          </Link>
-          <div className="ml-1">
-            <LangSwitch />
-          </div>
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2">
           <LangSwitch />
+          <Link
+            href="/pesan"
+            className="hidden rounded-lg bg-brand-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-brand-700 md:block"
+          >
+            {t("bookCta")}
+          </Link>
           <button
             type="button"
             aria-label={t("menu")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="rounded-lg border border-lake-200 p-2 text-lake-800"
+            className="rounded-lg border border-line p-2 text-navy-800 lg:hidden"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
@@ -93,13 +90,13 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-lake-100 bg-white px-4 py-2 md:hidden">
+        <nav className="border-t border-line bg-white px-4 py-2 lg:hidden">
           {NAV.map((item) => (
             <Link
               key={item.key}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block rounded-lg px-3 py-2.5 text-sm font-medium text-ink hover:bg-lake-50"
+              className="block rounded-lg px-3 py-2.5 text-sm font-medium text-ink hover:bg-cream"
             >
               {t(item.key)}
             </Link>
@@ -107,13 +104,28 @@ export default function Header() {
           <Link
             href="/pesan"
             onClick={() => setOpen(false)}
-            className="mt-1 block rounded-lg bg-ulos-500 px-3 py-2.5 text-center text-sm font-semibold text-white"
+            className="mt-1 block rounded-lg bg-brand-600 px-3 py-2.5 text-center text-sm font-bold text-white"
           >
-            {t("book")}
+            {t("bookCta")}
           </Link>
-          <p className="px-3 py-2 text-[10px] text-neutral-400">{tc("dummy")}</p>
+          <div className="flex items-center gap-1 px-3 py-2 text-xs">
+            <span className="font-bold text-navy-800">{locale.toUpperCase()}</span>
+            <span className="text-line">|</span>
+            <OtherLocaleLink />
+          </div>
         </nav>
       )}
     </header>
+  );
+}
+
+function OtherLocaleLink() {
+  const pathname = usePathname();
+  const locale = useLocale();
+  const other = locale === "id" ? "en" : "id";
+  return (
+    <Link href={pathname} locale={other} className="text-ink-soft hover:text-navy-700">
+      {other.toUpperCase()}
+    </Link>
   );
 }

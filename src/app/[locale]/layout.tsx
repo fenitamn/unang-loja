@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Inter, Playfair_Display } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -7,6 +8,18 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import "../globals.css";
+
+const appSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-app-sans",
+  display: "swap",
+});
+
+const appSerif = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-app-serif",
+  display: "swap",
+});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -39,9 +52,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className="font-sans antialiased min-h-screen flex flex-col">
+      <body
+        className={`${appSans.variable} ${appSerif.variable} font-sans antialiased min-h-screen flex flex-col`}
+      >
         <NextIntlClientProvider messages={messages}>
-          <div className="ulos-stripe" aria-hidden="true" />
           <Header />
           <main className="flex-1">{children}</main>
           <WhatsAppFloat />

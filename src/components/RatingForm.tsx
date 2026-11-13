@@ -38,7 +38,7 @@ export default function RatingForm() {
               onMouseLeave={() => setHover(0)}
               onClick={() => setRating(n)}
               className={`text-3xl leading-none transition ${
-                (hover || rating) >= n ? "text-ulos-500" : "text-neutral-300"
+                (hover || rating) >= n ? "text-gold-500" : "text-navy-100"
               }`}
             >
               ★
@@ -63,7 +63,7 @@ export default function RatingForm() {
       <button
         type="submit"
         disabled={rating === 0}
-        className="justify-self-start rounded-full bg-ulos-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-ulos-600 disabled:opacity-40"
+        className="justify-self-start rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-40"
       >
         {t("ratingSubmit")}
       </button>

@@ -1,34 +1,48 @@
 @import "tailwindcss";
 
 @theme {
-  /* Biru danau Toba */
+  /* Navy Danau Toba (header, footer, banner) */
+  --color-navy-50: #f0f5fa;
+  --color-navy-100: #dce7f2;
+  --color-navy-200: #b9cfe4;
+  --color-navy-300: #8db1d2;
+  --color-navy-600: #35608d;
+  --color-navy-700: #2d547f;
+  --color-navy-800: #24476f;
+  --color-navy-900: #1d3a5c;
+  --color-navy-950: #152b45;
+
+  /* Merah maroon khas logo (CTA utama) */
+  --color-brand-50: #f9ece9;
+  --color-brand-100: #f2d5cf;
+  --color-brand-500: #b03a2e;
+  --color-brand-600: #a5342b;
+  --color-brand-700: #8c2c24;
+
+  /* Emas (eyebrow, badge, bintang) */
+  --color-gold-50: #fdf6e6;
+  --color-gold-100: #f7e8c4;
+  --color-gold-200: #ecd9a8;
+  --color-gold-500: #d29b2a;
+  --color-gold-600: #b4831d;
+  --color-gold-700: #94681a;
+
+  /* Krem hangat & tint biru danau */
+  --color-cream: #faf6ee;
+  --color-cream-deep: #f3ecdc;
   --color-lake-50: #eff8fd;
   --color-lake-100: #d9eef9;
-  --color-lake-200: #b3ddf3;
-  --color-lake-300: #7fc3e9;
-  --color-lake-400: #47a5da;
   --color-lake-500: #2689c2;
-  --color-lake-600: #1c6da1;
   --color-lake-700: #185782;
-  --color-lake-800: #17496c;
-  --color-lake-900: #173e5b;
-  --color-lake-950: #10283b;
 
-  /* Aksen ulos: merah, hitam, putih */
-  --color-ulos-50: #fdf3f3;
-  --color-ulos-100: #fbe3e3;
-  --color-ulos-500: #b3272d;
-  --color-ulos-600: #96202a;
-  --color-ulos-700: #7c1a24;
-  --color-ink: #1a1c1e;
+  /* Aksen ulos untuk motif garis */
+  --color-ulos-500: #a5342b;
+  --color-ink: #232323;
+  --color-ink-soft: #6b6257;
+  --color-line: #e7dfcf;
 
-  /* Pasir hangat */
-  --color-sand-50: #fdfaf4;
-  --color-sand-100: #f8f1e4;
-  --color-sand-200: #efe3cc;
-
-  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, "Noto Sans", sans-serif;
+  --font-sans: var(--font-app-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-app-serif), Georgia, "Times New Roman", serif;
 }
 
 /* Garis motif ulos (merah-hitam-putih) */
@@ -48,6 +62,13 @@ html {
 }
 
 body {
-  background-color: var(--color-sand-50);
+  background-color: var(--color-cream);
   color: var(--color-ink);
+}
+
+/* Kartu dasar */
+.card {
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
 }
