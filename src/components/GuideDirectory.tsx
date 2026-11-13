@@ -1,9 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { GUIDES, type GuideSpecialty } from "@/lib/data";
+import { GUIDE_PHOTO } from "@/lib/images";
 import AvailabilityCalendar from "@/components/AvailabilityCalendar";
 import { StarRow } from "@/components/ui";
 
@@ -83,7 +85,18 @@ export default function GuideDirectory() {
       {/* Kartu pemandu */}
       <div className="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {guides.map((g) => (
-          <div key={g.id} className="card flex flex-col p-5">
+          <div key={g.id} className="card flex flex-col overflow-hidden">
+            {/* Foto latar pemandu */}
+            <div className="relative aspect-[16/9] w-full">
+              <Image
+                src={GUIDE_PHOTO[g.id] ?? "/images/hero.jpg"}
+                alt={g.name}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-5">
             <div className="flex items-start gap-3">
               <span
                 className={`grid h-12 w-12 shrink-0 place-items-center rounded-full font-serif text-base font-bold text-white ${AVATAR_BG[g.id] ?? "bg-navy-800"}`}
@@ -137,6 +150,7 @@ export default function GuideDirectory() {
             </div>
 
             {openCalendar === g.id && <AvailabilityCalendar guideId={g.id} />}
+            </div>
           </div>
         ))}
       </div>

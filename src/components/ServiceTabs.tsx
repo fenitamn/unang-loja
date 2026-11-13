@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { SERVICES, formatIDR, type ServiceKey } from "@/lib/data";
+import { SERVICE_PHOTO } from "@/lib/images";
 import { StarRow } from "@/components/ui";
 
 type TabKey = "all" | "storage" | "guide" | "bundle";
@@ -47,13 +49,24 @@ export default function ServiceTabs() {
       {/* Kartu layanan */}
       <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {visible.map((s) => (
-          <div key={s.key} className="card flex flex-col p-5">
+          <div key={s.key} className="card flex flex-col overflow-hidden">
+            {/* Foto lokasi/aktivitas */}
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src={SERVICE_PHOTO[s.key]}
+                alt={t(`items.${s.key}.name`)}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                className="object-cover"
+              />
+              <span className="absolute left-3 top-3 rounded-full bg-navy-900/85 px-2.5 py-1 font-mono text-[10px] font-bold text-white backdrop-blur-sm">
+                {t(`items.${s.key}.code`)}
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col p-5">
             <div className="flex items-start justify-between gap-2">
               <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-gold-600">
                 {t(`badges.${s.key}`)}
-              </span>
-              <span className="rounded-full bg-cream px-2 py-0.5 font-mono text-[10px] font-bold text-navy-800">
-                {t(`items.${s.key}.code`)}
               </span>
             </div>
             <h3 className="mt-2 font-serif text-lg font-bold text-navy-900">
@@ -101,6 +114,7 @@ export default function ServiceTabs() {
               >
                 {tc("bookNow")}
               </Link>
+            </div>
             </div>
           </div>
         ))}

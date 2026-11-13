@@ -1,7 +1,8 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { SERVICES, formatIDR } from "@/lib/data";
-import Scene from "@/components/Scene";
+import { PHOTOS, SERVICE_PHOTO } from "@/lib/images";
 import WidgetTabs from "@/components/WidgetTabs";
 import { Eyebrow, SectionTitle, StarRow } from "@/components/ui";
 
@@ -64,10 +65,16 @@ export default async function HomePage({
             </div>
           </div>
           <div className="relative">
-            <Scene
-              variant="hero"
-              className="h-64 w-full rounded-3xl border border-line shadow-xl shadow-navy-900/10 md:h-80"
-            />
+            <div className="relative h-64 w-full overflow-hidden rounded-3xl border border-line shadow-xl shadow-navy-900/10 md:h-80">
+              <Image
+                src={PHOTOS.hero}
+                alt="Panorama Danau Toba dan Pulau Samosir"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
             {/* Kartu mengambang */}
             <div className="absolute -bottom-5 left-4 flex items-center gap-2.5 rounded-xl border border-line bg-white px-3.5 py-2.5 shadow-lg">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-gold-50 text-base">🎓</span>
@@ -152,10 +159,20 @@ export default async function HomePage({
                   }`}
                 >
                   {isFeatured && (
-                    <span className="absolute -top-3 left-4 rounded-full bg-gold-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-navy-900">
+                    <span className="absolute -top-3 left-4 z-10 rounded-full bg-gold-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-navy-900">
                       {t("packages.featured")}
                     </span>
                   )}
+                  {/* Foto lokasi */}
+                  <div className="relative -mx-5 -mt-5 mb-4 aspect-[16/10] overflow-hidden rounded-t-2xl">
+                    <Image
+                      src={SERVICE_PHOTO[s.key]}
+                      alt={isFeatured ? ts("items.fleksibel.name") : ts(`items.${s.key}.name`)}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover"
+                    />
+                  </div>
                   <span className={`text-[10px] font-bold uppercase tracking-[0.14em] ${isFeatured ? "text-gold-200" : "text-gold-600"}`}>
                     {t(`packages.badges.${s.key}`)}
                   </span>
