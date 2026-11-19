@@ -68,25 +68,164 @@ export const MEETING_POINTS = [
   "Pangururan",
 ] as const;
 
-export type GuideSpecialty = "budaya" | "sejarah" | "kuliner" | "alam" | "foto";
+export type GuideCategory =
+  | "history"
+  | "photo"
+  | "culinary"
+  | "nature"
+  | "architecture";
+
+export type GuideArea = "tomok" | "tuktuk" | "pusuk" | "holbung";
 
 export interface Guide {
   id: string;
   name: string;
   languages: string[];
-  specialty: GuideSpecialty;
+  category: GuideCategory;
+  area: GuideArea;
   years: number;
   rating: number;
+  reviews: number;
+  /** Tarif resmi per trip/paket (Rp) — sumber teks label ada di messages. */
+  price: number;
+  license: string;
+  /** Varian ilustrasi Scene untuk kartu profil. */
+  scene: "hero" | "culture" | "delivery" | "locker" | "sunset" | "guide";
+  avatarClass: string;
 }
 
 export const GUIDES: Guide[] = [
-  { id: "g1", name: "Hotman Siregar", languages: ["Indonesia", "Inggris", "Batak"], specialty: "sejarah", years: 7, rating: 4.9 },
-  { id: "g2", name: "Ria Butarbutar", languages: ["Indonesia", "Inggris"], specialty: "budaya", years: 5, rating: 4.8 },
-  { id: "g3", name: "Jhonatan Simanjuntak", languages: ["Indonesia", "Inggris"], specialty: "alam", years: 4, rating: 4.7 },
-  { id: "g4", name: "Sari Simbolon", languages: ["Indonesia", "Inggris", "Mandarin"], specialty: "kuliner", years: 6, rating: 4.9 },
-  { id: "g5", name: "Martua Gurning", languages: ["Indonesia", "Inggris"], specialty: "foto", years: 3, rating: 4.6 },
-  { id: "g6", name: "Lasma Panjaitan", languages: ["Indonesia", "Inggris", "Batak"], specialty: "budaya", years: 8, rating: 5.0 },
+  {
+    id: "g1",
+    name: "Bang Togar Sinaga",
+    languages: ["Batak Toba", "Indonesia", "English"],
+    category: "history",
+    area: "tomok",
+    years: 12,
+    rating: 4.95,
+    reviews: 142,
+    price: 300_000,
+    license: "HPI-SM-042",
+    scene: "culture",
+    avatarClass: "bg-navy-800",
+  },
+  {
+    id: "g2",
+    name: "Ito Dame Simarmata",
+    languages: ["Batak Toba", "Indonesia", "English", "Dutch"],
+    category: "culinary",
+    area: "pusuk",
+    years: 8,
+    rating: 4.9,
+    reviews: 98,
+    price: 300_000,
+    license: "HPI-SM-089",
+    scene: "sunset",
+    avatarClass: "bg-brand-600",
+  },
+  {
+    id: "g3",
+    name: "Lae Ucok Nainggolan",
+    languages: ["Indonesia", "Batak Toba", "English"],
+    category: "photo",
+    area: "pusuk",
+    years: 7,
+    rating: 4.88,
+    reviews: 116,
+    price: 350_000,
+    license: "HPI-SM-115",
+    scene: "sunset",
+    avatarClass: "bg-gold-600",
+  },
+  {
+    id: "g4",
+    name: "Amang Johanes Situmorang",
+    languages: ["Batak Toba", "Indonesia", "Deutsch", "English"],
+    category: "architecture",
+    area: "tomok",
+    years: 18,
+    rating: 5.0,
+    reviews: 210,
+    price: 350_000,
+    license: "HPI-SM-018",
+    scene: "culture",
+    avatarClass: "bg-navy-700",
+  },
+  {
+    id: "g5",
+    name: "Bang Ricky Purba",
+    languages: ["Indonesia", "Batak Toba", "English"],
+    category: "culinary",
+    area: "tuktuk",
+    years: 5,
+    rating: 4.85,
+    reviews: 74,
+    price: 280_000,
+    license: "HPI-SM-134",
+    scene: "guide",
+    avatarClass: "bg-lake-700",
+  },
+  {
+    id: "g6",
+    name: "Ito Sondang Silalahi",
+    languages: ["Indonesia", "Batak Toba", "English"],
+    category: "history",
+    area: "tomok",
+    years: 9,
+    rating: 4.92,
+    reviews: 128,
+    price: 300_000,
+    license: "HPI-SM-092",
+    scene: "hero",
+    avatarClass: "bg-brand-700",
+  },
+  {
+    id: "g7",
+    name: "Bang Marlon Simbolon",
+    languages: ["Indonesia", "Batak Toba", "English"],
+    category: "nature",
+    area: "holbung",
+    years: 6,
+    rating: 4.83,
+    reviews: 61,
+    price: 320_000,
+    license: "HPI-SM-121",
+    scene: "guide",
+    avatarClass: "bg-navy-600",
+  },
+  {
+    id: "g8",
+    name: "Ito Rosmaida Hutapea",
+    languages: ["Indonesia", "Batak Toba", "English", "Mandarin"],
+    category: "culinary",
+    area: "tuktuk",
+    years: 4,
+    rating: 4.79,
+    reviews: 43,
+    price: 260_000,
+    license: "HPI-SM-147",
+    scene: "locker",
+    avatarClass: "bg-lake-700",
+  },
+  {
+    id: "g9",
+    name: "Amang Parsaoran Nainggolan",
+    languages: ["Batak Toba", "Indonesia", "English"],
+    category: "architecture",
+    area: "holbung",
+    years: 15,
+    rating: 4.97,
+    reviews: 187,
+    price: 340_000,
+    license: "HPI-SM-021",
+    scene: "culture",
+    avatarClass: "bg-navy-800",
+  },
 ];
+
+export function getGuide(id: string): Guide | undefined {
+  return GUIDES.find((g) => g.id === id);
+}
 
 /**
  * Ketersediaan pemandu deterministik (dummy): hari yang sama selalu
@@ -148,7 +287,7 @@ export const DEMO_ORDERS: DemoOrder[] = [
     date: "2026-11-12",
     stateIndex: 3,
     owner: "Andi Pratama",
-    guide: "Ria Butarbutar",
+    guide: "Ito Dame Simarmata",
     luggage: true,
   },
   {
@@ -171,7 +310,7 @@ export const DEMO_ORDERS: DemoOrder[] = [
     date: "2026-11-13",
     stateIndex: 1,
     owner: "Claire Thompson",
-    guide: "Hotman Siregar",
+    guide: "Bang Togar Sinaga",
     luggage: false,
   },
 ];

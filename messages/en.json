@@ -11,7 +11,8 @@
     "status": "Order Status",
     "help": "Help & Reviews",
     "menu": "Menu",
-    "bookCta": "Book Now"
+    "bookCta": "Book Now",
+    "hotline": "24/7 Emergency Hotline"
   },
   "common": {
     "dummy": "Sample data — Phase 1",
@@ -48,10 +49,22 @@
       "sealDesc": "Every suitcase is photographed & documented 360° before transit."
     },
     "trust": [
-      { "title": "100% Sealed & Locked", "desc": "No-tamper guarantee" },
-      { "title": "Native Batak Guides", "desc": "Officially culture-certified" },
-      { "title": "Insured Handling", "desc": "Documented per TPI standard" },
-      { "title": "Rating 4.8 / 5.0", "desc": "3,200+ happy travelers" }
+      {
+        "title": "100% Sealed & Locked",
+        "desc": "No-tamper guarantee"
+      },
+      {
+        "title": "Native Batak Guides",
+        "desc": "Officially culture-certified"
+      },
+      {
+        "title": "Insured Handling",
+        "desc": "Documented per TPI standard"
+      },
+      {
+        "title": "Rating 4.8 / 5.0",
+        "desc": "3,200+ happy travelers"
+      }
     ],
     "features": {
       "eyebrow": "Why Unang Loja",
@@ -103,9 +116,21 @@
       "ratingLabel": "4.8 / 5.0 (3,200+ reviews)",
       "title": "Stories from Travelers Who Enjoyed Toba to the Fullest",
       "items": [
-        { "text": "Took the 10 AM ferry to Tomok, dropped our suitcases at the counter, went village-hopping to Sigale-gale and ulos weaving, and returned to find everything already in our hotel room in Tuk-Tuk!", "name": "Andi R. & Family", "role": "Travelers from Jakarta" },
-        { "text": "The 4-side photo verification via WhatsApp brought peace of mind. Luggage was delivered spotless. Our local Batak guide, Bang Togar, was encyclopedic about the site's history. Highly recommended!", "name": "Claire & Liam", "role": "Travelers from Melbourne, Australia" },
-        { "text": "So helpful when traveling with elderly parents and kids. No heavy lifting at the pier — everything went straight to Ambarita. The guide was patient and knew the best food spots in Pangururan.", "name": "Dina Siregar", "role": "Traveler from Medan" }
+        {
+          "text": "Took the 10 AM ferry to Tomok, dropped our suitcases at the counter, went village-hopping to Sigale-gale and ulos weaving, and returned to find everything already in our hotel room in Tuk-Tuk!",
+          "name": "Andi R. & Family",
+          "role": "Travelers from Jakarta"
+        },
+        {
+          "text": "The 4-side photo verification via WhatsApp brought peace of mind. Luggage was delivered spotless. Our local Batak guide, Bang Togar, was encyclopedic about the site's history. Highly recommended!",
+          "name": "Claire & Liam",
+          "role": "Travelers from Melbourne, Australia"
+        },
+        {
+          "text": "So helpful when traveling with elderly parents and kids. No heavy lifting at the pier — everything went straight to Ambarita. The guide was patient and knew the best food spots in Pangururan.",
+          "name": "Dina Siregar",
+          "role": "Traveler from Medan"
+        }
       ],
       "note": "Sample reviews (dummy data)."
     },
@@ -213,9 +238,24 @@
       "title": "Safety Transparency & the 4-Side Receipt Procedure",
       "subtitle": "Every suitcase passes strict digital security with zero gaps — from handover at the pier until it reaches your hands at the hotel.",
       "steps": [
-        { "no": "01", "title": "Drop & Seal", "desc": "Your suitcase is handed over at the official counter at Tomok/Ambarita pier. Staff verify the physical condition and attach 4 special water-resistant serial-coded tamper-evident seals.", "note": "Unique seal numbers recorded in the Cloud system" },
-        { "no": "02", "title": "4-Angle Photo Verification", "desc": "Staff photograph all 4 sides (front, back, zipper, and bottom) of the suitcase. This document is sent to your WhatsApp as proof of the luggage's initial condition.", "note": "Mandatory real-time proof, unedited" },
-        { "no": "03", "title": "Hotel Handover", "desc": "The courier delivers your bag to reception or straight to your room. You open the seal yourself — if a seal is torn, you are entitled to a full warranty claim per the terms.", "note": "Instant claim if seal integrity is compromised" }
+        {
+          "no": "01",
+          "title": "Drop & Seal",
+          "desc": "Your suitcase is handed over at the official counter at Tomok/Ambarita pier. Staff verify the physical condition and attach 4 special water-resistant serial-coded tamper-evident seals.",
+          "note": "Unique seal numbers recorded in the Cloud system"
+        },
+        {
+          "no": "02",
+          "title": "4-Angle Photo Verification",
+          "desc": "Staff photograph all 4 sides (front, back, zipper, and bottom) of the suitcase. This document is sent to your WhatsApp as proof of the luggage's initial condition.",
+          "note": "Mandatory real-time proof, unedited"
+        },
+        {
+          "no": "03",
+          "title": "Hotel Handover",
+          "desc": "The courier delivers your bag to reception or straight to your room. You open the seal yourself — if a seal is torn, you are entitled to a full warranty claim per the terms.",
+          "note": "Instant claim if seal integrity is compromised"
+        }
       ]
     },
     "assurance": {
@@ -228,10 +268,22 @@
       "title": "Frequently Asked Questions (FAQ)",
       "subtitle": "The most common questions about delivery, costs, and meeting points.",
       "items": [
-        { "q": "What if my ferry arrives late at Tomok/Ambarita?", "a": "Our team monitors ferry arrival schedules live from the Ajibata and Tigaras piers. Our staff will remain on standby at the pier at no extra late-arrival charge." },
-        { "q": "Where are the suitcase handover points at Tomok and Tuk-Tuk piers?", "a": "Our main meeting point is the Tomok Pier Hub Locker (near the ferry dock) and a satellite point at partner-guesthouse receptions in Tuk-Tuk. Full locations are sent via WhatsApp once your order is paid." },
-        { "q": "Can I store valuables (laptops, cameras, jewelry)?", "a": "We recommend carrying valuables with you. For jewelry and electronics, storage requires the full-insurance option and 4-side photo documentation." },
-        { "q": "What is the cancellation policy if my tour schedule changes?", "a": "Free cancellation up to H-1 before the service. After that, a 10% admin fee applies to guiding and delivery services. Daily storage can be cancelled anytime." }
+        {
+          "q": "What if my ferry arrives late at Tomok/Ambarita?",
+          "a": "Our team monitors ferry arrival schedules live from the Ajibata and Tigaras piers. Our staff will remain on standby at the pier at no extra late-arrival charge."
+        },
+        {
+          "q": "Where are the suitcase handover points at Tomok and Tuk-Tuk piers?",
+          "a": "Our main meeting point is the Tomok Pier Hub Locker (near the ferry dock) and a satellite point at partner-guesthouse receptions in Tuk-Tuk. Full locations are sent via WhatsApp once your order is paid."
+        },
+        {
+          "q": "Can I store valuables (laptops, cameras, jewelry)?",
+          "a": "We recommend carrying valuables with you. For jewelry and electronics, storage requires the full-insurance option and 4-side photo documentation."
+        },
+        {
+          "q": "What is the cancellation policy if my tour schedule changes?",
+          "a": "Free cancellation up to H-1 before the service. After that, a 10% admin fee applies to guiding and delivery services. Daily storage can be cancelled anytime."
+        }
       ],
       "customTitle": "Need a custom route or a tour bus group?",
       "customDesc": "Contact the UNANG LOJA Pier Customer Service, 24 hours, via WhatsApp.",
@@ -241,63 +293,226 @@
   "guides": {
     "eyebrow": "Indonesia Tour Guide Association (HPI) Samosir",
     "title": "HPI-Licensed Local Guides of Samosir",
-    "subtitle": "Explore megalithic history, the Bolon House forest, and Samosir's hidden beauty together with officially certified local guides.",
+    "subtitle": "Explore megalithic history, the philosophy of Rumah Bolon, and Samosir's hidden beauty with officially certified local guides born on the island.",
     "trust": [
-      { "title": "100% Verified Guides", "desc": "Active HPI license certification" },
-      { "title": "Fluent Multilingual", "desc": "Batak, ID, English, & Deutsch" },
-      { "title": "Culture Orientation Guarantee", "desc": "History and customs explained properly" },
-      { "title": "Collaborative Tour Routes", "desc": "Safe and well-planned routes" }
+      {
+        "title": "100% Verified Guides",
+        "desc": "Active HPI license certification"
+      },
+      {
+        "title": "Fluent Multilingual",
+        "desc": "Batak, ID, English, & Deutsch"
+      },
+      {
+        "title": "Authentic Culture Guarantee",
+        "desc": "Oral history free of distortion"
+      },
+      {
+        "title": "Family-Friendly Tours",
+        "desc": "Safe routes for kids and elders"
+      }
     ],
-    "searchPlaceholder": "Search a guide's name or specific skill…",
-    "filterArea": "Region / Focus Area",
-    "filterLang": "All Languages",
+    "promo": {
+      "badge": "Special Bundle",
+      "saving": "Save 20%",
+      "title": "Flexible Tour (Rp350,000 Combo)",
+      "desc": "Suitcases stored at the pier and delivered straight to your hotel + 4 hours with an official HPI guide."
+    },
+    "filters": {
+      "searchPlaceholder": "Search a guide's name, cultural expertise, or historic site…",
+      "areaAll": "All Focus Areas",
+      "areas": {
+        "tomok": "Tomok & Simanindo",
+        "tuktuk": "Tuk Tuk & Ambarita",
+        "pusuk": "Pusuk Buhit & Pangururan",
+        "holbung": "Holbung & Tele"
+      },
+      "langAll": "All Guide Languages",
+      "categoryLabel": "Tour Category:"
+    },
     "categories": {
       "all": "All Guides",
       "history": "History & Megaliths",
       "photo": "Photography & Landscapes",
       "culinary": "Cuisine & Ulos Weaving",
-      "nature": "Trekking & Samosir Nature"
+      "nature": "Trekking & Samosir Nature",
+      "architecture": "Rumah Bolon Architecture"
     },
     "directory": {
       "title": "Verified Tour Guide Directory",
-      "subtitle": "Showing the best guides ready to make your trip memorable today."
+      "subtitle": "Showing {count} talented guides ready to lead your adventure today."
+    },
+    "sort": {
+      "label": "Sort by:",
+      "rating": "Highest Rating",
+      "experience": "Most Experienced",
+      "price": "Lowest Price"
     },
     "card": {
       "experience": "Experience",
       "languages": "Languages",
       "focus": "Focus Area",
+      "license": "License No.",
+      "reviews": "reviews",
       "viewProfile": "View Profile",
-      "choose": "Choose This Guide"
+      "choose": "Choose Guide",
+      "officialBadge": "Official DPC HPI Samosir",
+      "empty": "No guides match your filters.",
+      "years": "years"
     },
-    "sortLabel": "Sort by",
-    "sortDefault": "Highest Rating",
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next",
+      "page": "Page {page}"
+    },
+    "modal": {
+      "close": "Close",
+      "about": "About the Guide",
+      "license": "License & Certification",
+      "price": "Service Rate",
+      "reviews": "Guest Reviews",
+      "book": "Book with This Guide",
+      "availability": "Availability This Month",
+      "certified": "Verified by DPC HPI Samosir Regency",
+      "ratingLabel": "{rating} out of 5 · {count} reviews",
+      "responseNote": "Average admin reply < 15 minutes via WhatsApp."
+    },
+    "people": {
+      "g1": {
+        "specialty": "Ancient History Specialist — King Siallagan & Sidabutar Tomb",
+        "cert": "Customary Elder Certification",
+        "quote": "Tells the ancient Batak customary law and the secrets of Siallagan's stone court directly from the lineage of Tomok's elders.",
+        "tariffLabel": "Official HPI Rate",
+        "tariffNote": "/ trip (4–5 hours, max 5 people)",
+        "focus": "Tomok & Ambarita"
+      },
+      "g2": {
+        "specialty": "Traditional Ulos Weaving & Lumban Suhi-Suhi Crafts",
+        "cert": "Traditional Weaving Expert",
+        "quote": "Unlocks the philosophy of Ulos Ragi Hotang motifs and the natural dyeing process using Lake Toba's plants.",
+        "tariffLabel": "Official HPI Rate",
+        "tariffNote": "/ trip (4–5 hours, max 5 people)",
+        "focus": "Lumban Suhi-Suhi & Pangururan"
+      },
+      "g3": {
+        "specialty": "Pusuk Buhit Ridge Trekking & Lake Toba Sunset Spots",
+        "cert": "Mountain Trekking Certification",
+        "quote": "Reveals magical photography angles when morning mist touches Toba's waters along the Si Raja Batak pilgrimage trail.",
+        "tariffLabel": "Service Rate",
+        "tariffNote": "/ trip",
+        "focus": "Pusuk Buhit, Tele & Holbung"
+      },
+      "g4": {
+        "specialty": "Rumah Bolon Philosophy, Architecture & Huta Bolon Museum",
+        "cert": "Senior Cultural Curator",
+        "quote": "Unpacks the 18 cosmic philosophy layers of the Rumah Bolon roof, Gorga Simeol-meol carvings, and ancient pustaha manuscripts.",
+        "tariffLabel": "Special Thematic Rate",
+        "tariffNote": "/ Rumah Bolon architecture package",
+        "focus": "Simanindo & Huta Bolon Village"
+      },
+      "g5": {
+        "specialty": "Halal Lake Toba Culinary Tour & Arabica Coffee",
+        "cert": "Gastronomy Specialist",
+        "quote": "Savour halal arsik mujair fish with the pleasant bitterness of fresh andaliman and a Samosir Arabica coffee cupping.",
+        "tariffLabel": "Service Rate",
+        "tariffNote": "/ trip",
+        "focus": "Tuk Tuk & Lintong Nihuta Hub"
+      },
+      "g6": {
+        "specialty": "Family Education Tours, Sigale-gale Folklore & Dance",
+        "cert": "Batak Choreography & Storytelling",
+        "quote": "Brings the mystical legend of the Sigale-gale wooden puppet to life with interactive stories that captivate children's imaginations.",
+        "tariffLabel": "Service Rate",
+        "tariffNote": "/ trip",
+        "focus": "Tomok & Simanindo Tourism Village"
+      },
+      "g7": {
+        "specialty": "Holbung Hill Trekking & Lakeside Camping",
+        "cert": "Certified Nature Guide",
+        "quote": "Leads the Holbung hill trail at sunrise, complete with the geological story of the Toba caldera and morning coffee at the summit.",
+        "tariffLabel": "Service Rate",
+        "tariffNote": "/ trip (max 6 people)",
+        "focus": "Holbung & Tele"
+      },
+      "g8": {
+        "specialty": "Traditional Home Cooking & Samosir Markets",
+        "cert": "Local Gastronomy Expert",
+        "quote": "Takes guests through Pangururan's morning market and tastes home-style Batak dishes rarely found by tourists.",
+        "tariffLabel": "Service Rate",
+        "tariffNote": "/ trip (max 4 people)",
+        "focus": "Pangururan & Tuk Tuk"
+      },
+      "g9": {
+        "specialty": "Traditional Architecture & Rumah Bolon Conservation",
+        "cert": "Heritage Curator",
+        "quote": "Explains nail-free wooden joinery and the meaning of Gorga ornaments in traditional houses over a century old.",
+        "tariffLabel": "Special Thematic Rate",
+        "tariffNote": "/ architecture conservation package",
+        "focus": "Simanindo & Holbung"
+      }
+    },
     "standards": {
       "eyebrow": "Official Collaboration with DPC HPI Samosir Regency",
       "title": "Strict Standards & Traveler Protection",
-      "subtitle": "Every guide joining the UNANG LOJA platform must pass the following accreditation process to ensure a Batak Toba cultural service that upholds the \"Dalihan Na Tolu\" family ethics.",
+      "subtitle": "Every guide on the UNANG LOJA platform must pass periodic accreditation and follow the 4 pillars of Batak Toba cultural service upholding the Dalihan Na Tolu kinship ethic.",
+      "sideTitle": "Official License Issued by the Office",
+      "sideDesc": "Culture & Tourism Office of Samosir Regency",
       "items": [
-        { "title": "Tourism First-Aid Training", "desc": "First-aid certification and emergency evacuation handling from the nearest medical post.", "note": "DSPF / PMI Standard" },
-        { "title": "Distortion-Free History", "desc": "Printed materials validated directly by tribal elders & the Tourism Office so no ancestral values are distorted.", "note": "History Curator Validation" },
-        { "title": "100% Transparent Rates", "desc": "Prices shown in the system with no hidden fees. Voluntary tips are split between the guide and the village fund.", "note": "No-Extra-Fee Guarantee" },
-        { "title": "Dalihan Na Tolu Ethics", "desc": "Treating every guest like family: humble, grateful, and upholding customs and ancestral stories.", "note": "Local Culture Code of Ethics" }
+        {
+          "title": "Tourism First-Aid Training",
+          "desc": "Certified for land and water emergency response, ferry evacuation protocols, and readiness on open-air nature routes.",
+          "note": "BNSP / PMI Standard"
+        },
+        {
+          "title": "Distortion-Free History",
+          "desc": "Story materials are verified with the Dalihan Na Tolu Customary Institution to guarantee megalithic tales and authentic clan lineages without hoaxes.",
+          "note": "History Curator Validation"
+        },
+        {
+          "title": "100% Transparent Rates",
+          "desc": "Fixed rates displayed in the system with no illegal charges, hidden shop commissions, or forced extra tips at the end of the trip.",
+          "note": "No Hidden-Fee Guarantee"
+        },
+        {
+          "title": "Dalihan Na Tolu Ethics",
+          "desc": "Treating every traveler as a respected Hula-hula: courteous, honest, prioritising the safety of children and the elderly.",
+          "note": "Noble Cultural Code of Ethics"
+        }
       ]
     },
     "testimonials": {
       "eyebrow": "Real Traveler Experiences",
       "title": "Specific UNANG LOJA Guest Reviews",
-      "subtitle": "Authentic stories from domestic and international travelers after exploring Samosir Island with our guides.",
+      "subtitle": "Authentic stories from domestic and international travelers after exploring Samosir's secrets without luggage.",
       "items": [
-        { "text": "We booked Bang Togar right after dropping our large suitcases at the Tomok lockers — secure service. His depth of knowledge about Batak rituals and tomb structures was superb. Perfect English and very respectful. Best decision ever!", "name": "Marcus & Helena Weber", "role": "Backpackers from Hamburg, Germany" },
-        { "text": "Ibu Dame explained the uniqueness of Samosir ulos weaving that no culinary tour covers. She was incredibly thorough about the meaning of each motif. My souvenirs finally feel meaningful, not just 'koper filler'.", "name": "Ari Prasetyo", "role": "History researcher — Culture & Ulos Tour" },
-        { "text": "Trekking the Bukit Barisan ridge with Le Ucok was unreal. He found 4 sunrise photo spots that are now my wallpaper and even added a hidden route to Google Maps. He knew every shortcut to Tanjung Unte.", "name": "David & Kevin Sim", "role": "Backpackers · Trekking & Photographers" }
+        {
+          "rating": "5.0",
+          "text": "We booked Bang Togar right after dropping our 4 large suitcases at the Tomok Harbor secure locker. His deep knowledge about King Sidabutar's tomb blew us away! Fluent English and very respectful. Best decision ever.",
+          "name": "Marcus & Helena Weber",
+          "role": "Munich, Germany • King Siallagan History Tour"
+        },
+        {
+          "rating": "5.0",
+          "text": "Ito Dame took our family straight to the senior ulos weavers in Lumban Suhi-Suhi. My mother was deeply moved by the meaning of the Ulos Sadum motifs, with no pressure to shop at all. The kids were happy to walk around freely without thinking about suitcases.",
+          "name": "Anindya Prasetyo",
+          "role": "Surabaya, Indonesia • Culture & Weaving Tour"
+        },
+        {
+          "rating": "4.9",
+          "text": "Trekking Pusuk Buhit with Lae Ucok was amazing! He led us to Toba caldera sunrise photo spots that aren't on Google Maps at all. He also carried a first-aid kit and extra flashlights.",
+          "name": "David & Kevin Sim",
+          "role": "Singapore • Pusuk Buhit Landscape & Photography Tour"
+        }
       ]
     },
     "cta": {
-      "eyebrow": "Luggage Drop Connection",
-      "title": "Travel Without Your Suitcase, Discover Toba's Secrets",
-      "subtitle": "Start safe from Tomok or Ajibata pier with our 4-side QR seal technology. Explore Samosir's heritage with a guide of your choice.",
-      "primary": "Book Tour + Locker Package",
-      "secondary": "Learn About Our Security System"
+      "eyebrow": "5-Service Integrated Value Combo",
+      "comboBadge": "5-Service Integrated Value Combo",
+      "comboPrice": "Rp350,000 / Day",
+      "title": "Flexible Tour: Suitcases Stored & Delivered + 4-Hour HPI Guide",
+      "subtitle": "Secure your luggage at Tomok/Ajibata pier with a 4-side QR seal while a locally licensed HPI Samosir guide walks you through megalithic sites without the burden of bags.",
+      "primary": "Book the Rp350,000 Combo",
+      "secondary": "Consult a Guide Route"
     },
     "calendar": {
       "title": "Availability — {month}",
@@ -310,7 +525,12 @@
   "booking": {
     "title": "Sealed Luggage Booking & Storage Form",
     "subtitle": "Drop your suitcase at the pier, enjoy Lake Toba unburdened — we deliver it straight to your hotel room, safely.",
-    "steps": ["Choose Service", "Date & Location", "Your Details", "Payment"],
+    "steps": [
+      "Choose Service",
+      "Date & Location",
+      "Your Details",
+      "Payment"
+    ],
     "stepOf": "Step {current} of {total}",
     "back": "Back",
     "next": "Continue",
@@ -330,7 +550,10 @@
       "dateMin": "Bookings start from the next day.",
       "meetingPoint": "Meeting point",
       "zone": "Delivery zone",
-      "zones": { "dekat": "Near zone (Tuk Tuk – Tomok – Ambarita)", "lintas": "Cross zone (up to Simanindo / Pangururan)" },
+      "zones": {
+        "dekat": "Near zone (Tuk Tuk – Tomok – Ambarita)",
+        "lintas": "Cross zone (up to Simanindo / Pangururan)"
+      },
       "suitcases": "Number of suitcases",
       "participants": "Number of participants",
       "notes": "Special notes for the pier courier",
@@ -374,9 +597,18 @@
       "guarantees": {
         "title": "UNANG LOJA Service Guarantees",
         "items": [
-          { "title": "Integrated 4-Side Security Seal", "desc": "The suitcase cannot be opened without breaking the serial number." },
-          { "title": "On-Time Check-In Guarantee", "desc": "Luggage arrives at the hotel lobby before your check-in." },
-          { "title": "Official HPI Samosir Staff", "desc": "All guides are registered and licensed by DPC HPI Samosir Regency." }
+          {
+            "title": "Integrated 4-Side Security Seal",
+            "desc": "The suitcase cannot be opened without breaking the serial number."
+          },
+          {
+            "title": "On-Time Check-In Guarantee",
+            "desc": "Luggage arrives at the hotel lobby before your check-in."
+          },
+          {
+            "title": "Official HPI Samosir Staff",
+            "desc": "All guides are registered and licensed by DPC HPI Samosir Regency."
+          }
         ]
       }
     },
@@ -397,9 +629,18 @@
       "destination": "Delivery Destination",
       "destinationDesc": "Your destination hotel reception.",
       "tiles": {
-        "bagasi": { "title": "Luggage Details", "desc": "As per your order" },
-        "protocol": { "title": "Security Protocol", "desc": "4-Side Anti-Tamper Seal · Warranty" },
-        "guide": { "title": "Connected Guide", "desc": "Officially licensed by HPI Samosir" }
+        "bagasi": {
+          "title": "Luggage Details",
+          "desc": "As per your order"
+        },
+        "protocol": {
+          "title": "Security Protocol",
+          "desc": "4-Side Anti-Tamper Seal · Warranty"
+        },
+        "guide": {
+          "title": "Connected Guide",
+          "desc": "Officially licensed by HPI Samosir"
+        }
       },
       "note": "Show this voucher code to the official UNANG LOJA locker staff when you disembark from the ferry.",
       "qr": "E-Voucher Digital Receipt",
@@ -407,9 +648,21 @@
       "staffLabel": "Tomok Standby Staff",
       "stepsTitle": "3 Easy Steps to Drop Your Suitcase at the Pier",
       "steps": [
-        { "title": "Arrive at Tomok Pier", "desc": "Once you disembark the KMP Tao Toba ferry, look for the official UNANG LOJA Pier Hub Locker at the exit. Show the QR Code voucher on your phone or a printout to the navy-vested staff.", "note": "Estimated time: < 2 minutes" },
-        { "title": "4 Seals Attached & Photo Archive", "desc": "Watch our staff attach serial-coded tamper-evident seals on the zipper, handles, back, and base of the suitcase. High-resolution 4-side photos are sent straight to your WhatsApp.", "note": "Officially Tamper-Proof Guaranteed" },
-        { "title": "Explore Samosir Unburdened", "desc": "Start your adventure to the Sidabutar King's Tomb, Sigale-gale village, or Huta Bolon cuisine while your suitcase travels to the hotel reception before check-in.", "note": "Arrives at Hotel by 13:30 WIB" }
+        {
+          "title": "Arrive at Tomok Pier",
+          "desc": "Once you disembark the KMP Tao Toba ferry, look for the official UNANG LOJA Pier Hub Locker at the exit. Show the QR Code voucher on your phone or a printout to the navy-vested staff.",
+          "note": "Estimated time: < 2 minutes"
+        },
+        {
+          "title": "4 Seals Attached & Photo Archive",
+          "desc": "Watch our staff attach serial-coded tamper-evident seals on the zipper, handles, back, and base of the suitcase. High-resolution 4-side photos are sent straight to your WhatsApp.",
+          "note": "Officially Tamper-Proof Guaranteed"
+        },
+        {
+          "title": "Explore Samosir Unburdened",
+          "desc": "Start your adventure to the Sidabutar King's Tomb, Sigale-gale village, or Huta Bolon cuisine while your suitcase travels to the hotel reception before check-in.",
+          "note": "Arrives at Hotel by 13:30 WIB"
+        }
       ],
       "recap": {
         "title": "Official Payment Details",
@@ -442,7 +695,10 @@
       "date": "Please choose a service date.",
       "contact": "Please fill in your name and WhatsApp number.",
       "payment": "Please upload payment proof or choose to send it via WhatsApp."
-    }
+    },
+    "guideSelected": "Selected guide",
+    "guideChange": "Change guide",
+    "guideStepNote": "Guiding uses the chosen guide's official rate. You can still add luggage storage/delivery."
   },
   "status": {
     "title": "Suitcase Delivery Status Tracking",
@@ -463,10 +719,22 @@
     },
     "timeline": {
       "steps": [
-        { "title": "Received at Tomok", "desc": "Tomok Pier locker staff inspect the luggage, weigh the suitcase, and print the digital receipt barcode." },
-        { "title": "4-Side Seals Attached", "desc": "Four unique serial-coded tamper-evident strips are attached & cloud archive photos are recorded." },
-        { "title": "On the Way to the Hotel", "desc": "The fleet follows the Lake Toba coastal route. Active GPS tracker & rain-proof closed cabin." },
-        { "title": "Handover at Reception", "desc": "Handed to the Carolina Hotel front-desk staff. You receive a WhatsApp notification once your luggage is safe in the lobby." }
+        {
+          "title": "Received at Tomok",
+          "desc": "Tomok Pier locker staff inspect the luggage, weigh the suitcase, and print the digital receipt barcode."
+        },
+        {
+          "title": "4-Side Seals Attached",
+          "desc": "Four unique serial-coded tamper-evident strips are attached & cloud archive photos are recorded."
+        },
+        {
+          "title": "On the Way to the Hotel",
+          "desc": "The fleet follows the Lake Toba coastal route. Active GPS tracker & rain-proof closed cabin."
+        },
+        {
+          "title": "Handover at Reception",
+          "desc": "Handed to the Carolina Hotel front-desk staff. You receive a WhatsApp notification once your luggage is safe in the lobby."
+        }
       ]
     },
     "crew": {
@@ -483,10 +751,30 @@
       "refreshCta": "Enlarge All HD Photos",
       "reportCta": "Report Damaged Seal (Rp10 Million Claim)",
       "sides": [
-        { "label": "SIDE 1: FRONT", "title": "Front View", "chip": "INTACT", "desc": "Guest's brand-new Navy Samsonite 24\" suitcase, barcode seal perfectly attached to the body seam." },
-        { "label": "SIDE 2: ZIPPER", "title": "Zipper & Padlock", "chip": "LOCKED", "desc": "Steel-cable seal locks both zipper heads firmly in the factory combination slot." },
-        { "label": "SIDE 3: BACK", "title": "Handle & Telescopic", "chip": "INTACT", "desc": "Barcode seal crosses the telescopic handle base so the compartment cannot be forced open." },
-        { "label": "SIDE 4: BASE & WHEELS", "title": "Wheels & Bottom Hinges", "chip": "CLEAN", "desc": "All four spinner wheels spin smoothly without damage; folding hinges at the base are tightly sealed." }
+        {
+          "label": "SIDE 1: FRONT",
+          "title": "Front View",
+          "chip": "INTACT",
+          "desc": "Guest's brand-new Navy Samsonite 24\" suitcase, barcode seal perfectly attached to the body seam."
+        },
+        {
+          "label": "SIDE 2: ZIPPER",
+          "title": "Zipper & Padlock",
+          "chip": "LOCKED",
+          "desc": "Steel-cable seal locks both zipper heads firmly in the factory combination slot."
+        },
+        {
+          "label": "SIDE 3: BACK",
+          "title": "Handle & Telescopic",
+          "chip": "INTACT",
+          "desc": "Barcode seal crosses the telescopic handle base so the compartment cannot be forced open."
+        },
+        {
+          "label": "SIDE 4: BASE & WHEELS",
+          "title": "Wheels & Bottom Hinges",
+          "chip": "CLEAN",
+          "desc": "All four spinner wheels spin smoothly without damage; folding hinges at the base are tightly sealed."
+        }
       ],
       "note": "Hotel Counter Pick-Up Procedure: Match the 4 serial numbers above (#SG-8842-A1 to A4) with the physical seal strips on your suitcase. If any strip is torn, shows \"OPENED\", or the numbers don't match, do not accept the suitcase and press the report button above to activate warranty coverage worth up to Rp10,000,000."
     },
@@ -512,9 +800,18 @@
       "barcodeLabel": "ENCRYPTED DIGITAL RECEIPT CODE",
       "methodLabel": "Payment Method",
       "items": [
-        { "title": "2x Standard Suitcase (20\"–24\")", "desc": "Luggage sealed & photographed 4 sides" },
-        { "title": "4x Anti-Tamper Barcode Seals", "desc": "Includes 4-side photo documentation" },
-        { "title": "Pier → Tuk-Tuk Delivery", "desc": "Zone 1 straight to the hotel lobby" }
+        {
+          "title": "2x Standard Suitcase (20\"–24\")",
+          "desc": "Luggage sealed & photographed 4 sides"
+        },
+        {
+          "title": "4x Anti-Tamper Barcode Seals",
+          "desc": "Includes 4-side photo documentation"
+        },
+        {
+          "title": "Pier → Tuk-Tuk Delivery",
+          "desc": "Zone 1 straight to the hotel lobby"
+        }
       ]
     },
     "helpCard": {
@@ -532,12 +829,30 @@
     "subtitle": "Frequently asked questions, quick contact, and a place to rate us after using the service.",
     "faqTitle": "Frequently Asked Questions",
     "faq": [
-      { "q": "How do I book?", "a": "Pick a service on the Booking page and follow 4 steps: choose a service, date & location, your details, then payment. If you get stuck, the admin is ready to help via WhatsApp." },
-      { "q": "How do I pay?", "a": "Payment is manual via bank transfer or e-wallet. After paying, upload your payment proof in the last step or send it via WhatsApp." },
-      { "q": "Is my luggage safe?", "a": "Your suitcase is photographed from four sides, fitted with a numbered seal, and you receive a digital receipt. Handover only happens after matching the receipt number and your identity." },
-      { "q": "How long can I store luggage?", "a": "Storage is charged per suitcase per day. The daily quota is 20 suitcases — book early to be sure." },
-      { "q": "What is the Mystery Tour?", "a": "A themed tour: Heritage Trail or Lake Sunset. The order of the locations is secret and revealed one day before (H-1) via WhatsApp." },
-      { "q": "Does a referral code give a discount?", "a": "No. Referral codes from customers or partners are only recorded for our recommendation program and partner commissions — public prices stay the same." }
+      {
+        "q": "How do I book?",
+        "a": "Pick a service on the Booking page and follow 4 steps: choose a service, date & location, your details, then payment. If you get stuck, the admin is ready to help via WhatsApp."
+      },
+      {
+        "q": "How do I pay?",
+        "a": "Payment is manual via bank transfer or e-wallet. After paying, upload your payment proof in the last step or send it via WhatsApp."
+      },
+      {
+        "q": "Is my luggage safe?",
+        "a": "Your suitcase is photographed from four sides, fitted with a numbered seal, and you receive a digital receipt. Handover only happens after matching the receipt number and your identity."
+      },
+      {
+        "q": "How long can I store luggage?",
+        "a": "Storage is charged per suitcase per day. The daily quota is 20 suitcases — book early to be sure."
+      },
+      {
+        "q": "What is the Mystery Tour?",
+        "a": "A themed tour: Heritage Trail or Lake Sunset. The order of the locations is secret and revealed one day before (H-1) via WhatsApp."
+      },
+      {
+        "q": "Does a referral code give a discount?",
+        "a": "No. Referral codes from customers or partners are only recorded for our recommendation program and partner commissions — public prices stay the same."
+      }
     ],
     "whatsappTitle": "Still have questions?",
     "whatsappText": "Our admin is ready to help in Indonesian and English, every day 08:00–20:00 WIB.",
@@ -551,7 +866,7 @@
   },
   "footer": {
     "slogan": "Travel Without Your Suitcase, Discover Toba's Secrets",
-    "about": "Tourism-standard sealed luggage storage and delivery services for Lake Toba. Explore the beauty of Samosir Island without being burdened by your belongings.",
+    "about": "Luggage Storage & Curated Guides Licensed by DPC HPI Samosir Regency.",
     "tagSamosir": "Horas Samosir!",
     "tagMitra": "Official Toba Pier Partner",
     "linksTitle": "Links",
@@ -559,9 +874,18 @@
     "address": "Tomok, Samosir Island, Samosir Regency, North Sumatra",
     "hotline": "24-Hour Pier Help Hotline: +62 812-3456-7890",
     "hours": "Every day 08:00–20:00 WIB",
-    "copyright": "© {year} UNANG LOJA Samosir · Horas! Verified Lake Toba Tourism & Luggage Handling Services.",
+    "copyright": "© {year} UNANG LOJA Samosir. Horas! Verified Lake Toba Tourism & Luggage Handling Services.",
     "langCurrent": "Bahasa Indonesia",
-    "langOther": "English/EN"
+    "langOther": "English/EN",
+    "madeWith": "Made with love for the Batak Land",
+    "sealPolicy": "4-Side Security Seal Policy",
+    "zones": "Tomok–Tuk Tuk–Ambarita Delivery Zone",
+    "verifyGuides": "Batak Guide Verification",
+    "terms": "Storage Terms & Conditions",
+    "emergency": "Pier Emergency Help Center",
+    "hotlineLabel": "24-Hour Pier Hotline",
+    "secureBadge": "Protected 4-Side Seal",
+    "partnerBadge": "Official DPC HPI Samosir Partner"
   },
   "admin": {
     "title": "Admin Dashboard",

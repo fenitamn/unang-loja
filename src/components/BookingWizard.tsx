@@ -10,6 +10,7 @@ import {
   SERVICES,
   UPSELL,
   formatIDR,
+  getGuide,
   getService,
   type MysteryTheme,
   type PaymentMethodKey,
@@ -20,6 +21,7 @@ import { Eyebrow } from "@/components/ui";
 
 interface FormState {
   serviceKey: ServiceKey | null;
+  guideId: string | null;
   theme: MysteryTheme | null;
   addOns: ServiceKey[];
   date: string;
@@ -38,6 +40,7 @@ interface FormState {
 
 const INITIAL: FormState = {
   serviceKey: null,
+  guideId: null,
   theme: null,
   addOns: [],
   date: "",
@@ -95,12 +98,22 @@ function QrCode({ seed }: { seed: string }) {
   );
 }
 
-export default function BookingWizard() {
+export default function BookingWizard({
+  initialGuideId,
+}: {
+  initialGuideId?: string;
+}) {
   const t = useTranslations("booking");
   const ts = useTranslations("services");
   const tc = useTranslations("common");
+  const initialGuide = initialGuideId ? getGuide(initialGuideId) : undefined;
+  const initialState: FormState = {
+    ...INITIAL,
+    serviceKey: initialGuide ? "pemanduan" : null,
+    guideId: initialGuide ? initialGuide.id : null,
+  };
   const [step, setStep] = useState(0);
-  const [form, setForm] = useState<FormState>(INITIAL);
+  const [form, setForm] = useState<FormState>(initialState);
   const [error, setError] = useState<string | null>(null);
   const [orderNo, setOrderNo] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -109,6 +122,7 @@ export default function BookingWizard() {
     setForm((f) => ({ ...f, [key]: value }));
 
   const service = form.serviceKey ? getService(form.serviceKey) : null;
+  const guide = form.guideId ? getGuide(form.guideId) : undefined;
 
   const lines = useMemo(() => {
     if (!service) return [];
@@ -116,14 +130,16 @@ export default function BookingWizard() {
     out.push({
       key: service.key,
       qty: form.serviceKey === "penitipan" ? form.suitcases : 1,
-      unit: service.price,
+      // Tarif pemanduan mengikuti pemandu yang dipilih dari direktori.
+      unit:
+        form.serviceKey === "pemanduan" && guide ? guide.price : service.price,
     });
     for (const k of form.addOns) {
       const s = getService(k);
       out.push({ key: k, qty: k === "penitipan" ? form.suitcases : 1, unit: s.price });
     }
     return out;
-  }, [service, form.addOns, form.suitcases, form.serviceKey]);
+  }, [service, guide, form.addOns, form.suitcases, form.serviceKey]);
 
   const total = useMemo(
     () => lines.reduce((sum, l) => sum + l.qty * l.unit, 0),
@@ -214,7 +230,7 @@ export default function BookingWizard() {
   }
 
   function reset() {
-    setForm(INITIAL);
+    setForm(initialState);
     setOrderNo(null);
     setStep(0);
     setError(null);
@@ -478,6 +494,26 @@ export default function BookingWizard() {
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
       <div className="card p-5 md:p-7">
+        {/* Pemandu terpilih dari direktori */}
+        {guide && (
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-gold-200 bg-gold-50 px-3.5 py-2.5">
+            <p className="flex flex-wrap items-center gap-2 text-[12px] font-semibold text-navy-900">
+              <span aria-hidden="true">🎓</span>
+              {t("guideSelected")}:
+              <span className="font-bold">{guide.name}</span>
+              <span className="rounded-full bg-white px-2 py-0.5 font-mono text-[10px] font-bold text-gold-700">
+                {guide.license}
+              </span>
+            </p>
+            <Link
+              href="/pemandu"
+              className="text-[11px] font-bold text-brand-600 underline underline-offset-4 hover:text-brand-700"
+            >
+              {t("guideChange")}
+            </Link>
+          </div>
+        )}
+
         {/* Indikator langkah */}
         <ol className="flex items-center gap-2 text-xs md:gap-0">
           {(["0", "1", "2", "3"] as const).map((_, i) => (
@@ -525,6 +561,11 @@ export default function BookingWizard() {
         {step === 0 && (
           <div className="mt-4">
             <p className="text-[13px] text-ink-soft">{t("step1.select")}</p>
+            {guide && (
+              <p className="mt-2 rounded-lg bg-gold-50 px-3 py-2 text-[11px] leading-relaxed text-gold-700">
+                {t("guideStepNote")}
+              </p>
+            )}
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               {SERVICES.map((s) => {
                 const selected = form.serviceKey === s.key;
@@ -799,6 +840,11 @@ export default function BookingWizard() {
                     form.theme &&
                     ` — ${ts(`mysteryThemes.${form.theme}`)}`}
                 </li>
+                {guide && (
+                  <li>
+                    • {t("guideSelected")}: {guide.name} ({guide.license})
+                  </li>
+                )}
                 {form.addOns.map((k) => (
                   <li key={k}>• {ts(`items.${k}.name`)}</li>
                 ))}

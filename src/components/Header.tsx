@@ -68,6 +68,22 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <a
+            href="tel:+6281268008622"
+            className="hidden items-center gap-2 rounded-lg border border-line bg-cream px-3 py-1.5 transition hover:border-gold-500 lg:flex"
+          >
+            <span className="grid h-7 w-7 place-items-center rounded-full bg-brand-50 text-brand-600" aria-hidden="true">
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z" />
+              </svg>
+            </span>
+            <span className="leading-tight">
+              <span className="block text-[9px] font-bold uppercase tracking-[0.14em] text-ink-soft">
+                {t("hotline")}
+              </span>
+              <span className="block text-[11px] font-bold text-navy-900">+62 812-6800-8622</span>
+            </span>
+          </a>
           <LangSwitch />
           <Link
             href="/pesan"

@@ -4,11 +4,14 @@ import { Breadcrumb, Eyebrow } from "@/components/ui";
 
 export default async function BookingPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ guide?: string }>;
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const { guide } = await searchParams;
   const t = await getTranslations("booking");
   const tnav = await getTranslations("nav");
 
@@ -26,7 +29,7 @@ export default async function BookingPage({
           </p>
         </div>
       </div>
-      <BookingWizard />
+      <BookingWizard initialGuideId={guide} />
     </div>
   );
 }

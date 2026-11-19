@@ -1,35 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  /* Navy Danau Toba (header, footer, banner) */
-  --color-navy-50: #f0f5fa;
-  --color-navy-100: #dce7f2;
-  --color-navy-200: #b9cfe4;
-  --color-navy-300: #8db1d2;
-  --color-navy-600: #35608d;
-  --color-navy-700: #2d547f;
-  --color-navy-800: #24476f;
-  --color-navy-900: #1d3a5c;
-  --color-navy-950: #152b45;
+  /* Navy Toba Slate (header, footer, banner) — sesuai design system baru */
+  --color-navy-50: #f0f4fa;
+  --color-navy-100: #dbe5f2;
+  --color-navy-200: #b8cbe4;
+  --color-navy-300: #8aa8cc;
+  --color-navy-600: #2e4b74;
+  --color-navy-700: #1e3757;
+  --color-navy-800: #1b365d;
+  --color-navy-900: #002046;
+  --color-navy-950: #001a36;
 
-  /* Merah maroon khas logo (CTA utama) */
-  --color-brand-50: #f9ece9;
-  --color-brand-100: #f2d5cf;
-  --color-brand-500: #b03a2e;
-  --color-brand-600: #a5342b;
-  --color-brand-700: #8c2c24;
+  /* Merah maroon logo (CTA utama) */
+  --color-brand-50: #f9eceb;
+  --color-brand-100: #f2d3d2;
+  --color-brand-500: #b83b3b;
+  --color-brand-600: #ab3333;
+  --color-brand-700: #8f2626;
 
-  /* Emas (eyebrow, badge, bintang) */
-  --color-gold-50: #fdf6e6;
-  --color-gold-100: #f7e8c4;
-  --color-gold-200: #ecd9a8;
-  --color-gold-500: #d29b2a;
-  --color-gold-600: #b4831d;
-  --color-gold-700: #94681a;
+  /* Emas warisan (badge, bintang, eyebrow) */
+  --color-gold-50: #faf4e8;
+  --color-gold-100: #f3e6c9;
+  --color-gold-200: #e8d6b0;
+  --color-gold-500: #c59b27;
+  --color-gold-600: #a87f17;
+  --color-gold-700: #8a6712;
 
-  /* Krem hangat & tint biru danau */
-  --color-cream: #faf6ee;
-  --color-cream-deep: #f3ecdc;
+  /* Kanvas & tint biru danau */
+  --color-cream: #faf9f6;
+  --color-cream-deep: #f4f3f1;
   --color-lake-50: #eff8fd;
   --color-lake-100: #d9eef9;
   --color-lake-500: #2689c2;
@@ -37,9 +37,15 @@
 
   /* Aksen ulos untuk motif garis */
   --color-ulos-500: #a5342b;
-  --color-ink: #232323;
-  --color-ink-soft: #6b6257;
-  --color-line: #e7dfcf;
+  --color-ink: #1a1c1e;
+  --color-ink-soft: #4a4d54;
+  --color-line: #e7e4dc;
+
+  /* Sudut lebih tegas mengikuti bahasa arsitektur Batak (4–16px) */
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.75rem;
+  --radius-3xl: 1rem;
 
   --font-sans: var(--font-app-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-app-serif), Georgia, "Times New Roman", serif;
@@ -57,6 +63,11 @@
   );
 }
 
+/* Ornamen Gorga Simeol-meol sebagai garis pemisah (SVG inline di ui.tsx) */
+.gorga-mark {
+  color: var(--color-gold-500);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -66,9 +77,29 @@ body {
   color: var(--color-ink);
 }
 
-/* Kartu dasar */
+/* Kartu dasar — putih dengan border hangat tipis (Level 1) */
 .card {
   background: #fff;
   border: 1px solid var(--color-line);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Level 2: dropdown/overlay dengan ambient shadow biru Toba */
+.shadow-toba {
+  box-shadow: 0 8px 24px -4px rgba(27, 54, 93, 0.08);
+}
+
+/* Fokus aksesibel sesuai pedoman (ring emas) */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 2px;
+}
+
+/* Sembunyikan scrollbar horizontal untuk baris chip */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

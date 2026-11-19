@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Inter, Playfair_Display } from "next/font/google";
+import { EB_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -9,13 +9,13 @@ import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import "../globals.css";
 
-const appSans = Inter({
+const appSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-app-sans",
   display: "swap",
 });
 
-const appSerif = Playfair_Display({
+const appSerif = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-app-serif",
   display: "swap",
@@ -51,10 +51,11 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body
-        className={`${appSans.variable} ${appSerif.variable} font-sans antialiased min-h-screen flex flex-col`}
-      >
+    <html
+      lang={locale}
+      className={`${appSans.variable} ${appSerif.variable}`}
+    >
+      <body className="font-sans antialiased min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="flex-1">{children}</main>
