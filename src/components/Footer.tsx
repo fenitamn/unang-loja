@@ -6,7 +6,6 @@ import { Link, usePathname } from "@/i18n/navigation";
 
 export default function Footer() {
   const t = useTranslations("footer");
-  const tc = useTranslations("common");
   const pathname = usePathname();
   const locale = useLocale();
   const other = locale === "id" ? "en" : "id";
@@ -105,8 +104,6 @@ export default function Footer() {
             <Link href={pathname} locale={other} className="hover:text-white">
               {t("langOther")}
             </Link>
-            <span className="text-navy-700">•</span>
-            <span>{tc("dummy")}</span>
           </p>
         </div>
       </div>

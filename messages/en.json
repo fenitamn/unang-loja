@@ -12,7 +12,12 @@
     "help": "Help & Reviews",
     "menu": "Menu",
     "bookCta": "Book Now",
-    "hotline": "24/7 Emergency Hotline"
+    "hotline": "24/7 Emergency Hotline",
+    "adminPortal": "Admin Portal",
+    "login": "Sign in",
+    "register": "Register",
+    "account": "Account",
+    "logout": "Sign out"
   },
   "common": {
     "dummy": "Sample data — Phase 1",
@@ -132,7 +137,11 @@
           "role": "Traveler from Medan"
         }
       ],
-      "note": "Sample reviews (dummy data)."
+      "note": "Sample reviews (dummy data).",
+      "mixedNote": "Verified reviews appear first; cards marked Sample are illustrative.",
+      "sampleLabel": "Sample",
+      "verifiedRole": "Verified customer",
+      "verifiedNote": "Verified reviews from customers who completed their orders."
     },
     "ctaTitle": "Ready to explore without your suitcase?",
     "ctaSubtitle": "Book now — we confirm via WhatsApp once the admin verifies your payment."
@@ -571,6 +580,7 @@
     "step4": {
       "title": "4. Confirmation & Payment",
       "method": "Payment method",
+      "chooseMethod": "Choose a payment method",
       "methods": {
         "bca": "Bank Transfer — BCA",
         "bsi": "Bank Transfer — BSI",
@@ -582,7 +592,7 @@
       "holder": "a.n. UNANG LOJA",
       "amount": "Total to pay",
       "upload": "Upload payment proof",
-      "uploadHint": "JPG/PNG up to 5 MB. You can also send it to the admin via WhatsApp.",
+      "uploadHint": "JPG/PNG/WEBP up to 2 MB. You can also send it to the admin via WhatsApp.",
       "note": "Payments are verified manually by the admin (no payment gateway). Once paid, your booking locks the guide slot and you receive a confirmation.",
       "submit": "Send Booking & Issue Receipt",
       "uploading": "Selected file: {file}"
@@ -613,9 +623,9 @@
       }
     },
     "success": {
-      "eyebrow": "Payment Successful & Verified",
-      "title": "Horas, {name}! Your Luggage Storage & Delivery Reservation Is Confirmed",
-      "subtitle": "Your suitcase is ready for pick-up at the meeting point and will be delivered straight to your destination hotel with a tourism-standard 4-side security seal guarantee.",
+      "eyebrow": "Order Received",
+      "title": "Horas, {name}! We Have Received Your Order",
+      "subtitle": "Our admin team will verify your payment and contact you via WhatsApp. Keep your order number to track the service status.",
       "downloadPdf": "Download Receipt Voucher (PDF)",
       "sendWa": "Send Proof via WhatsApp",
       "trackCta": "Track Suitcase in Real-Time",
@@ -665,9 +675,9 @@
         }
       ],
       "recap": {
-        "title": "Official Payment Details",
+        "title": "Payment Details",
         "refLabel": "Transaction reference number",
-        "statusLunas": "STATUS: PAID",
+        "statusLunas": "Verified",
         "colItem": "Service Item Description",
         "colQty": "QTY",
         "colPrice": "Unit Price",
@@ -675,8 +685,10 @@
         "method": "Payment Method",
         "time": "Payment Time",
         "ppn": "Value Added Tax (VAT 11%)",
-        "totalLabel": "Total Paid",
-        "totalNote": "Fully Paid — No Extra Charges On Site"
+        "totalLabel": "Amount Due",
+        "totalNote": "Payment is verified by admin once proof is received.",
+        "statusPending": "Awaiting verification",
+        "statusUnpaid": "Unpaid"
       },
       "tracking": {
         "title": "Live Tracking Hub",
@@ -694,17 +706,22 @@
       "service": "Please choose a service first.",
       "date": "Please choose a service date.",
       "contact": "Please fill in your name and WhatsApp number.",
-      "payment": "Please upload payment proof or choose to send it via WhatsApp."
+      "payment": "Please choose a payment method first.",
+      "proof": "Payment proof must be JPG/PNG/WEBP, max 2 MB."
     },
     "guideSelected": "Selected guide",
     "guideChange": "Change guide",
-    "guideStepNote": "Guiding uses the chosen guide's official rate. You can still add luggage storage/delivery."
+    "guideStepNote": "Guiding uses the chosen guide's official rate. You can still add luggage storage/delivery.",
+    "accountCta": "View my orders",
+    "guestNote": "Order saved. Sign in so you can easily track its status.",
+    "accountHint": "Sign in to save this order to your account.",
+    "loginLink": "Sign in"
   },
   "status": {
     "title": "Suitcase Delivery Status Tracking",
     "badge": "Anti-Tamper Seal Active",
     "subtitle": "Enter your order number or luggage receipt number.",
-    "placeholder": "e.g. UL-20261112-0001 or RSI-0042",
+    "placeholder": "Enter your order number, e.g. UL-20261119-0001",
     "search": "Check Receipt",
     "otherCta": "Check Another Receipt",
     "downloadCta": "Download Delivery Letter",
@@ -715,13 +732,14 @@
       "owner": "Owner",
       "route": "Route",
       "etaLabel": "ETA at Hotel",
-      "current": "Current Status"
+      "current": "Current Status",
+      "serviceDate": "Service date"
     },
     "timeline": {
       "steps": [
         {
-          "title": "Received at Tomok",
-          "desc": "Tomok Pier locker staff inspect the luggage, weigh the suitcase, and print the digital receipt barcode."
+          "title": "Received at Locker Point",
+          "desc": "Our locker officer inspects the luggage, weighs it, and prints the digital order barcode."
         },
         {
           "title": "4-Side Seals Attached",
@@ -732,8 +750,8 @@
           "desc": "The fleet follows the Lake Toba coastal route. Active GPS tracker & rain-proof closed cabin."
         },
         {
-          "title": "Handover at Reception",
-          "desc": "Handed to the Carolina Hotel front-desk staff. You receive a WhatsApp notification once your luggage is safe in the lobby."
+          "title": "Hotel Handover",
+          "desc": "Luggage is handed to your accommodation's front desk. You receive a WhatsApp notification once it is received."
         }
       ]
     },
@@ -742,53 +760,58 @@
       "rating": "5.0 · (310+ successful deliveries)",
       "guideLabel": "Connected HPI Culture Guide",
       "guideLicense": "License #HPI-TB-1902",
-      "contact": "Contact Guide"
+      "contact": "Contact Guide",
+      "sealLabel": "Luggage Seal",
+      "sealVerified": "Seal recorded & verified",
+      "guideUnassigned": "Not assigned yet"
     },
     "seals": {
       "eyebrow": "Maximum Security Integrity",
-      "title": "4-Side Anti-Tamper Seal Photo Documentation",
-      "subtitle": "Every stored suitcase is sealed with a unique serial-coded cable strap and photographed in high resolution at Tomok Pier before being loaded onto the fleet.",
-      "refreshCta": "Enlarge All HD Photos",
+      "title": "4-Side Anti-Tamper Seal Checklist",
+      "subtitle": "Per-side seal condition check. The 4-side archive photos are sent separately to your WhatsApp by our locker officer.",
+      "refreshCta": "Refresh Status",
       "reportCta": "Report Damaged Seal (Rp10 Million Claim)",
       "sides": [
         {
           "label": "SIDE 1: FRONT",
           "title": "Front View",
           "chip": "INTACT",
-          "desc": "Guest's brand-new Navy Samsonite 24\" suitcase, barcode seal perfectly attached to the body seam."
+          "desc": "The front seal is checked for integrity and its serial number matched against the digital receipt."
         },
         {
           "label": "SIDE 2: ZIPPER",
           "title": "Zipper & Padlock",
           "chip": "LOCKED",
-          "desc": "Steel-cable seal locks both zipper heads firmly in the factory combination slot."
+          "desc": "The seal cable locks both zipper heads; the padlock cannot be opened without damaging the seal."
         },
         {
           "label": "SIDE 3: BACK",
           "title": "Handle & Telescopic",
           "chip": "INTACT",
-          "desc": "Barcode seal crosses the telescopic handle base so the compartment cannot be forced open."
+          "desc": "The seal crosses the telescopic handle base to prevent the compartment from being forced open."
         },
         {
           "label": "SIDE 4: BASE & WHEELS",
           "title": "Wheels & Bottom Hinges",
           "chip": "CLEAN",
-          "desc": "All four spinner wheels spin smoothly without damage; folding hinges at the base are tightly sealed."
+          "desc": "Wheels and bottom hinges are inspected; the seal is confirmed tight on the base side."
         }
       ],
-      "note": "Hotel Counter Pick-Up Procedure: Match the 4 serial numbers above (#SG-8842-A1 to A4) with the physical seal strips on your suitcase. If any strip is torn, shows \"OPENED\", or the numbers don't match, do not accept the suitcase and press the report button above to activate warranty coverage worth up to Rp10,000,000."
+      "note": "Hotel pick-up procedure: match the active seal code ({code}) with the physical seal strip on your suitcase. If the strip is torn, opened, or the code does not match, do not accept the suitcase and contact the admin via the report button to file a warranty claim.",
+      "notSealed": "Seal not installed yet. The seal code appears after our locker officer processes your luggage.",
+      "codeLabel": "Active seal code"
     },
     "route": {
       "title": "Route & Hotel Recipient Details",
       "origin": {
         "label": "LUGGAGE HANDOVER LOCATION (ORIGIN)",
-        "name": "Tomok Tourism Pier Hub Locker",
-        "desc": "Self-Service Locker #02, Tomok Tourist Ferry Gate Area, Simanindo."
+        "name": "Your selected meeting point",
+        "desc": "Official UNANG LOJA counter at the meeting point chosen during booking. The admin confirms the exact location via WhatsApp."
       },
       "dest": {
         "label": "FINAL DESTINATION & RECIPIENT",
-        "name": "Carolina Samosir Hotel Reception Desk",
-        "desc": "Jl. Tuk Suk Sialiang Area, Tuk Suk Village, Samosir Island."
+        "name": "Your hotel reception desk",
+        "desc": "The hotel name and address are confirmed by the admin via WhatsApp before delivery."
       },
       "instructions": "Special Instructions for Guest & Courier: The suitcase is handed to reception under the owner's name (Room Booking). A physical receipt is placed in the reception key envelope.",
       "weather": "Lake Toba Weather Protection Guarantee: Luggage is covered with a secondary anti-air cover inside the closed van to anticipate Toba's rain and humid wind."
@@ -797,6 +820,7 @@
       "title": "Package & Cost Details",
       "statusLunas": "PAID",
       "totalLabel": "Total Paid",
+      "totalDueLabel": "Total Due",
       "barcodeLabel": "ENCRYPTED DIGITAL RECEIPT CODE",
       "methodLabel": "Payment Method",
       "items": [
@@ -812,17 +836,26 @@
           "title": "Pier → Tuk-Tuk Delivery",
           "desc": "Zone 1 straight to the hotel lobby"
         }
-      ]
+      ],
+      "serviceLine": "Service total",
+      "paymentStatus": "Payment status"
     },
     "helpCard": {
       "title": "Pier & Receipt Help Center",
       "desc": "Need to change a delivery schedule, or your suitcase arrives before hotel check-in hours? Contact us directly at the pier:",
-      "phone": "+62 812-3456-7890",
+      "phone": "+62 812-6800-8622",
       "whatsapp": "WhatsApp Live CS"
     },
     "manualNote": "Status is updated manually by the admin — not real-time GPS tracking.",
     "demoNote": "This result is sample data (Phase 1).",
-    "resiHint": "Try: UL-20261112-0001, UL-20261111-0002, or RSI-0042."
+    "resiHint": "Use the order number shown in your booking confirmation.",
+    "unavailable": "Tracking is not available on this server yet. Please contact admin via WhatsApp to check your order.",
+    "payment": {
+      "UNPAID": "Unpaid",
+      "PENDING": "Awaiting verification",
+      "PAID": "Verified",
+      "REJECTED": "Rejected"
+    }
   },
   "help": {
     "title": "Help Center, FAQ & Community Reviews",
@@ -859,10 +892,16 @@
     "ratingTitle": "Leave a Review",
     "ratingSubtitle": "Already used UNANG LOJA? Give us a rating from 1 to 5.",
     "ratingLabel": "Your rating",
-    "ratingOrder": "Order number (optional)",
-    "ratingComment": "Comment (optional)",
+    "ratingOrder": "Order number",
+    "ratingComment": "Comment",
     "ratingSubmit": "Send review",
-    "ratingThanks": "Thank you! Your review has been received. (Phase 1 simulation — reviews are not stored yet.)"
+    "ratingSending": "Sending…",
+    "ratingOrderHint": "Use the receipt number of an order marked Completed.",
+    "ratingCommentHint": "Write at least 10 characters.",
+    "ratingLogin": "Please sign in to review one of your orders.",
+    "ratingLoginCta": "Sign in now",
+    "ratingError": "Review could not be sent. Please try again.",
+    "ratingThanks": "Thank you! Your review was submitted and is awaiting admin moderation."
   },
   "footer": {
     "slogan": "Travel Without Your Suitcase, Discover Toba's Secrets",
@@ -872,7 +911,7 @@
     "linksTitle": "Links",
     "contactTitle": "Contact",
     "address": "Tomok, Samosir Island, Samosir Regency, North Sumatra",
-    "hotline": "24-Hour Pier Help Hotline: +62 812-3456-7890",
+    "hotline": "24-Hour Pier Help Hotline: +62 812-6800-8622",
     "hours": "Every day 08:00–20:00 WIB",
     "copyright": "© {year} UNANG LOJA Samosir. Horas! Verified Lake Toba Tourism & Luggage Handling Services.",
     "langCurrent": "Bahasa Indonesia",
@@ -922,6 +961,111 @@
     "setup": {
       "db": "Database (Supabase) not connected — set SUPABASE_URL & SUPABASE_SERVICE_ROLE_KEY on Vercel.",
       "wa": "WhatsApp notifications (Fonnte) inactive — set FONTE_TOKEN & ADMIN_WA."
+    }
+  },
+  "auth": {
+    "badge": "CUSTOMER ACCOUNT",
+    "loginTitle": "Sign in to UNANG LOJA",
+    "loginSubtitle": "Track orders, upload payment proof, and keep your service history.",
+    "registerTitle": "Create a customer account",
+    "registerSubtitle": "One account for luggage storage, transfers, and tour guides.",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "WhatsApp number",
+    "password": "Password",
+    "confirm": "Confirm password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "submitLogin": "Sign in",
+    "submitRegister": "Create account",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "toRegister": "Register free",
+    "toLogin": "Sign in here",
+    "adminHint": "Administrator?",
+    "adminLink": "Sign in via Admin Portal",
+    "backHome": "Back to home",
+    "secure": "Secure session · passwords encrypted",
+    "loading": "Processing…",
+    "errRequired": "Please fill in all fields.",
+    "errEmail": "Invalid email address.",
+    "errPhone": "Invalid WhatsApp number.",
+    "errPassword": "Password must be at least 8 characters.",
+    "errConfirm": "Password confirmation does not match.",
+    "errGeneric": "Something went wrong. Please try again.",
+    "benefit1": "Order history saved",
+    "benefit2": "Upload payment proof",
+    "benefit3": "Track status & luggage seals",
+    "passwordPlaceholder": "At least 8 characters"
+  },
+  "account": {
+    "badge": "CUSTOMER DASHBOARD",
+    "hello": "Hello",
+    "title": "My Account",
+    "subtitle": "Manage your orders, payments, and profile in one place.",
+    "newBooking": "Book a new service",
+    "stats": {
+      "total": "Total orders",
+      "active": "Active orders",
+      "done": "Completed",
+      "spent": "Total spend"
+    },
+    "ordersTitle": "My orders",
+    "ordersSubtitle": "Orders created with this account.",
+    "empty": "No orders yet.",
+    "emptyCta": "Start booking now",
+    "viewDetail": "View details",
+    "payment": {
+      "UNPAID": "Unpaid",
+      "PENDING": "Awaiting verification",
+      "PAID": "Verified",
+      "REJECTED": "Rejected"
+    },
+    "profileTitle": "Profile & security",
+    "profileSubtitle": "Update contact details or change your password.",
+    "save": "Save changes",
+    "saved": "Profile saved.",
+    "savePasswordHint": "Fill only if you want to change your password.",
+    "detail": {
+      "back": "Back to account",
+      "title": "Order details",
+      "statusTitle": "Order status",
+      "infoTitle": "Service information",
+      "service": "Service",
+      "date": "Date",
+      "meetingPoint": "Meeting point",
+      "suitcases": "Suitcases",
+      "participants": "Participants",
+      "guide": "Guide",
+      "seal": "Luggage seal",
+      "total": "Total",
+      "paymentTitle": "Payment",
+      "method": "Method",
+      "ref": "Reference",
+      "proof": "Payment proof",
+      "proofHint": "JPG/PNG/WEBP max. 2 MB",
+      "sendProof": "Send proof",
+      "proofSent": "Proof sent. Awaiting admin verification.",
+      "proofVerified": "Payment has been verified.",
+      "noProof": "No proof uploaded yet.",
+      "track": "Open tracking page",
+      "reviewTitle": "Your review",
+      "reviewHint": "Share your experience after the service is completed.",
+      "reviewPlaceholder": "Write your experience…",
+      "reviewSubmit": "Submit review",
+      "reviewSent": "Thank you! Your review is awaiting moderation.",
+      "reviewLocked": "Reviews are available after the order is completed.",
+      "adminNote": "Admin note",
+      "verifiedBy": "Verified by",
+      "openProof": "View proof"
+    },
+    "status": {
+      "BARU": "New",
+      "DIKONFIRMASI": "Confirmed",
+      "DITUGASKAN": "Guide assigned",
+      "DIJEMPUT": "In progress",
+      "SELESAI": "Completed",
+      "BATAL": "Cancelled"
     }
   }
 }

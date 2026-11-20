@@ -36,6 +36,7 @@ interface FormState {
   referral: string;
   method: PaymentMethodKey | null;
   proofName: string | null;
+  proofData: string | null;
 }
 
 const INITIAL: FormState = {
@@ -55,6 +56,7 @@ const INITIAL: FormState = {
   referral: "",
   method: null,
   proofName: null,
+  proofData: null,
 };
 
 /** Kode QR dummy deterministik dari nomor pesanan (Fase 1). */
@@ -100,8 +102,16 @@ function QrCode({ seed }: { seed: string }) {
 
 export default function BookingWizard({
   initialGuideId,
+  loggedIn = false,
+  activeServiceKeys,
+  guideRates,
+  account,
 }: {
   initialGuideId?: string;
+  loggedIn?: boolean;
+  activeServiceKeys?: string[];
+  guideRates?: Record<string, number>;
+  account?: { name: string; phone: string; email: string } | null;
 }) {
   const t = useTranslations("booking");
   const ts = useTranslations("services");
@@ -111,15 +121,47 @@ export default function BookingWizard({
     ...INITIAL,
     serviceKey: initialGuide ? "pemanduan" : null,
     guideId: initialGuide ? initialGuide.id : null,
+    name: account?.name ?? "",
+    phone: account?.phone ?? "",
+    email: account?.email ?? "",
   };
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(initialState);
   const [error, setError] = useState<string | null>(null);
   const [orderNo, setOrderNo] = useState<string | null>(null);
+  const [paymentStatus, setPaymentStatus] = useState("UNPAID");
   const fileRef = useRef<HTMLInputElement>(null);
+  const availableServices = activeServiceKeys
+    ? SERVICES.filter((service) => activeServiceKeys.includes(service.key))
+    : SERVICES;
 
   const set = <K extends keyof FormState>(key: K, value: FormState[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
+
+  async function onProofFile(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0] ?? null;
+    setError(null);
+    if (!file) {
+      set("proofName", null);
+      set("proofData", null);
+      return;
+    }
+    if (!/^image\/(png|jpe?g|webp)$/.test(file.type) || file.size > 2 * 1024 * 1024) {
+      setError(t("errors.proof"));
+      event.target.value = "";
+      set("proofName", null);
+      set("proofData", null);
+      return;
+    }
+    const data = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result));
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+    set("proofName", file.name);
+    set("proofData", data);
+  }
 
   const service = form.serviceKey ? getService(form.serviceKey) : null;
   const guide = form.guideId ? getGuide(form.guideId) : undefined;
@@ -132,14 +174,16 @@ export default function BookingWizard({
       qty: form.serviceKey === "penitipan" ? form.suitcases : 1,
       // Tarif pemanduan mengikuti pemandu yang dipilih dari direktori.
       unit:
-        form.serviceKey === "pemanduan" && guide ? guide.price : service.price,
+        form.serviceKey === "pemanduan" && guide
+          ? guideRates?.[guide.id] ?? guide.price
+          : service.price,
     });
     for (const k of form.addOns) {
       const s = getService(k);
       out.push({ key: k, qty: k === "penitipan" ? form.suitcases : 1, unit: s.price });
     }
     return out;
-  }, [service, guide, form.addOns, form.suitcases, form.serviceKey]);
+  }, [service, guide, form.addOns, form.suitcases, form.serviceKey, guideRates]);
 
   const total = useMemo(
     () => lines.reduce((sum, l) => sum + l.qty * l.unit, 0),
@@ -170,7 +214,7 @@ export default function BookingWizard({
       setError(t("errors.contact"));
       return false;
     }
-    if (current === 3 && !form.proofName && !form.method) {
+    if (current === 3 && !form.method) {
       setError(t("errors.payment"));
       return false;
     }
@@ -181,15 +225,13 @@ export default function BookingWizard({
   async function next() {
     if (!validate(step)) return;
     if (step === 3) {
-      // Fase 2A: kirim pesanan ke server (Supabase + notifikasi WA admin).
-      // Jika database belum dikonfigurasi, fallback ke simulasi lokal (Fase 1).
       try {
         const res = await fetch("/api/orders", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             serviceKey: form.serviceKey,
-            serviceLabel: service ? t(`items.${service.key}.name`) : form.serviceKey,
+            serviceLabel: service ? ts(`items.${service.key}.name`) : form.serviceKey,
             addOns: form.addOns,
             date: form.date,
             meetingPoint: form.meetingPoint,
@@ -201,29 +243,24 @@ export default function BookingWizard({
             phone: form.phone,
             email: form.email || null,
             paymentMethod: form.method,
+            paymentProof: form.proofData,
             total,
           }),
         });
-        if (res.ok) {
-          const data = (await res.json()) as { order: { resi: string } };
-          setOrderNo(data.order.resi);
-          setStep(4);
+        const data = (await res.json().catch(() => ({}))) as {
+          error?: string;
+          order?: { resi: string; payment_status?: string };
+        };
+        if (!res.ok || !data.order) {
+          setError(data.error ?? "Gagal mengirim pesanan. Coba lagi atau hubungi admin.");
           return;
         }
-        if (res.status !== 503) {
-          const data = (await res.json()) as { error?: string };
-          setError(data.error ?? "Gagal mengirim pesanan.");
-          return;
-        }
+        setOrderNo(data.order.resi);
+        setPaymentStatus(data.order.payment_status ?? "UNPAID");
+        setStep(4);
       } catch {
-        /* koneksi gagal → fallback simulasi */
+        setError("Tidak dapat menghubungi server. Periksa koneksi Anda lalu coba lagi.");
       }
-      // Fallback Fase 1: simulasi nomor pesanan lokal
-      const d = new Date();
-      const stamp = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
-      const seq = String(Math.floor(Math.random() * 9000) + 1000);
-      setOrderNo(`UL-${stamp}-${seq}`);
-      setStep(4);
       return;
     }
     setStep((s) => s + 1);
@@ -239,7 +276,7 @@ export default function BookingWizard({
   /* ---------- Layar sukses: voucher boarding pass ---------- */
   if (step === 4 && orderNo) {
     const name = form.name.trim() || "Traveler";
-    const waLink = `https://wa.me/6281234567890?text=${encodeURIComponent(
+    const waLink = `https://wa.me/6281268008622?text=${encodeURIComponent(
       `Halo UNANG LOJA, saya ${name}. Nomor pesanan saya ${orderNo}.`,
     )}`;
     return (
@@ -346,13 +383,13 @@ export default function BookingWizard({
 
         {/* Aksi */}
         <div className="flex flex-wrap gap-3">
-          <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
+          <button
+            type="button"
+            onClick={() => window.print()}
             className="rounded-lg bg-navy-900 px-5 py-2.5 text-xs font-bold text-white transition hover:bg-navy-800"
           >
             ⬇ {t("success.downloadPdf")}
-          </a>
+          </button>
           <a
             href={waLink}
             target="_blank"
@@ -362,12 +399,23 @@ export default function BookingWizard({
             💬 {t("success.sendWa")}
           </a>
           <Link
-            href="/status"
+            href={`/status?resi=${encodeURIComponent(orderNo ?? "")}`}
             className="rounded-lg border border-navy-200 bg-white px-5 py-2.5 text-xs font-bold text-navy-800 transition hover:border-gold-500 hover:text-gold-700"
           >
             📍 {t("success.trackCta")}
           </Link>
+          <Link
+            href={loggedIn ? "/akun" : "/masuk?next=%2Fakun"}
+            className="rounded-lg border border-gold-500 bg-gold-50 px-5 py-2.5 text-xs font-bold text-gold-700 transition hover:bg-gold-100"
+          >
+            {loggedIn ? t("accountCta") : t("loginLink")}
+          </Link>
         </div>
+        {!loggedIn && (
+          <p className="rounded-lg border border-line bg-cream px-4 py-3 text-[11px] leading-relaxed text-ink-soft">
+            {t("guestNote")}
+          </p>
+        )}
 
         {/* 3 langkah penyerahan */}
         <section>
@@ -399,7 +447,11 @@ export default function BookingWizard({
           <div className="flex flex-wrap items-center justify-between gap-2 bg-navy-900 px-5 py-3.5 text-white">
             <h3 className="font-serif text-sm font-bold">{t("success.recap.title")}</h3>
             <span className="rounded-full bg-gold-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-navy-900">
-              {t("success.recap.statusLunas")}
+              {paymentStatus === "PAID"
+                ? t("success.recap.statusLunas")
+                : paymentStatus === "PENDING"
+                  ? t("success.recap.statusPending")
+                  : t("success.recap.statusUnpaid")}
             </span>
           </div>
           <div className="p-5">
@@ -567,7 +619,7 @@ export default function BookingWizard({
               </p>
             )}
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
-              {SERVICES.map((s) => {
+              {availableServices.map((s) => {
                 const selected = form.serviceKey === s.key;
                 return (
                   <button
@@ -870,6 +922,7 @@ export default function BookingWizard({
                 onChange={(e) => set("method", (e.target.value || null) as PaymentMethodKey | null)}
                 className="rounded-lg border border-line bg-white px-3 py-2.5 text-sm outline-none focus:border-gold-500"
               >
+                <option value="">{t("step4.chooseMethod")}</option>
                 {Object.entries(PAYMENT_METHODS).map(([k, v]) => (
                   <option key={k} value={k}>
                     {v.emoji} {t(`step4.methods.${k}`)}
@@ -905,8 +958,8 @@ export default function BookingWizard({
               <input
                 ref={fileRef}
                 type="file"
-                accept="image/png,image/jpeg"
-                onChange={(e) => set("proofName", e.target.files?.[0]?.name ?? null)}
+                accept="image/png,image/jpeg,image/webp"
+                onChange={onProofFile}
                 className="mt-2 block w-full rounded-lg border border-line px-3 py-2.5 text-sm file:mr-3 file:rounded-full file:border-0 file:bg-navy-900 file:px-4 file:py-1.5 file:text-xs file:font-semibold file:text-white"
               />
               {form.proofName && (

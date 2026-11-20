@@ -13,6 +13,8 @@ const NAV = [
   { href: "/bantuan", key: "help" },
 ] as const;
 
+type HeaderUser = { name: string; role: "admin" | "customer" } | null;
+
 function LangSwitch() {
   const pathname = usePathname();
   const locale = useLocale();
@@ -28,10 +30,15 @@ function LangSwitch() {
   );
 }
 
-export default function Header() {
+export default function Header({ user = null }: { user?: HeaderUser }) {
   const t = useTranslations("nav");
   const locale = useLocale();
   const [open, setOpen] = useState(false);
+
+  async function logout() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    window.location.assign(`/${locale}`);
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
@@ -70,7 +77,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <a
             href="tel:+6281268008622"
-            className="hidden items-center gap-2 rounded-lg border border-line bg-cream px-3 py-1.5 transition hover:border-gold-500 lg:flex"
+            className="hidden items-center gap-2 rounded-lg border border-line bg-cream px-3 py-1.5 transition hover:border-gold-500 xl:flex"
           >
             <span className="grid h-7 w-7 place-items-center rounded-full bg-brand-50 text-brand-600" aria-hidden="true">
               <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -84,6 +91,52 @@ export default function Header() {
               <span className="block text-[11px] font-bold text-navy-900">+62 812-6800-8622</span>
             </span>
           </a>
+
+          <Link
+            href="/admin"
+            className="hidden items-center gap-1.5 rounded-lg border border-navy-200 bg-white px-2.5 py-2 text-[11px] font-bold text-navy-800 transition hover:border-navy-700 hover:bg-navy-50 md:inline-flex"
+          >
+            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 3l7 3v6c0 4.4-3 8.4-7 9-4-.6-7-4.6-7-9V6l7-3Z" />
+              <path d="M9.5 12.2l1.8 1.8 3.4-3.6" />
+            </svg>
+            {t("adminPortal")}
+          </Link>
+
+          {user ? (
+            <div className="hidden items-center gap-1.5 md:flex">
+              <Link
+                href={user.role === "admin" ? "/admin/dashboard" : "/akun"}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-navy-900 px-3 py-2 text-[11px] font-bold text-white transition hover:bg-navy-800"
+                title={user.name}
+              >
+                <span className="grid h-4 w-4 place-items-center rounded-full bg-gold-500 text-[9px] font-black text-navy-950">
+                  {user.name.trim().charAt(0).toUpperCase() || "U"}
+                </span>
+                {user.name.split(" ")[0]}
+              </Link>
+              <button
+                type="button"
+                onClick={logout}
+                className="rounded-lg border border-line p-2 text-ink-soft transition hover:border-brand-300 hover:text-brand-600"
+                aria-label={t("logout")}
+                title={t("logout")}
+              >
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                  <path d="M16 17l5-5-5-5M21 12H9" />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/masuk"
+              className="hidden rounded-lg border border-line bg-white px-3 py-2 text-[11px] font-bold text-navy-800 transition hover:border-navy-700 md:block"
+            >
+              {t("login")}
+            </Link>
+          )}
+
           <LangSwitch />
           <Link
             href="/pesan"
@@ -106,7 +159,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-line bg-white px-4 py-2 lg:hidden">
+        <nav className="max-h-[75vh] overflow-y-auto border-t border-line bg-white px-4 py-2 lg:hidden">
           {NAV.map((item) => (
             <Link
               key={item.key}
@@ -117,10 +170,54 @@ export default function Header() {
               {t(item.key)}
             </Link>
           ))}
+          <div className="my-2 border-t border-line" />
+          {user ? (
+            <>
+              <Link
+                href={user.role === "admin" ? "/admin/dashboard" : "/akun"}
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-navy-800 hover:bg-cream"
+              >
+                {t("account")} · {user.name}
+              </Link>
+              <button
+                type="button"
+                onClick={logout}
+                className="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-brand-600 hover:bg-brand-50"
+              >
+                {t("logout")}
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/masuk"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-navy-800 hover:bg-cream"
+              >
+                {t("login")}
+              </Link>
+              <Link
+                href="/daftar"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2.5 text-sm font-medium text-ink hover:bg-cream"
+              >
+                {t("register")}
+              </Link>
+            </>
+          )}
+          <Link
+            href="/admin"
+            onClick={() => setOpen(false)}
+            className="mt-1 flex items-center justify-between rounded-lg bg-navy-900 px-3 py-2.5 text-sm font-bold text-white"
+          >
+            {t("adminPortal")}
+            <span aria-hidden="true">→</span>
+          </Link>
           <Link
             href="/pesan"
             onClick={() => setOpen(false)}
-            className="mt-1 block rounded-lg bg-brand-600 px-3 py-2.5 text-center text-sm font-bold text-white"
+            className="mt-2 block rounded-lg bg-brand-600 px-3 py-2.5 text-center text-sm font-bold text-white"
           >
             {t("bookCta")}
           </Link>
