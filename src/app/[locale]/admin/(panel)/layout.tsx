@@ -3,6 +3,9 @@ import AdminShell from "@/components/admin/AdminShell";
 import { requireAdminPage } from "@/lib/auth";
 import { listOrders, storageMode } from "@/lib/store";
 
+// Panel admin selalu membaca sesi admin dari cookie.
+export const dynamic = "force-dynamic";
+
 export default async function AdminPanelLayout({
   children,
   params,

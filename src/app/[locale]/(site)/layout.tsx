@@ -4,6 +4,10 @@ import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { getSession } from "@/lib/auth";
 
+// Header menampilkan sesi pengguna, jadi semua halaman situs harus dirender
+// dinamis. Tanpa ini Next.js mencoba static generation dan `cookies()` gagal.
+export const dynamic = "force-dynamic";
+
 export default async function SiteLayout({
   children,
   params,
