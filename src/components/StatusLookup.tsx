@@ -3,17 +3,49 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
-  DEMO_ORDERS,
   formatIDR,
-  getService,
   type DemoOrder,
   type ServiceKey,
 } from "@/lib/data";
-import type { OrderRow } from "@/lib/supabase";
-import { Eyebrow, StarRow } from "@/components/ui";
+import { Eyebrow } from "@/components/ui";
 
-/** Petakan baris database → bentuk tampilan DemoOrder (Fase 2A). */
-function dbToDemo(o: OrderRow): DemoOrder {
+const PAYMENT_METHOD_LABEL: Record<string, string> = {
+  bca: "Transfer BCA",
+  bsi: "Transfer BSI",
+  gopay: "GoPay",
+  ovo: "OVO",
+  dana: "DANA",
+  qris: "QRIS",
+  cash: "Tunai di loket",
+};
+
+type TrackedOrder = DemoOrder & {
+  guideName: string | null;
+  total: number;
+  paymentStatus: string;
+  paymentMethod: string | null;
+  meetingPoint: string;
+};
+
+type TrackPayload = {
+  resi: string;
+  status: string;
+  payment_status: string;
+  service_key: string;
+  date: string;
+  meeting_point: string;
+  zone: string | null;
+  suitcases: number;
+  participants: number;
+  name: string;
+  seal_code: string | null;
+  guide_name: string | null;
+  total: number;
+  payment_method: string | null;
+};
+
+/** Petakan data API pelacakan → bentuk tampilan. */
+function toTracked(o: TrackPayload): TrackedOrder {
   const STATE_OF_STATUS: Record<string, number> = {
     BARU: 0,
     DIKONFIRMASI: 1,
@@ -25,14 +57,19 @@ function dbToDemo(o: OrderRow): DemoOrder {
   return {
     orderNo: o.resi,
     resi: o.resi,
-    sealNo: `SLG-${o.resi.slice(-4).padStart(4, "0")}`,
+    sealNo: o.seal_code ?? "",
     serviceKey: o.service_key as ServiceKey,
     zone: undefined,
     date: o.date,
     stateIndex: STATE_OF_STATUS[o.status] ?? 0,
     owner: o.name,
-    guide: "-",
+    guide: o.guide_name ?? "-",
     luggage: o.suitcases > 0,
+    guideName: o.guide_name,
+    total: o.total,
+    paymentStatus: o.payment_status,
+    paymentMethod: o.payment_method,
+    meetingPoint: o.meeting_point,
   };
 }
 
@@ -54,38 +91,6 @@ function Barcode({ seed, className = "" }: { seed: string; className?: string })
   );
 }
 
-/** Foto mock "4 sisi koper" — SVG sederhana per sisi (aman offline). */
-function SealPhoto({ side, seed }: { side: number; seed: string }) {
-  const positions = [
-    <g key="p"><rect x="40" y="52" width="120" height="26" rx="4" fill="#b03a2e" /><circle cx="112" cy="65" r="4" fill="#f2c94c" /></g>,
-    <g key="p"><rect x="88" y="34" width="24" height="60" rx="4" fill="#b03a2e" /><circle cx="100" cy="64" r="4" fill="#f2c94c" /></g>,
-    <g key="p"><rect x="40" y="106" width="120" height="14" rx="4" fill="#b03a2e" /><circle cx="150" cy="113" r="4" fill="#f2c94c" /></g>,
-    <g key="p"><rect x="40" y="120" width="120" height="10" rx="4" fill="#b03a2e" /><circle cx="52" cy="125" r="3.5" fill="#f2c94c" /></g>,
-  ];
-  let h = 5;
-  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) % 65521;
-  h += side * 977;
-  return (
-    <svg viewBox="0 0 200 150" className="h-32 w-full rounded-lg" aria-hidden="true">
-      <defs>
-        <linearGradient id={`ph-${side}`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#dce7f2" />
-          <stop offset="1" stopColor="#b9cfe4" />
-        </linearGradient>
-      </defs>
-      <rect width="200" height="150" fill={`url(#ph-${side})`} />
-      {/* koper */}
-      <rect x="40" y="30" width="120" height="100" rx="10" fill="#2d547f" />
-      <rect x="52" y="42" width="96" height="76" rx="6" fill="#35608d" opacity="0.5" />
-      {/* garis segel sesuai sisi */}
-      {positions[side % 4]}
-      {/* noise deterministik supaya tiap sisi terlihat beda */}
-      <circle cx={30 + (h % 14)} cy={20 + (h % 10)} r="3" fill="#ffffff" opacity="0.35" />
-      <circle cx={160 - (h % 18)} cy={132 - (h % 12)} r="2.5" fill="#ffffff" opacity="0.3" />
-    </svg>
-  );
-}
-
 const TIMELINE_ICONS = ["🧾", "🔒", "🛺", "🏨"];
 
 export default function StatusLookup({
@@ -94,37 +99,28 @@ export default function StatusLookup({
   initialQuery?: string;
 }) {
   const t = useTranslations("status");
-  const ts = useTranslations("services");
-  const tc = useTranslations("common");
   const [query, setQuery] = useState(initialQuery);
-  const [result, setResult] = useState<DemoOrder | null | undefined>(
-    initialQuery ? undefined : undefined,
-  );
+  const [result, setResult] = useState<TrackedOrder | null | undefined>(undefined);
+  const [unavailable, setUnavailable] = useState(false);
 
   async function search(q: string) {
     const s = q.trim().toUpperCase();
-    // 1) Coba database live (Fase 2A)
+    setUnavailable(false);
     try {
-      const res = await fetch(`/api/orders?resi=${encodeURIComponent(s)}`);
+      const res = await fetch(`/api/track?resi=${encodeURIComponent(s)}`);
       if (res.ok) {
-        const data = (await res.json()) as { order: OrderRow };
-        setResult(dbToDemo(data.order));
+        const data = (await res.json()) as { order: TrackPayload };
+        setResult(toTracked(data.order));
         return;
       }
-      // 404 = resi tidak ada di database → tampilkan tidak ditemukan
       if (res.status === 404) {
         setResult(null);
         return;
       }
-      // 503 = database belum dikonfigurasi → lanjut ke fallback demo
+      setUnavailable(true);
     } catch {
-      /* koneksi gagal → fallback demo */
+      setUnavailable(true);
     }
-    // 2) Fallback: data demo Fase 1
-    const found = DEMO_ORDERS.find(
-      (o) => o.orderNo === s || o.resi === s || o.sealNo === s,
-    );
-    setResult(found ?? null);
   }
 
   const firstSearch = () => void search(query);
@@ -139,7 +135,6 @@ export default function StatusLookup({
   if (result) {
     // stateIndex 0..4 → langkah timeline 0..3
     const stepOfState = [0, 0, 1, 2, 3][Math.min(4, Math.max(0, result.stateIndex))];
-    const service = getService(result.serviceKey);
 
     return (
       <div className="space-y-6">
@@ -172,10 +167,10 @@ export default function StatusLookup({
                 </p>
                 <p>
                   <span className="text-navy-200">{t("hero.route")}: </span>
-                  <span className="font-semibold text-white">Tomok → Tuk Tuk</span>
+                  <span className="font-semibold text-white">{result.meetingPoint}</span>
                 </p>
                 <p>
-                  <span className="text-navy-200">{t("hero.etaLabel")}: </span>
+                  <span className="text-navy-200">{t("hero.serviceDate")}: </span>
                   <span className="font-semibold text-white">{result.date}</span>
                 </p>
               </div>
@@ -228,21 +223,24 @@ export default function StatusLookup({
           </ol>
         </section>
 
-        {/* Kurir & pemandu */}
+        {/* Segel & pemandu */}
         <section className="grid gap-4 md:grid-cols-2">
           <div className="card flex items-center gap-4 p-5">
             <span className="grid h-12 w-12 place-items-center rounded-full bg-navy-800 text-lg" aria-hidden="true">
-              🛺
+              🔒
             </span>
             <div className="min-w-0">
               <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-gold-600">
-                {t("crew.courier")}
+                {t("crew.sealLabel")}
               </p>
-              <p className="font-serif text-base font-bold text-navy-900">Bang Oloan H.</p>
-              <div className="mt-0.5 flex items-center gap-1.5">
-                <StarRow value={5} className="text-xs" />
-                <span className="text-[11px] font-semibold text-ink-soft">{t("crew.rating")}</span>
-              </div>
+              {result.sealNo ? (
+                <>
+                  <p className="font-mono text-base font-bold text-navy-900">{result.sealNo}</p>
+                  <p className="mt-0.5 text-[11px] text-ink-soft">{t("crew.sealVerified")}</p>
+                </>
+              ) : (
+                <p className="text-[12px] text-ink-soft">{t("seals.notSealed")}</p>
+              )}
             </div>
           </div>
           <div className="card flex items-center gap-4 p-5">
@@ -253,21 +251,17 @@ export default function StatusLookup({
               <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-gold-600">
                 {t("crew.guideLabel")}
               </p>
-              {result.guide !== "-" ? (
+              {result.guideName ? (
                 <>
-                  <p className="font-serif text-base font-bold text-navy-900">{result.guide}</p>
-                  <p className="mt-0.5 flex items-center gap-1.5 text-[11px] text-ink-soft">
-                    <span className="rounded bg-cream px-1.5 py-0.5 font-mono text-[10px] font-bold text-navy-800">
-                      {t("crew.guideLicense")}
-                    </span>
-                  </p>
+                  <p className="font-serif text-base font-bold text-navy-900">{result.guideName}</p>
+                  <p className="mt-0.5 text-[11px] text-ink-soft">{t("crew.guideLicense")}</p>
                 </>
               ) : (
-                <p className="text-[13px] text-ink-soft">—</p>
+                <p className="text-[12px] text-ink-soft">{t("crew.guideUnassigned")}</p>
               )}
             </div>
             <a
-              href="https://wa.me/6281234567890"
+              href={`https://wa.me/6281268008622?text=${encodeURIComponent(`Halo admin UNANG LOJA, saya ingin bertanya tentang resi ${result.resi}.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="ml-auto shrink-0 rounded-lg bg-brand-600 px-3 py-2 text-[11px] font-bold text-white transition hover:bg-brand-700"
@@ -286,46 +280,62 @@ export default function StatusLookup({
           <p className="mt-2 max-w-2xl text-[13px] text-ink-soft">
             {t("seals.subtitle")}
           </p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {(["0", "1", "2", "3"] as const).map((i) => (
-              <figure key={i} className="overflow-hidden rounded-xl border border-line bg-white">
-                <div className="relative">
-                  <SealPhoto side={Number(i)} seed={result.sealNo} />
-                  <span className="absolute left-2 top-2 rounded-full bg-navy-900/90 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-gold-200">
-                    {t(`seals.sides.${i}.label`)}
-                  </span>
-                </div>
-                <figcaption className="p-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="text-xs font-bold text-navy-900">{t(`seals.sides.${i}.title`)}</p>
-                    <span className="rounded-full bg-gold-50 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-gold-700">
-                      ✓ {t(`seals.sides.${i}.chip`)}
-                    </span>
-                  </div>
-                  <p className="mt-1.5 text-[11px] leading-relaxed text-ink-soft">
-                    {t(`seals.sides.${i}.desc`)}
+          {result.sealNo ? (
+            <>
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-gold-200 bg-gold-50 px-4 py-3">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wide text-gold-700">
+                    {t("seals.codeLabel")}
                   </p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+                  <p className="font-mono text-lg font-bold text-navy-900">{result.sealNo}</p>
+                </div>
+                <span className="rounded-full bg-gold-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-navy-900">
+                  ✓ {t("badge")}
+                </span>
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {(["0", "1", "2", "3"] as const).map((i) => (
+                  <div key={i} className="rounded-xl border border-line bg-white p-4">
+                    <div className="flex items-center gap-2">
+                      <span className="grid h-7 w-7 place-items-center rounded-full bg-navy-900 text-[10px] font-bold text-white">
+                        ✓
+                      </span>
+                      <p className="text-xs font-bold text-navy-900">{t(`seals.sides.${i}.title`)}</p>
+                    </div>
+                    <p className="mt-2 text-[11px] leading-relaxed text-ink-soft">
+                      {t(`seals.sides.${i}.desc`)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <p className="mt-4 rounded-xl border border-line bg-cream px-4 py-3 text-sm leading-relaxed text-ink-soft">
+              {t("seals.notSealed")}
+            </p>
+          )}
           <div className="mt-4 flex flex-wrap gap-2">
             <button
               type="button"
+              onClick={() => void search(result.resi)}
               className="rounded-lg border border-navy-200 px-3.5 py-2 text-[11px] font-bold text-navy-800 transition hover:border-gold-500 hover:text-gold-700"
             >
-              🔍 {t("seals.refreshCta")}
+              🔄 {t("seals.refreshCta")}
             </button>
-            <button
-              type="button"
+            <a
+              href={`https://wa.me/6281268008622?text=${encodeURIComponent(`Halo admin UNANG LOJA, saya ingin melaporkan masalah segel untuk resi ${result.resi}.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-lg border border-brand-100 bg-brand-50 px-3.5 py-2 text-[11px] font-bold text-brand-700 transition hover:bg-brand-100"
             >
               🚨 {t("seals.reportCta")}
-            </button>
+            </a>
           </div>
-          <p className="mt-4 rounded-xl bg-cream p-3.5 text-[11px] leading-relaxed text-ink-soft">
-            {t("seals.note")}
-          </p>
+          {result.sealNo && (
+            <p className="mt-4 rounded-xl bg-cream p-3.5 text-[11px] leading-relaxed text-ink-soft">
+              {t("seals.note", { code: result.sealNo })}
+            </p>
+          )}
         </section>
 
         {/* Rute */}
@@ -337,7 +347,7 @@ export default function StatusLookup({
                 {t("route.origin.label")}
               </p>
               <p className="mt-1 font-serif text-sm font-bold text-navy-900">
-                {t("route.origin.name")}
+                {result.meetingPoint}
               </p>
               <p className="mt-1 text-[11px] text-ink-soft">{t("route.origin.desc")}</p>
             </div>
@@ -367,34 +377,33 @@ export default function StatusLookup({
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-cream px-5 py-3">
             <h2 className="font-serif text-sm font-bold text-navy-900">{t("cost.title")}</h2>
             <span className="rounded-full bg-gold-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-navy-900">
-              {t("cost.statusLunas")}
+              {t(`payment.${result.paymentStatus}`)}
             </span>
           </div>
           <div className="grid gap-5 p-5 md:grid-cols-[1fr_240px]">
             <div>
-              <ul className="space-y-3">
-                {(["0", "1", "2"] as const).map((i) => (
-                  <li key={i} className="flex items-start justify-between gap-3 text-xs">
-                    <span>
-                      <span className="block font-bold text-navy-900">{t(`cost.items.${i}.title`)}</span>
-                      <span className="block text-[11px] text-ink-soft">{t(`cost.items.${i}.desc`)}</span>
-                    </span>
-                    <span className="shrink-0 font-semibold text-navy-900">
-                      {i === "2" ? formatIDR(service.price) : tc("included")}
-                    </span>
-                  </li>
-                ))}
+              <ul className="space-y-2 text-xs">
+                <li className="flex items-start justify-between gap-3">
+                  <span className="font-bold text-navy-900">{t("cost.serviceLine")}</span>
+                  <span className="shrink-0 font-semibold text-navy-900">{formatIDR(result.total)}</span>
+                </li>
               </ul>
               <div className="mt-4 flex items-center justify-between border-t border-line pt-3">
                 <span className="text-[11px] font-bold uppercase tracking-wide text-ink-soft">
-                  {t("cost.totalLabel")}
+                  {result.paymentStatus === "PAID"
+                    ? t("cost.totalLabel")
+                    : t("cost.totalDueLabel")}
                 </span>
                 <span className="text-lg font-extrabold text-brand-600">
-                  {formatIDR(service.price)}
+                  {formatIDR(result.total)}
                 </span>
               </div>
               <p className="mt-1 text-[11px] text-ink-soft">
-                {t("cost.methodLabel")}: Transfer Bank BCA
+                {t("cost.methodLabel")}:{" "}
+                {result.paymentMethod ? PAYMENT_METHOD_LABEL[result.paymentMethod] ?? result.paymentMethod : "—"}
+              </p>
+              <p className="mt-1 text-[11px] text-ink-soft">
+                {t("cost.paymentStatus")}: {t(`payment.${result.paymentStatus}`)}
               </p>
             </div>
             <div className="flex flex-col items-center justify-center rounded-xl bg-cream p-4 text-center">
@@ -418,7 +427,7 @@ export default function StatusLookup({
               <p className="mt-2 font-mono text-sm font-bold text-gold-200">{t("helpCard.phone")}</p>
             </div>
             <a
-              href="https://wa.me/6281234567890?text=Halo%2C%20saya%20butuh%20bantuan%20resi"
+              href="https://wa.me/6281268008622?text=Halo%2C%20saya%20butuh%20bantuan%20resi"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg bg-gold-500 px-5 py-2.5 text-xs font-bold text-navy-900 transition hover:bg-gold-600 hover:text-white"
@@ -430,7 +439,7 @@ export default function StatusLookup({
 
         {/* Catatan + aksi bawah */}
         <p className="rounded-xl bg-cream px-4 py-3 text-[11px] text-ink-soft">
-          ℹ️ {t("manualNote")} — {t("demoNote")}
+          ℹ️ {t("manualNote")}
         </p>
         <div className="flex flex-wrap gap-3">
           <button
@@ -445,6 +454,7 @@ export default function StatusLookup({
           </button>
           <button
             type="button"
+            onClick={() => window.print()}
             className="rounded-lg border border-navy-200 bg-white px-5 py-2.5 text-xs font-bold text-navy-800 transition hover:border-gold-500 hover:text-gold-700"
           >
             ⬇ {t("downloadCta")}
@@ -475,21 +485,16 @@ export default function StatusLookup({
       </div>
       <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px] text-ink-soft">
         <span>{t("resiHint")}</span>
-        <button
-          type="button"
-          onClick={() => {
-            setQuery(DEMO_ORDERS[0].orderNo);
-            search(DEMO_ORDERS[0].orderNo);
-          }}
-          className="rounded-full border border-gold-200 bg-white px-2.5 py-1 font-bold text-gold-700 hover:bg-gold-50"
-        >
-          {t("sample")}
-        </button>
       </div>
 
       {result === null && (
         <p className="card mt-6 border-brand-100 bg-brand-50 px-4 py-3 text-sm text-brand-700">
           {t("notFound")}
+        </p>
+      )}
+      {unavailable && (
+        <p className="card mt-6 border-gold-200 bg-gold-50 px-4 py-3 text-sm text-gold-700">
+          {t("unavailable")}
         </p>
       )}
     </div>

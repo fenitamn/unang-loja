@@ -88,7 +88,7 @@ function DetailRow({
   );
 }
 
-export default function GuideDirectory() {
+export default function GuideDirectory({ guides = GUIDES }: { guides?: Guide[] }) {
   const t = useTranslations("guides");
 
   const [query, setQuery] = useState("");
@@ -116,7 +116,7 @@ export default function GuideDirectory() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const list = GUIDES.filter((g) => {
+    const list = guides.filter((g) => {
       const specialty = t(`people.${g.id}.specialty`).toLowerCase();
       const cert = t(`people.${g.id}.cert`).toLowerCase();
       const focus = t(`people.${g.id}.focus`).toLowerCase();
@@ -145,7 +145,7 @@ export default function GuideDirectory() {
   const safePage = Math.min(page, pages);
   const visible = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
   const active: Guide | undefined = activeGuide
-    ? GUIDES.find((g) => g.id === activeGuide)
+    ? guides.find((g) => g.id === activeGuide)
     : undefined;
 
   const resetPage = <T,>(setter: (value: T) => void) => (value: T) => {

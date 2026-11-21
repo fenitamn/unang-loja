@@ -48,7 +48,13 @@ export function formatNewOrderMessage(o: {
   notes?: string | null;
   total?: number;
 }): string {
-  const waLink = o.phone ? `https://wa.me/${o.phone}` : "-";
+  const digits = o.phone.replace(/\D/g, "");
+  const normalized = digits.startsWith("0")
+    ? `62${digits.slice(1)}`
+    : digits.startsWith("8")
+      ? `62${digits}`
+      : digits;
+  const waLink = normalized ? `https://wa.me/${normalized}` : "-";
   return [
     "🧳 *PESANAN BARU — UNANG LOJA*",
     "━━━━━━━━━━━━━━━━━━",

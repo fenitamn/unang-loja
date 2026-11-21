@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAdminRequest } from "@/lib/admin";
-import {
-  generateResi,
-  getDb,
-  isDbConfigured,
-  type OrderRow,
-} from "@/lib/supabase";
+import { getSession, sameOrigin } from "@/lib/auth";
 import { formatNewOrderMessage, sendAdminWhatsApp } from "@/lib/notify";
+import { getOrderByResi, listOrders, createOrder, storeAvailable, type PaymentStatus } from "@/lib/store";
+import { generateResi } from "@/lib/supabase";
+import { SERVICES } from "@/lib/data";
 
 type CreateOrderBody = {
   serviceKey?: string;
@@ -22,107 +19,124 @@ type CreateOrderBody = {
   phone?: string;
   email?: string | null;
   paymentMethod?: string | null;
+  paymentRef?: string | null;
+  paymentProof?: string | null;
   total?: number;
 };
 
-/** GET /api/orders — admin: semua pesanan. ?resi=UL-... — publik: lacak 1 pesanan. */
+const clean = (value: unknown, max = 500) => String(value ?? "").trim().slice(0, max);
+
+/** GET /api/orders — hanya admin: daftar pesanan. */
 export async function GET(req: NextRequest) {
-  if (!isDbConfigured()) {
+  if (!storeAvailable()) {
     return NextResponse.json({ error: "Database belum dikonfigurasi." }, { status: 503 });
   }
-
-  const resi = req.nextUrl.searchParams.get("resi");
-
-  // Pelacakan publik per resi
-  if (resi) {
-    const { data, error } = await getDb()
-      .from("orders")
-      .select("*")
-      .eq("resi", resi.trim().toUpperCase())
-      .maybeSingle<OrderRow>();
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-    if (!data) return NextResponse.json({ error: "Resi tidak ditemukan." }, { status: 404 });
-    return NextResponse.json({ order: data });
-  }
-
-  // Daftar semua pesanan — hanya admin
-  if (!isAdminRequest(req)) {
+  const user = await getSession();
+  if (!user || user.role !== "admin") {
     return NextResponse.json({ error: "Tidak diizinkan." }, { status: 401 });
   }
-  const { data, error } = await getDb()
-    .from("orders")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .limit(200);
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json({ orders: data ?? [] });
+  const status = req.nextUrl.searchParams.get("status") ?? undefined;
+  try {
+    const orders = await listOrders({ status, limit: 500 });
+    return NextResponse.json({ orders });
+  } catch (error) {
+    console.error("[orders:list]", error);
+    return NextResponse.json({ error: "Gagal memuat pesanan." }, { status: 500 });
+  }
 }
 
-/** POST /api/orders — simpan pesanan baru + kirim WA ke admin. */
+/** POST /api/orders — simpan pesanan baru (guest atau pelanggan login) + WA admin. */
 export async function POST(req: NextRequest) {
-  if (!isDbConfigured()) {
+  if (!sameOrigin(req)) {
+    return NextResponse.json({ error: "Permintaan tidak valid." }, { status: 403 });
+  }
+  if (!storeAvailable()) {
     return NextResponse.json(
       { error: "Database belum dikonfigurasi (SUPABASE_URL / SERVICE_ROLE_KEY)." },
       { status: 503 },
     );
   }
 
-  const body = (await req.json()) as CreateOrderBody;
+  const body = (await req.json().catch(() => ({}))) as CreateOrderBody;
+  const user = await getSession();
 
-  // Validasi minimal
-  const phone = (body.phone ?? "").replace(/[^0-9]/g, "");
-  if (!body.serviceKey || !body.date || !body.meetingPoint || !body.name?.trim() || !phone) {
+  const phone = clean(body.phone, 24).replace(/[^0-9]/g, "");
+  const serviceKey = clean(body.serviceKey, 40);
+  if (
+    !SERVICES.some((s) => s.key === serviceKey) ||
+    !body.date ||
+    !body.meetingPoint?.trim() ||
+    !body.name?.trim() ||
+    !phone
+  ) {
     return NextResponse.json({ error: "Data pesanan belum lengkap." }, { status: 400 });
   }
   if (phone.length < 8) {
     return NextResponse.json({ error: "Nomor WhatsApp tidak valid." }, { status: 400 });
   }
 
-  const row = {
-    resi: generateResi(),
-    service_key: body.serviceKey,
-    add_ons: body.addOns ?? [],
-    date: body.date,
-    meeting_point: body.meetingPoint,
-    zone: body.zone ?? null,
-    suitcases: body.suitcases ?? 1,
-    participants: body.participants ?? 1,
-    notes: body.notes ?? null,
-    name: body.name.trim(),
-    phone,
-    email: body.email ?? null,
-    payment_method: body.paymentMethod ?? null,
-    total: Math.max(0, Math.round(body.total ?? 0)),
-    status: "BARU",
-  };
-
-  const { data, error } = await getDb()
-    .from("orders")
-    .insert(row)
-    .select("*")
-    .single<OrderRow>();
-
-  if (error || !data) {
-    console.error("[orders] insert gagal:", error);
-    return NextResponse.json({ error: "Gagal menyimpan pesanan." }, { status: 500 });
+  const proof = typeof body.paymentProof === "string" ? body.paymentProof : null;
+  if (proof && (!/^data:image\/(png|jpe?g|webp);base64,/i.test(proof) || proof.length > 3_200_000)) {
+    return NextResponse.json(
+      { error: "Bukti pembayaran harus gambar JPG/PNG/WEBP maksimal 2 MB." },
+      { status: 400 },
+    );
   }
 
-  // Kirim WA ke admin (tidak menggagalkan pesanan jika WA gagal)
-  const waOk = await sendAdminWhatsApp(
-    formatNewOrderMessage({
-      resi: data.resi,
-      service: body.serviceLabel ?? data.service_key,
-      name: data.name,
-      phone: data.phone,
-      date: data.date,
-      meetingPoint: data.meeting_point,
-      zone: data.zone,
-      suitcases: data.suitcases,
-      participants: data.participants,
-      notes: data.notes,
-      total: data.total,
-    }),
-  );
+  const total = Math.min(50_000_000, Math.max(0, Math.round(Number(body.total) || 0)));
+  const paymentStatus: PaymentStatus = proof ? "PENDING" : "UNPAID";
 
-  return NextResponse.json({ order: data, notified: waOk }, { status: 201 });
+  try {
+    let resi = generateResi();
+    for (let i = 0; i < 3 && (await getOrderByResi(resi)); i += 1) {
+      resi = generateResi();
+    }
+
+    const order = await createOrder({
+      resi,
+      customer_id: user?.id ?? null,
+      service_key: serviceKey,
+      add_ons: Array.isArray(body.addOns) ? body.addOns.map((a) => clean(a, 40)).slice(0, 10) : [],
+      date: new Date(String(body.date)).toISOString().slice(0, 10),
+      meeting_point: clean(body.meetingPoint, 160),
+      zone: body.zone ? clean(body.zone, 20) : null,
+      suitcases: Math.max(1, Math.min(50, Math.round(Number(body.suitcases) || 1))),
+      participants: Math.max(1, Math.min(50, Math.round(Number(body.participants) || 1))),
+      notes: body.notes ? clean(body.notes, 1000) : null,
+      name: user ? user.name : clean(body.name, 120),
+      phone,
+      email: user?.email ?? (body.email ? clean(body.email, 160) : null),
+      payment_method: body.paymentMethod ? clean(body.paymentMethod, 40) : null,
+      payment_status: paymentStatus,
+      payment_proof: proof,
+      payment_ref: body.paymentRef ? clean(body.paymentRef, 80) : null,
+      payment_note: null,
+      admin_note: null,
+      seal_code: null,
+      total,
+      status: "BARU",
+      guide_id: null,
+    });
+
+    const waOk = await sendAdminWhatsApp(
+      formatNewOrderMessage({
+        resi: order.resi,
+        service: clean(body.serviceLabel, 120) || order.service_key,
+        name: order.name,
+        phone: order.phone,
+        date: order.date,
+        meetingPoint: order.meeting_point,
+        zone: order.zone,
+        suitcases: order.suitcases,
+        participants: order.participants,
+        notes: order.notes,
+        total: order.total,
+      }),
+    );
+
+    return NextResponse.json({ order, notified: waOk }, { status: 201 });
+  } catch (error) {
+    console.error("[orders:create]", error);
+    return NextResponse.json({ error: "Gagal menyimpan pesanan." }, { status: 500 });
+  }
 }

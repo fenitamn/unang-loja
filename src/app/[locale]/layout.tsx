@@ -4,9 +4,6 @@ import { EB_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
 import "../globals.css";
 
 const appSans = Plus_Jakarta_Sans({
@@ -56,12 +53,7 @@ export default async function LocaleLayout({
       className={`${appSans.variable} ${appSerif.variable}`}
     >
       <body className="font-sans antialiased min-h-screen flex flex-col">
-        <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <WhatsAppFloat />
-          <Footer />
-        </NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

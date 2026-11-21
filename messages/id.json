@@ -12,7 +12,12 @@
     "help": "Bantuan & Ulasan",
     "menu": "Menu",
     "bookCta": "Pesan Sekarang",
-    "hotline": "Hotline Darurat 24/7"
+    "hotline": "Hotline Darurat 24/7",
+    "adminPortal": "Admin Portal",
+    "login": "Masuk",
+    "register": "Daftar",
+    "account": "Akun",
+    "logout": "Keluar"
   },
   "common": {
     "dummy": "Data contoh — Fase 1",
@@ -132,7 +137,11 @@
           "role": "Wisatawan asal Medan"
         }
       ],
-      "note": "Ulasan contoh (data dummy)."
+      "note": "Ulasan contoh (data dummy).",
+      "mixedNote": "Ulasan terverifikasi tampil lebih dulu; kartu bertanda Contoh adalah ilustrasi.",
+      "sampleLabel": "Contoh",
+      "verifiedRole": "Pelanggan terverifikasi",
+      "verifiedNote": "Ulasan terverifikasi dari pelanggan yang telah menyelesaikan pesanan."
     },
     "ctaTitle": "Siap jelajah tanpa koper?",
     "ctaSubtitle": "Pesan sekarang — konfirmasi melalui WhatsApp setelah pembayaran diverifikasi admin."
@@ -571,6 +580,7 @@
     "step4": {
       "title": "4. Konfirmasi & Pembayaran",
       "method": "Metode pembayaran",
+      "chooseMethod": "Pilih metode pembayaran",
       "methods": {
         "bca": "Transfer Bank BCA",
         "bsi": "Transfer Bank BSI",
@@ -582,7 +592,7 @@
       "holder": "a.n. UNANG LOJA",
       "amount": "Total yang harus dibayar",
       "upload": "Unggah bukti pembayaran",
-      "uploadHint": "Format JPG/PNG maksimal 5 MB. Anda juga dapat mengirimnya ke WhatsApp admin.",
+      "uploadHint": "Format JPG/PNG/WEBP maksimal 2 MB. Anda juga dapat mengirimnya ke WhatsApp admin.",
       "note": "Pembayaran diverifikasi manual oleh admin (tanpa payment gateway). Setelah lunas, pesanan mengunci slot pemandu dan Anda menerima konfirmasi.",
       "submit": "Kirim Pesanan & Buat Resi",
       "uploading": "Bukti dipilih: {file}"
@@ -613,9 +623,9 @@
       }
     },
     "success": {
-      "eyebrow": "Pembayaran Berhasil & Terverifikasi",
-      "title": "Horas, {name}! Reservasi Titip & Antar Bagasi Anda Telah Dikonfirmasi",
-      "subtitle": "Koper Anda siap dijemput di titik temu dan diantarkan langsung ke hotel tujuan dengan garansi segel keamanan 4-sisi berstandar pariwisata.",
+      "eyebrow": "Pesanan Diterima",
+      "title": "Horas, {name}! Pesanan Anda Telah Kami Terima",
+      "subtitle": "Tim admin akan memverifikasi pembayaran dan menghubungi Anda via WhatsApp. Simpan nomor resi untuk melacak status layanan.",
       "downloadPdf": "Unduh Voucher Resi (PDF)",
       "sendWa": "Kirim Bukti ke WhatsApp",
       "trackCta": "Lacak Status Koper Real-Time",
@@ -665,9 +675,9 @@
         }
       ],
       "recap": {
-        "title": "Rincian Pembayaran Resmi",
+        "title": "Rincian Pembayaran",
         "refLabel": "Nomor referensi transaksi",
-        "statusLunas": "STATUS: LUNAS",
+        "statusLunas": "Terverifikasi",
         "colItem": "Deskripsi Item Layanan",
         "colQty": "QTY",
         "colPrice": "Harga Satuan",
@@ -675,8 +685,10 @@
         "method": "Metode Pembayaran",
         "time": "Waktu Pembayaran",
         "ppn": "Pajak Pertambahan Nilai (PPN 11%)",
-        "totalLabel": "Total Dibayar",
-        "totalNote": "Lunas Tanpa Biaya Tambahan di Lapangan"
+        "totalLabel": "Total Tagihan",
+        "totalNote": "Pembayaran diverifikasi admin setelah bukti diterima.",
+        "statusPending": "Menunggu verifikasi",
+        "statusUnpaid": "Belum dibayar"
       },
       "tracking": {
         "title": "Live Tracking Hub",
@@ -694,17 +706,22 @@
       "service": "Silakan pilih layanan terlebih dahulu.",
       "date": "Pilih tanggal layanan.",
       "contact": "Isi nama dan nomor WhatsApp.",
-      "payment": "Unggah bukti pembayaran atau pilih kirim via WhatsApp."
+      "payment": "Pilih metode pembayaran terlebih dahulu.",
+      "proof": "Bukti pembayaran harus JPG/PNG/WEBP maksimal 2 MB."
     },
     "guideSelected": "Pemandu terpilih",
     "guideChange": "Ganti pemandu",
-    "guideStepNote": "Layanan pemanduan memakai tarif resmi pemandu yang dipilih. Anda tetap bisa menambah penitipan/antar bagasi."
+    "guideStepNote": "Layanan pemanduan memakai tarif resmi pemandu yang dipilih. Anda tetap bisa menambah penitipan/antar bagasi.",
+    "accountCta": "Lihat pesanan di akun saya",
+    "guestNote": "Pesanan tersimpan. Masuk ke akun agar riwayat & status mudah dipantau.",
+    "accountHint": "Masuk untuk menyimpan pesanan ke akun Anda.",
+    "loginLink": "Masuk"
   },
   "status": {
     "title": "Pelacakan Status Pengantaran Koper",
     "badge": "Segel Anti-Tamper Aktif",
     "subtitle": "Masukkan nomor pesanan atau nomor resi bagasi Anda.",
-    "placeholder": "Contoh: UL-20261112-0001 atau RSI-0042",
+    "placeholder": "Masukkan nomor resi, contoh: UL-20261119-0001",
     "search": "Cek Resi",
     "otherCta": "Cek Resi Lain",
     "downloadCta": "Unduh Surat Jalan",
@@ -715,13 +732,14 @@
       "owner": "Pemilik",
       "route": "Rute",
       "etaLabel": "Estimasi Tiba di Hotel",
-      "current": "Status Sekarang"
+      "current": "Status Sekarang",
+      "serviceDate": "Tanggal layanan"
     },
     "timeline": {
       "steps": [
         {
-          "title": "Diterima di Tomok",
-          "desc": "Petugas loker Dermaga Tomok memeriksa bagasi, menimbang koper, dan mencetak barcode resi digital."
+          "title": "Diterima di Titik Loker",
+          "desc": "Petugas loker memeriksa bagasi, menimbang koper, dan mencetak barcode resi digital."
         },
         {
           "title": "Segel 4-Sisi Dipasang",
@@ -732,8 +750,8 @@
           "desc": "Armada melewat jalur pesisir Danau Toba. Dilengkapi pelacak GPS aktif & kabin tertutup tahan hujan."
         },
         {
-          "title": "Serah Terima Resepsionis",
-          "desc": "Diserahkan ke staf front-desk Carolina Hotel. Anda menerima notifikasi WhatsApp saat koper aman di lobi."
+          "title": "Serah Terima di Hotel",
+          "desc": "Koper diserahkan ke resepsionis penginapan tujuan. Anda menerima notifikasi WhatsApp setelah koper diterima."
         }
       ]
     },
@@ -742,53 +760,58 @@
       "rating": "5.0 · (310+ Antar Berhasil)",
       "guideLabel": "Pemandu Budaya HPI Terkoneksi",
       "guideLicense": "Lisensi #HPI-TB-1902",
-      "contact": "Hubungi Pemandu"
+      "contact": "Hubungi Pemandu",
+      "sealLabel": "Segel Bagasi",
+      "sealVerified": "Segel tercatat & terverifikasi",
+      "guideUnassigned": "Belum ditugaskan"
     },
     "seals": {
       "eyebrow": "Integritas Keamanan Maksimal",
-      "title": "Dokumentasi Foto Segel 4-Sisi Anti-Tamper",
-      "subtitle": "Setiap koper yang dititipkan disegel dengan pita kabel bernomor seri unik dan difoto dalam resolusi tinggi di Pelabuhan Tomok sebelum dimuat ke armada.",
-      "refreshCta": "Perbesar Semua Foto HD",
+      "title": "Checklist Segel 4-Sisi Anti-Tamper",
+      "subtitle": "Pemeriksaan kondisi segel per sisi. Foto arsip 4-sisi dikirim terpisah ke WhatsApp Anda oleh petugas loker.",
+      "refreshCta": "Muat Ulang Status",
       "reportCta": "Lapor Segel Rusak (Klaim Rp10 Juta)",
       "sides": [
         {
           "label": "SISI 1: DEPAN",
           "title": "Tampak Depan",
           "chip": "UTUH",
-          "desc": "Koper Navy Samsonite 24\" milik tamu gress baru, segel barcode merketsan sempurna di sambungan badi."
+          "desc": "Segel sisi depan diperiksa utuh dan nomor seri dicocokkan dengan resi digital."
         },
         {
           "label": "SISI 2: RITSLETING",
           "title": "Ritsleting & Gembok",
           "chip": "TERKUNCI",
-          "desc": "Kabel baja segel mengunci dua kepala ritsleting pada tetap di slot kombinasi angka bawaan koper."
+          "desc": "Kabel segel mengunci kedua kepala ritsleting; gembok tidak dapat dibuka tanpa merusak segel."
         },
         {
           "label": "SISI 3: BELAKANG",
           "title": "Handle & Teleskopik",
           "chip": "UTUH",
-          "desc": "Segel barcode melintang di pangkal telescopic memastikan kompartemen tidak dapat dibuka paksa."
+          "desc": "Segel melintang di pangkal handle teleskopik mencegah kompartemen dibuka paksa."
         },
         {
           "label": "SISI 4: BAWAH & RODA",
           "title": "Roda & Engsel Bawah",
           "chip": "BERSIH",
-          "desc": "Keempat roda spinner berputar lancar tanpa kotranjau jahitan, engsel lipat bawah tersegel rapat."
+          "desc": "Roda dan engsel bawah diperiksa; segel dipastikan menutup rapat pada sisi dasar koper."
         }
       ],
-      "note": "Prosedur Pengambilan di Meja Hotel: Cocokkan 4 nomor seri di atas (#SG-8842-A1 s.d A4) dengan pita segel fisik pada koper Anda. Apabila terdapat pita segel yang sobek, terbuka \"OPENED\", atau nomor tidak cocok, jangan terima koper dan segera tekan tombol pelaporan di atas untuk mengaktifkan klaim garansi perlindungan senilai hingga Rp10.000.000."
+      "note": "Prosedur pengambilan di hotel: cocokkan kode segel aktif ({code}) dengan pita segel fisik pada koper Anda. Jika pita segel sobek, terbuka, atau kodenya tidak cocok, jangan terima koper dan hubungi admin melalui tombol pelaporan untuk mengajukan klaim garansi.",
+      "notSealed": "Segel belum dipasang. Kode segel akan muncul setelah petugas loker memproses bagasi Anda.",
+      "codeLabel": "Kode segel aktif"
     },
     "route": {
       "title": "Detail Rute & Penerima Hotel",
       "origin": {
         "label": "LOKASI PENYERAHAN BAGASI (ASAL)",
-        "name": "Loker Hub Dermaga Wisata Tomok",
-        "desc": "Loket Penitipan Mandiri #02, Area Gerbang Masuk Kapal Ferry Tomok Touris Pier, Simanindo."
+        "name": "Titik temu pilihan Anda",
+        "desc": "Loket resmi UNANG LOJA di titik temu yang dipilih saat pemesanan. Detail lokasi dikonfirmasi admin via WhatsApp."
       },
       "dest": {
         "label": "TUJUAN AKHIR & PENERIMA",
-        "name": "Meja Resepsionis Hotel Carolina Samosir",
-        "desc": "Jl. Lingkungan Tuk Suk Sialiang, Kelurahan Tuk Suk, Pulau Samosir."
+        "name": "Resepsionis hotel tujuan Anda",
+        "desc": "Nama dan alamat hotel dikonfirmasi admin via WhatsApp sebelum pengantaran."
       },
       "instructions": "Instruksi Khusus Tamu & Kurir: Koper dititipkan ke resepsionis atas nama pemilik (Room Booking). Tanda terima fisik dititipkan di amplop kunci kamar resepsionis.",
       "weather": "Jaminan Perlindungan Cuaca Danau Toba: Bagasi dilapisi cover anti-air sekunder di dalam van tertutup untuk mengantisipasi hujan dan angin lembab Danau Toba."
@@ -797,6 +820,7 @@
       "title": "Rincian Paket & Biaya",
       "statusLunas": "LUNAS",
       "totalLabel": "Total Dibayar",
+      "totalDueLabel": "Total Tagihan",
       "barcodeLabel": "KODE RESI DIGITAL TERENKRIPSI",
       "methodLabel": "Metode Pembayaran",
       "items": [
@@ -812,17 +836,26 @@
           "title": "Antar Dermaga → Tuk-Tuk",
           "desc": "Zona 1 langsung ke lobi hotel"
         }
-      ]
+      ],
+      "serviceLine": "Total layanan",
+      "paymentStatus": "Status pembayaran"
     },
     "helpCard": {
       "title": "Pusat Bantuan Dermaga & Resi",
       "desc": "Perlu mengubah jadwal antar atau koper tiba sebelum jam check-in di Hotel Anda? Hubungi kami langsung di pelabuhan jam:",
-      "phone": "+62 812-3456-7890",
+      "phone": "+62 812-6800-8622",
       "whatsapp": "WhatsApp Live CS"
     },
     "manualNote": "Status diperbarui manual oleh admin — bukan pelacakan GPS real-time.",
     "demoNote": "Hasil pencarian adalah data contoh (Fase 1).",
-    "resiHint": "Coba: UL-20261112-0001, UL-20261111-0002, atau RSI-0042."
+    "resiHint": "Gunakan nomor resi yang tercantum pada konfirmasi pesanan Anda.",
+    "unavailable": "Layanan pelacakan belum tersedia di server ini. Hubungi admin via WhatsApp untuk memeriksa pesanan Anda.",
+    "payment": {
+      "UNPAID": "Belum dibayar",
+      "PENDING": "Menunggu verifikasi",
+      "PAID": "Terverifikasi",
+      "REJECTED": "Ditolak"
+    }
   },
   "help": {
     "title": "Pusat Bantuan, FAQ & Ulasan Komunitas",
@@ -859,10 +892,16 @@
     "ratingTitle": "Beri Ulasan",
     "ratingSubtitle": "Sudah menggunakan layanan UNANG LOJA? Beri penilaian 1–5.",
     "ratingLabel": "Penilaian Anda",
-    "ratingOrder": "Nomor pesanan (opsional)",
-    "ratingComment": "Komentar (opsional)",
+    "ratingOrder": "Nomor pesanan",
+    "ratingComment": "Komentar",
     "ratingSubmit": "Kirim ulasan",
-    "ratingThanks": "Terima kasih! Ulasan Anda telah diterima. (Simulasi Fase 1 — ulasan belum tersimpan.)"
+    "ratingSending": "Mengirim…",
+    "ratingOrderHint": "Gunakan nomor resi pesanan yang sudah berstatus Selesai.",
+    "ratingCommentHint": "Tulis minimal 10 karakter.",
+    "ratingLogin": "Silakan masuk untuk mengirim ulasan pada pesanan Anda.",
+    "ratingLoginCta": "Masuk sekarang",
+    "ratingError": "Ulasan gagal dikirim. Coba lagi.",
+    "ratingThanks": "Terima kasih! Ulasan Anda terkirim dan menunggu moderasi admin."
   },
   "footer": {
     "slogan": "Jelajah Tanpa Koper, Temukan Rahasia Toba",
@@ -872,7 +911,7 @@
     "linksTitle": "Tautan",
     "contactTitle": "Kontak",
     "address": "Tomok, Pulau Samosir, Kabupaten Samosir, Sumatera Utara",
-    "hotline": "Hotline Bantuan Pier 24 Jam: +62 812-3456-7890",
+    "hotline": "Hotline Bantuan Pier 24 Jam: +62 812-6800-8622",
     "hours": "Setiap hari 08.00–20.00 WIB",
     "copyright": "© {year} UNANG LOJA Samosir. Horas! Layanan Wisata & Pengamanan Bagasi Terverifikasi Danau Toba.",
     "langCurrent": "Bahasa Indonesia",
@@ -922,6 +961,111 @@
     "setup": {
       "db": "Database (Supabase) belum terhubung — set SUPABASE_URL & SUPABASE_SERVICE_ROLE_KEY di Vercel.",
       "wa": "Notifikasi WhatsApp (Fonnte) belum aktif — set FONTE_TOKEN & ADMIN_WA."
+    }
+  },
+  "auth": {
+    "badge": "AKUN PELANGGAN",
+    "loginTitle": "Masuk ke UNANG LOJA",
+    "loginSubtitle": "Pantau pesanan, unggah bukti pembayaran, dan simpan riwayat layanan Anda.",
+    "registerTitle": "Buat akun pelanggan",
+    "registerSubtitle": "Satu akun untuk penitipan koper, antar bagasi, dan pemandu wisata.",
+    "name": "Nama lengkap",
+    "email": "Email",
+    "phone": "Nomor WhatsApp",
+    "password": "Kata sandi",
+    "confirm": "Ulangi kata sandi",
+    "currentPassword": "Kata sandi saat ini",
+    "newPassword": "Kata sandi baru",
+    "submitLogin": "Masuk",
+    "submitRegister": "Daftar sekarang",
+    "noAccount": "Belum punya akun?",
+    "haveAccount": "Sudah punya akun?",
+    "toRegister": "Daftar gratis",
+    "toLogin": "Masuk di sini",
+    "adminHint": "Administrator?",
+    "adminLink": "Masuk lewat Admin Portal",
+    "backHome": "Kembali ke beranda",
+    "secure": "Sesi aman · kata sandi dienkripsi",
+    "loading": "Memproses…",
+    "errRequired": "Lengkapi semua kolom.",
+    "errEmail": "Alamat email tidak valid.",
+    "errPhone": "Nomor WhatsApp tidak valid.",
+    "errPassword": "Kata sandi minimal 8 karakter.",
+    "errConfirm": "Konfirmasi kata sandi tidak sama.",
+    "errGeneric": "Terjadi kesalahan. Coba lagi.",
+    "benefit1": "Riwayat pesanan tersimpan",
+    "benefit2": "Unggah bukti pembayaran",
+    "benefit3": "Lacak status & segel bagasi",
+    "passwordPlaceholder": "Minimal 8 karakter"
+  },
+  "account": {
+    "badge": "DASHBOARD PELANGGAN",
+    "hello": "Halo",
+    "title": "Akun Saya",
+    "subtitle": "Kelola pesanan, pembayaran, dan profil Anda di satu tempat.",
+    "newBooking": "Pesan layanan baru",
+    "stats": {
+      "total": "Total pesanan",
+      "active": "Pesanan aktif",
+      "done": "Selesai",
+      "spent": "Total transaksi"
+    },
+    "ordersTitle": "Pesanan saya",
+    "ordersSubtitle": "Pesanan yang dibuat dengan akun ini.",
+    "empty": "Belum ada pesanan.",
+    "emptyCta": "Mulai pesan sekarang",
+    "viewDetail": "Lihat detail",
+    "payment": {
+      "UNPAID": "Belum dibayar",
+      "PENDING": "Menunggu verifikasi",
+      "PAID": "Terverifikasi",
+      "REJECTED": "Ditolak"
+    },
+    "profileTitle": "Profil & keamanan",
+    "profileSubtitle": "Perbarui data kontak atau ganti kata sandi.",
+    "save": "Simpan perubahan",
+    "saved": "Profil tersimpan.",
+    "savePasswordHint": "Isi hanya jika ingin mengganti kata sandi.",
+    "detail": {
+      "back": "Kembali ke akun",
+      "title": "Detail pesanan",
+      "statusTitle": "Status pesanan",
+      "infoTitle": "Informasi layanan",
+      "service": "Layanan",
+      "date": "Tanggal",
+      "meetingPoint": "Titik temu",
+      "suitcases": "Koper",
+      "participants": "Peserta",
+      "guide": "Pemandu",
+      "seal": "Segel bagasi",
+      "total": "Total",
+      "paymentTitle": "Pembayaran",
+      "method": "Metode",
+      "ref": "Referensi",
+      "proof": "Bukti pembayaran",
+      "proofHint": "JPG/PNG/WEBP maks. 2 MB",
+      "sendProof": "Kirim bukti",
+      "proofSent": "Bukti terkirim. Menunggu verifikasi admin.",
+      "proofVerified": "Pembayaran sudah terverifikasi.",
+      "noProof": "Belum ada bukti diunggah.",
+      "track": "Buka halaman lacak",
+      "reviewTitle": "Ulasan Anda",
+      "reviewHint": "Bagikan pengalaman setelah layanan selesai.",
+      "reviewPlaceholder": "Tulis pengalaman Anda…",
+      "reviewSubmit": "Kirim ulasan",
+      "reviewSent": "Terima kasih! Ulasan menunggu moderasi.",
+      "reviewLocked": "Ulasan tersedia setelah pesanan selesai.",
+      "adminNote": "Catatan admin",
+      "verifiedBy": "Diverifikasi oleh",
+      "openProof": "Lihat bukti"
+    },
+    "status": {
+      "BARU": "Baru",
+      "DIKONFIRMASI": "Dikonfirmasi",
+      "DITUGASKAN": "Ditugaskan",
+      "DIJEMPUT": "Dijemput / Proses",
+      "SELESAI": "Selesai",
+      "BATAL": "Batal"
     }
   }
 }

@@ -49,15 +49,24 @@ export const CROSS_SELL: Partial<Record<ServiceKey, ServiceKey[]>> = {
   fleksibel: ["penitipan"],
 };
 
+/**
+ * Nomor tujuan pembayaran. Isi lewat environment publik sebelum menerima
+ * pembayaran nyata; tanpa konfigurasi, pelanggan diarahkan ke admin via WhatsApp
+ * agar tidak pernah melihat nomor rekening contoh sebagai tujuan transfer.
+ */
+const PAYMENT_ACCOUNT_FALLBACK = "Konfirmasi nomor via WhatsApp admin";
+const paymentAccount = (value: string | undefined) =>
+  value?.trim() || PAYMENT_ACCOUNT_FALLBACK;
+
 export const PAYMENT_METHODS: Record<
   PaymentMethodKey,
   { account: string; emoji: string }
 > = {
-  bca: { account: "1234567890", emoji: "🏦" },
-  bsi: { account: "7210987654", emoji: "🏦" },
-  gopay: { account: "0812-3456-7890", emoji: "📱" },
-  ovo: { account: "0812-3456-7890", emoji: "📱" },
-  dana: { account: "0812-3456-7890", emoji: "📱" },
+  bca: { account: paymentAccount(process.env.NEXT_PUBLIC_BCA_ACCOUNT), emoji: "🏦" },
+  bsi: { account: paymentAccount(process.env.NEXT_PUBLIC_BSI_ACCOUNT), emoji: "🏦" },
+  gopay: { account: paymentAccount(process.env.NEXT_PUBLIC_GOPAY_ACCOUNT), emoji: "📱" },
+  ovo: { account: paymentAccount(process.env.NEXT_PUBLIC_OVO_ACCOUNT), emoji: "📱" },
+  dana: { account: paymentAccount(process.env.NEXT_PUBLIC_DANA_ACCOUNT), emoji: "📱" },
 };
 
 export const MEETING_POINTS = [
