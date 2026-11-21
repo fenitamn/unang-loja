@@ -80,21 +80,7 @@ export default async function HomePage({
                 className="object-cover"
               />
             </div>
-            {/* Kartu mengambang */}
-            <div className="absolute -bottom-5 left-4 flex items-center gap-2.5 rounded-xl border border-line bg-white px-3.5 py-2.5 shadow-lg">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-gold-50 text-base">🎓</span>
-              <span>
-                <span className="block text-xs font-bold text-navy-900">{t("heroCard.badgeTitle")}</span>
-                <span className="block text-[10px] text-ink-soft">{t("heroCard.badgeDesc")}</span>
-              </span>
-            </div>
-            <div className="absolute -top-5 right-4 flex items-center gap-2.5 rounded-xl border border-line bg-white px-3.5 py-2.5 shadow-lg">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-50 text-base">🔒</span>
-              <span>
-                <span className="block text-xs font-bold text-navy-900">{t("heroCard.sealTitle")}</span>
-                <span className="block text-[10px] text-ink-soft">{t("heroCard.sealDesc")}</span>
-              </span>
-            </div>
+
           </div>
         </div>
       </section>
