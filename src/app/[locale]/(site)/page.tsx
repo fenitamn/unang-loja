@@ -86,8 +86,8 @@ export default async function HomePage({
       </section>
 
       {/* Widget cek */}
-      <section className="mx-auto max-w-4xl px-4">
-        <div className="-mt-6 lg:-mt-10">
+      <section className="relative z-10 mx-auto max-w-4xl px-4">
+        <div className="mt-4 md:-mt-8 lg:-mt-10">
           <WidgetTabs />
         </div>
       </section>

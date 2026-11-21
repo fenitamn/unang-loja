@@ -33,7 +33,7 @@ export default function WidgetTabs() {
             key={item.id}
             type="button"
             onClick={() => setTab(item.id)}
-            className={`px-3 py-3 text-[11px] font-bold uppercase tracking-wide transition md:text-xs ${
+            className={`px-2 py-3 text-[10px] sm:px-3 sm:text-[11px] md:text-xs font-bold uppercase tracking-wide leading-snug transition ${
               tab === item.id
                 ? "bg-white text-navy-900 shadow-[0_-2px_0_0_var(--color-gold-500)_inset]"
                 : "text-ink-soft hover:text-navy-700"
