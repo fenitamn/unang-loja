@@ -51,7 +51,7 @@ export default function WidgetTabs() {
             type="button"
             aria-pressed={tab === item.id}
             onClick={() => setTab(item.id)}
-            className={`flex items-center justify-center gap-1.5 px-2 py-3 text-[10px] font-bold uppercase tracking-wide transition md:text-[11px] ${
+            className={`flex items-center justify-center gap-1.5 px-2 py-3 text-[10px] font-bold uppercase leading-snug tracking-wide transition sm:px-3 sm:text-[11px] md:text-xs ${
               tab === item.id
                 ? "bg-white text-navy-900 shadow-[0_-2px_0_0_var(--color-gold-500)_inset]"
                 : "text-ink-soft hover:text-navy-700"

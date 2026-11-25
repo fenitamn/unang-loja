@@ -1487,7 +1487,7 @@ export default function BookingWizard({
 
         {/* Sidebar: kalkulator transparan */}
         <aside className="space-y-4">
-          <div className="card sticky top-24 p-5">
+          <div className="card p-5">
             <p className="font-serif text-base font-bold text-navy-900">{t("sidebar.title")}</p>
             <p className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-gold-600">
               {t("sidebar.calc")}

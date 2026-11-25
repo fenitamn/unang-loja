@@ -96,24 +96,6 @@ export default async function HomePage({
                 </div>
               </div>
 
-              <div className="absolute -left-3 top-0 flex items-center gap-2.5 rounded-xl border border-line bg-white px-3 py-2.5 shadow-lg md:-left-5">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-gold-50 text-base">🎓</span>
-                <span>
-                  <span className="block text-[11px] font-bold text-navy-900">
-                    {t("heroCard.badgeTitle")}
-                  </span>
-                  <span className="block text-[9px] text-ink-soft">{t("heroCard.badgeDesc")}</span>
-                </span>
-              </div>
-              <div className="absolute -bottom-5 right-2 flex items-center gap-2.5 rounded-xl border border-line bg-white px-3 py-2.5 shadow-lg md:right-4">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-50 text-base">🔒</span>
-                <span>
-                  <span className="block text-[11px] font-bold text-navy-900">
-                    {t("heroCard.sealTitle")}
-                  </span>
-                  <span className="block text-[9px] text-ink-soft">{t("heroCard.sealDesc")}</span>
-                </span>
-              </div>
             </div>
           </div>
 
