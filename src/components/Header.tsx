@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 
 const NAV = [
@@ -15,12 +15,14 @@ const NAV = [
 
 type HeaderUser = { name: string; role: "admin" | "customer" } | null;
 
-function LangSwitch() {
+function LangSwitch({ className = "" }: { className?: string }) {
   const pathname = usePathname();
   const locale = useLocale();
   const other = locale === "id" ? "en" : "id";
   return (
-    <span className="hidden items-center gap-1 rounded-full border border-line bg-white px-2.5 py-1.5 text-[10px] font-bold text-navy-800 md:inline-flex">
+    <span
+      className={`inline-flex items-center gap-1 rounded-full border border-line bg-white px-2.5 py-1.5 text-[10px] font-bold text-navy-800 ${className}`}
+    >
       <span>{locale.toUpperCase()}</span>
       <span className="text-line">|</span>
       <Link href={pathname} locale={other} className="text-ink-soft hover:text-navy-700">
@@ -33,75 +35,85 @@ function LangSwitch() {
 export default function Header({ user = null }: { user?: HeaderUser }) {
   const t = useTranslations("nav");
   const locale = useLocale();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   async function logout() {
     await fetch("/api/auth/logout", { method: "POST" });
-    window.location.assign(`/${locale}`);
+    window.location.assign(`/${locale}/masuk`);
   }
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5">
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex shrink-0 items-center">
           <Image
             src="/logo.png"
             alt="Logo UNANG LOJA"
             width={48}
             height={48}
             priority
-            className="h-12 w-12 rounded-lg border border-line object-cover shadow-sm"
+            className="h-11 w-11 rounded-lg border border-line object-cover shadow-sm"
           />
           <span className="ml-2.5 hidden leading-none sm:block">
-            <span className="block font-serif text-base font-bold tracking-wide text-navy-900">
+            <span className="block font-serif text-[15px] font-bold tracking-[0.06em] text-navy-900">
               UNANG LOJA
             </span>
-            <span className="mt-1 block text-[9px] font-semibold uppercase tracking-[0.18em] text-gold-600">
+            <span className="mt-1 block text-[8px] font-semibold uppercase tracking-[0.2em] text-gold-600">
               Samosir · Danau Toba
             </span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Navigasi utama">
           {NAV.map((item) => (
             <Link
               key={item.key}
               href={item.href}
-              className="rounded-full px-3.5 py-2 text-[13px] font-medium text-ink transition hover:bg-cream hover:text-navy-700"
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={`relative rounded-full px-3 py-2 text-[12px] font-semibold transition hover:bg-cream hover:text-navy-700 ${
+                isActive(item.href) ? "text-navy-900" : "text-ink"
+              }`}
             >
               {t(item.key)}
+              {isActive(item.href) && (
+                <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gold-500" />
+              )}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <a
             href="tel:+6281268008622"
             className="hidden items-center gap-2 rounded-lg border border-line bg-cream px-3 py-1.5 transition hover:border-gold-500 xl:flex"
           >
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-brand-50 text-brand-600" aria-hidden="true">
-              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <span
+              className="grid h-7 w-7 place-items-center rounded-full bg-brand-50 text-brand-600"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-3.5 w-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z" />
               </svg>
             </span>
             <span className="leading-tight">
-              <span className="block text-[9px] font-bold uppercase tracking-[0.14em] text-ink-soft">
+              <span className="block text-[8px] font-bold uppercase tracking-[0.14em] text-ink-soft">
                 {t("hotline")}
               </span>
-              <span className="block text-[11px] font-bold text-navy-900">+62 812-6800-8622</span>
+              <span className="block text-[10px] font-bold text-navy-900">+62 812-6800-8622</span>
             </span>
           </a>
-
-          <Link
-            href="/admin"
-            className="hidden items-center gap-1.5 rounded-lg border border-navy-200 bg-white px-2.5 py-2 text-[11px] font-bold text-navy-800 transition hover:border-navy-700 hover:bg-navy-50 md:inline-flex"
-          >
-            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M12 3l7 3v6c0 4.4-3 8.4-7 9-4-.6-7-4.6-7-9V6l7-3Z" />
-              <path d="M9.5 12.2l1.8 1.8 3.4-3.6" />
-            </svg>
-            {t("adminPortal")}
-          </Link>
 
           {user ? (
             <div className="hidden items-center gap-1.5 md:flex">
@@ -122,7 +134,16 @@ export default function Header({ user = null }: { user?: HeaderUser }) {
                 aria-label={t("logout")}
                 title={t("logout")}
               >
-                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-3.5 w-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
                   <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                   <path d="M16 17l5-5-5-5M21 12H9" />
                 </svg>
@@ -137,7 +158,7 @@ export default function Header({ user = null }: { user?: HeaderUser }) {
             </Link>
           )}
 
-          <LangSwitch />
+          <LangSwitch className="hidden md:inline-flex" />
           <Link
             href="/pesan"
             className="hidden rounded-lg bg-brand-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-brand-700 md:block"
@@ -151,8 +172,16 @@ export default function Header({ user = null }: { user?: HeaderUser }) {
             onClick={() => setOpen((v) => !v)}
             className="rounded-lg border border-line p-2 text-navy-800 lg:hidden"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
             </svg>
           </button>
         </div>
@@ -165,7 +194,9 @@ export default function Header({ user = null }: { user?: HeaderUser }) {
               key={item.key}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block rounded-lg px-3 py-2.5 text-sm font-medium text-ink hover:bg-cream"
+              className={`block rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-cream ${
+                isActive(item.href) ? "bg-cream text-navy-900" : "text-ink"
+              }`}
             >
               {t(item.key)}
             </Link>
@@ -206,14 +237,6 @@ export default function Header({ user = null }: { user?: HeaderUser }) {
               </Link>
             </>
           )}
-          <Link
-            href="/admin"
-            onClick={() => setOpen(false)}
-            className="mt-1 flex items-center justify-between rounded-lg bg-navy-900 px-3 py-2.5 text-sm font-bold text-white"
-          >
-            {t("adminPortal")}
-            <span aria-hidden="true">→</span>
-          </Link>
           <Link
             href="/pesan"
             onClick={() => setOpen(false)}

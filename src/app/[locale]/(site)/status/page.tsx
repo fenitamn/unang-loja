@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import StatusLookup from "@/components/StatusLookup";
 import { Breadcrumb, Eyebrow } from "@/components/ui";
+import { requireUserPage } from "@/lib/auth";
 
 export default async function StatusPage({
   params,
@@ -12,6 +13,16 @@ export default async function StatusPage({
   const { locale } = await params;
   const { q, resi } = await searchParams;
   setRequestLocale(locale);
+
+  const nextParams = new URLSearchParams();
+  if (resi) nextParams.set("resi", resi);
+  else if (q) nextParams.set("q", q);
+  const nextQuery = nextParams.toString();
+  await requireUserPage(
+    locale,
+    `/${locale}/status${nextQuery ? `?${nextQuery}` : ""}`,
+  );
+
   const t = await getTranslations("status");
   const tnav = await getTranslations("nav");
 
