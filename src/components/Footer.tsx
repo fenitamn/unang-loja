@@ -104,6 +104,10 @@ export default function Footer() {
             <Link href={pathname} locale={other} className="hover:text-white">
               {t("langOther")}
             </Link>
+            <span className="text-navy-700">|</span>
+            <Link href="/admin" className="text-navy-300 transition hover:text-white">
+              {t("adminPortal")}
+            </Link>
           </p>
         </div>
       </div>

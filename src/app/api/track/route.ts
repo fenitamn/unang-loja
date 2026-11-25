@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getSession } from "@/lib/auth";
 import { getOrderByResi, listGuides, storeAvailable } from "@/lib/store";
 
-/** GET /api/track?resi=UL-... — data pelacakan publik (tanpa data sensitif). */
+/** GET /api/track?resi=UL-... — data pelacakan milik pelanggan login (admin: semua). */
 export async function GET(req: NextRequest) {
+  const user = await getSession();
+  if (!user) {
+    return NextResponse.json({ error: "Silakan masuk untuk melacak pesanan." }, { status: 401 });
+  }
+
   const resi = req.nextUrl.searchParams.get("resi")?.trim().toUpperCase();
   if (!resi) {
     return NextResponse.json({ error: "Resi wajib diisi." }, { status: 400 });
@@ -13,7 +19,8 @@ export async function GET(req: NextRequest) {
 
   try {
     const order = await getOrderByResi(resi);
-    if (!order) {
+    if (!order || (user.role !== "admin" && order.customer_id !== user.id)) {
+      // Jangan bocorkan keberadaan pesanan milik pelanggan lain.
       return NextResponse.json({ error: "Resi tidak ditemukan." }, { status: 404 });
     }
     const guides = await listGuides();

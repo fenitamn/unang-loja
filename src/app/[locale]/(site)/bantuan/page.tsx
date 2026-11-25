@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import RatingForm from "@/components/RatingForm";
 import { Breadcrumb, Eyebrow, SectionTitle, StarRow } from "@/components/ui";
+import { requireUserPage } from "@/lib/auth";
 
 export default async function HelpPage({
   params,
@@ -9,6 +10,7 @@ export default async function HelpPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  await requireUserPage(locale, `/${locale}/bantuan`);
   const t = await getTranslations("help");
   const tnav = await getTranslations("nav");
   const tc = await getTranslations("common");

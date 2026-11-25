@@ -1,25 +1,34 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import BookingWizard from "@/components/BookingWizard";
 import { Breadcrumb, Eyebrow } from "@/components/ui";
-import { getSession } from "@/lib/auth";
+import { requireUserPage } from "@/lib/auth";
 import { listGuides, listServices } from "@/lib/store";
+
+// Halaman pemesanan membaca sesi pelanggan untuk mengisi data kontak.
+export const dynamic = "force-dynamic";
 
 export default async function BookingPage({
   params,
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ guide?: string }>;
+  searchParams: Promise<{
+    guide?: string;
+    service?: string;
+    meeting?: string;
+    destination?: string;
+    date?: string;
+    suitcases?: string;
+  }>;
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const { guide } = await searchParams;
+  const { guide, service, meeting, destination, date, suitcases } = await searchParams;
+  const user = await requireUserPage(locale, `/${locale}/pesan`);
   const t = await getTranslations("booking");
   const tnav = await getTranslations("nav");
 
-  const [user, services, guides] = await Promise.all([
-    getSession(),
+  const [services, guides] = await Promise.all([
     listServices().catch(() => []),
     listGuides().catch(() => []),
   ]);
@@ -27,6 +36,7 @@ export default async function BookingPage({
   const guideRates = Object.fromEntries(
     guides.filter((record) => record.active).map((record) => [record.slug, record.price]),
   );
+  const activeGuideSlugs = guides.filter((record) => record.active).map((record) => record.slug);
   const validGuide =
     guide && guides.some((record) => record.slug === guide && record.active) ? guide : undefined;
 
@@ -42,24 +52,19 @@ export default async function BookingPage({
           <p className="mt-3 text-sm leading-relaxed text-ink-soft md:text-base">
             {t("subtitle")}
           </p>
-          {!user && (
-            <p className="mt-4 rounded-lg border border-gold-200 bg-gold-50 px-3.5 py-2.5 text-[11px] leading-relaxed text-gold-700">
-              {t("accountHint")}{" "}
-              <Link
-                href={`/masuk?next=${encodeURIComponent(`/${locale}/pesan`)}`}
-                className="font-bold underline decoration-gold-400 underline-offset-2"
-              >
-                {t("loginLink")}
-              </Link>
-            </p>
-          )}
         </div>
       </div>
       <BookingWizard
         initialGuideId={validGuide}
+        initialServiceKey={service}
+        initialMeetingPoint={meeting}
+        initialDestination={destination}
+        initialDate={date}
+        initialSuitcases={suitcases ? Number(suitcases) : undefined}
         loggedIn={Boolean(user)}
         activeServiceKeys={activeServiceKeys}
         guideRates={guideRates}
+        activeGuideSlugs={activeGuideSlugs}
         account={
           user
             ? { name: user.name, phone: user.phone ?? "", email: user.email }

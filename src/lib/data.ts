@@ -82,7 +82,10 @@ export type GuideCategory =
   | "photo"
   | "culinary"
   | "nature"
-  | "architecture";
+  | "architecture"
+  | "sigale"
+  | "culture"
+  | "lake";
 
 export type GuideArea = "tomok" | "tuktuk" | "pusuk" | "holbung";
 
@@ -136,7 +139,7 @@ export const GUIDES: Guide[] = [
     id: "g3",
     name: "Lae Ucok Nainggolan",
     languages: ["Indonesia", "Batak Toba", "English"],
-    category: "photo",
+    category: "lake",
     area: "pusuk",
     years: 7,
     rating: 4.88,
@@ -150,7 +153,7 @@ export const GUIDES: Guide[] = [
     id: "g4",
     name: "Amang Johanes Situmorang",
     languages: ["Batak Toba", "Indonesia", "Deutsch", "English"],
-    category: "architecture",
+    category: "culture",
     area: "tomok",
     years: 18,
     rating: 5.0,
@@ -178,7 +181,7 @@ export const GUIDES: Guide[] = [
     id: "g6",
     name: "Ito Sondang Silalahi",
     languages: ["Indonesia", "Batak Toba", "English"],
-    category: "history",
+    category: "sigale",
     area: "tomok",
     years: 9,
     rating: 4.92,
