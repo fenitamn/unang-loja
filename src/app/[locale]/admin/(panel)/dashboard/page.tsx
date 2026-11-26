@@ -208,9 +208,10 @@ export default async function AdminDashboardPage({
         />
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]">
+      <div className="grid gap-4 lg:grid-cols-2">
+        {/* Kolom Kiri: Tren & Distribusi + Bagasi Aktif */}
         <div className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             <Panel title="Tren Pemesanan 7 Hari" description="Jumlah pesanan masuk per hari.">
               <div className="p-4">
                 <div className="flex items-end justify-between gap-2">
@@ -288,95 +289,6 @@ export default async function AdminDashboardPage({
               </div>
             </Panel>
           </div>
-
-          <Panel
-            title="Pesanan Terbaru"
-            description="Pesanan yang masuk dari formulir pelanggan — bukan simulasi."
-            action={
-              <Link
-                href="/admin/pesanan"
-                className="inline-flex items-center gap-1 rounded-lg border border-line px-2.5 py-1.5 text-[10px] font-bold text-navy-800 hover:border-navy-300"
-              >
-                Semua pesanan <Icon name="external" className="h-3 w-3" />
-              </Link>
-            }
-          >
-            {recent.length === 0 ? (
-              <EmptyState
-                title="Belum ada pesanan"
-                description="Pesanan akan muncul di sini setelah pelanggan mengirim formulir pemesanan."
-                icon="receipt"
-              >
-                <Link
-                  href="/pesan"
-                  className="rounded-lg bg-brand-600 px-3 py-2 text-[10px] font-bold text-white hover:bg-brand-700"
-                >
-                  Buka formulir pemesanan
-                </Link>
-              </EmptyState>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[760px] border-collapse">
-                  <thead className="bg-cream">
-                    <tr>
-                      <Th>Resi &amp; Waktu</Th>
-                      <Th>Pelanggan</Th>
-                      <Th>Layanan</Th>
-                      <Th>Jadwal</Th>
-                      <Th>Total</Th>
-                      <Th>Status</Th>
-                      <Th>Pembayaran</Th>
-                      <Th>Aksi</Th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-line">
-                    {recent.map((order) => (
-                      <tr key={order.id} className="hover:bg-cream/60">
-                        <Td>
-                          <span className="font-mono text-[10px] font-bold text-navy-900">{order.resi}</span>
-                          <span className="mt-0.5 block text-[9px] text-ink-soft">
-                            {formatDateTime(order.created_at)}
-                          </span>
-                        </Td>
-                        <Td>
-                          <span className="font-semibold text-navy-900">{order.name}</span>
-                          <span className="mt-0.5 block text-[9px] text-ink-soft">{order.phone}</span>
-                        </Td>
-                        <Td>
-                          <span className="block">{serviceLabel(order.service_key)}</span>
-                          <span className="text-[9px] text-ink-soft">{orderDetail(order)}</span>
-                        </Td>
-                        <Td>
-                          <span className="block">{formatDate(order.date)}</span>
-                          <span className="max-w-[120px] truncate text-[9px] text-ink-soft">
-                            {order.meeting_point}
-                          </span>
-                        </Td>
-                        <Td className="font-semibold">{rupiah(order.total)}</Td>
-                        <Td>
-                          <StatusPill status={order.status} />
-                        </Td>
-                        <Td>
-                          <PaymentPill status={order.payment_status} />
-                        </Td>
-                        <Td>
-                          <Link
-                            href={`/admin/pesanan?q=${encodeURIComponent(order.resi)}`}
-                            className="rounded-lg bg-navy-900 px-2.5 py-1.5 text-[9px] font-bold text-white hover:bg-navy-800"
-                          >
-                            Kelola
-                          </Link>
-                        </Td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </Panel>
-        </div>
-
-        <div className="space-y-4">
           <Panel
             title="Bagasi Aktif"
             description="Pesanan bagasi yang belum selesai."
@@ -418,8 +330,12 @@ export default async function AdminDashboardPage({
               </ul>
             )}
           </Panel>
+        </div>
 
-          <Panel
+        {/* Kolom Kanan: Status Loker, Pemandu Siap, Aksi Cepat */}
+        <div className="space-y-4">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Panel
             title="Status Loker"
             description="Okupansi dari pesanan penitipan aktif."
             action={
@@ -458,28 +374,7 @@ export default async function AdminDashboardPage({
               )}
             </div>
           </Panel>
-
-          <Panel title="Aksi Cepat" description="Pintasan operasional harian.">
-            <div className="grid gap-2 p-4">
-              {[
-                { href: "/admin/pesanan", label: "Kelola Pesanan", icon: "receipt" as const },
-                { href: "/admin/pembayaran", label: "Verifikasi Pembayaran", icon: "card" as const },
-                { href: "/admin/bagasi", label: "Kontrol Bagasi & Segel", icon: "bag" as const },
-                { href: "/admin/pelacakan", label: "Update Pelacakan", icon: "route" as const },
-              ].map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="flex items-center gap-2 rounded-lg border border-line bg-cream px-3 py-2.5 text-[11px] font-bold text-navy-900 hover:border-gold-500 hover:bg-white"
-                >
-                  <Icon name={item.icon} className="h-4 w-4 text-gold-600" />
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </Panel>
-
-          <Panel
+            <Panel
             title="Pemandu Siap"
             description={`${activeGuides.length} pemandu aktif dari ${guides.length} terdaftar.`}
             action={
@@ -509,10 +404,117 @@ export default async function AdminDashboardPage({
               </ul>
             )}
           </Panel>
+          </div>
+          <Panel title="Aksi Cepat" description="Pintasan operasional harian.">
+            <div className="grid gap-2 p-4">
+              {[
+                { href: "/admin/pesanan", label: "Kelola Pesanan", icon: "receipt" as const },
+                { href: "/admin/pembayaran", label: "Verifikasi Pembayaran", icon: "card" as const },
+                { href: "/admin/bagasi", label: "Kontrol Bagasi & Segel", icon: "bag" as const },
+                { href: "/admin/pelacakan", label: "Update Pelacakan", icon: "route" as const },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-2 rounded-lg border border-line bg-cream px-3 py-2.5 text-[11px] font-bold text-navy-900 hover:border-gold-500 hover:bg-white"
+                >
+                  <Icon name={item.icon} className="h-4 w-4 text-gold-600" />
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </Panel>
         </div>
       </div>
 
-      <p className="text-[10px] text-ink-soft">
+      {/* Tabel Pesanan Terbaru Full Width */}
+      <Panel
+            title="Pesanan Terbaru"
+            description="Pesanan yang masuk dari formulir pelanggan — bukan simulasi."
+            action={
+              <Link
+                href="/admin/pesanan"
+                className="inline-flex items-center gap-1 rounded-lg border border-line px-2.5 py-1.5 text-[10px] font-bold text-navy-800 hover:border-navy-300"
+              >
+                Semua pesanan <Icon name="external" className="h-3 w-3" />
+              </Link>
+            }
+          >
+            {recent.length === 0 ? (
+              <EmptyState
+                title="Belum ada pesanan"
+                description="Pesanan akan muncul di sini setelah pelanggan mengirim formulir pemesanan."
+                icon="receipt"
+              >
+                <Link
+                  href="/pesan"
+                  className="rounded-lg bg-brand-600 px-3 py-2 text-[10px] font-bold text-white hover:bg-brand-700"
+                >
+                  Buka formulir pemesanan
+                </Link>
+              </EmptyState>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[720px] border-collapse">
+                  <thead className="bg-cream">
+                    <tr>
+                      <Th>Resi &amp; Waktu</Th>
+                      <Th>Pelanggan</Th>
+                      <Th>Layanan</Th>
+                      <Th>Jadwal</Th>
+                      <Th>Total</Th>
+                      <Th>Status</Th>
+                      <Th>Pembayaran</Th>
+                      <Th className="text-right">Aksi</Th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-line">
+                    {recent.map((order) => (
+                      <tr key={order.id} className="hover:bg-cream/60">
+                        <Td>
+                          <span className="font-mono text-[10px] font-bold text-navy-900">{order.resi}</span>
+                          <span className="mt-0.5 block text-[9px] text-ink-soft">
+                            {formatDateTime(order.created_at)}
+                          </span>
+                        </Td>
+                        <Td>
+                          <span className="font-semibold text-navy-900">{order.name}</span>
+                          <span className="mt-0.5 block text-[9px] text-ink-soft">{order.phone}</span>
+                        </Td>
+                        <Td>
+                          <span className="block">{serviceLabel(order.service_key)}</span>
+                          <span className="text-[9px] text-ink-soft">{orderDetail(order)}</span>
+                        </Td>
+                        <Td>
+                          <span className="block">{formatDate(order.date)}</span>
+                          <span className="max-w-[120px] truncate text-[9px] text-ink-soft">
+                            {order.meeting_point}
+                          </span>
+                        </Td>
+                        <Td className="font-semibold">{rupiah(order.total)}</Td>
+                        <Td>
+                          <StatusPill status={order.status} />
+                        </Td>
+                        <Td>
+                          <PaymentPill status={order.payment_status} />
+                        </Td>
+                        <Td className="text-right whitespace-nowrap">
+                          <Link
+                            href={`/admin/pesanan?q=${encodeURIComponent(order.resi)}`}
+                            className="inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-navy-900 px-3 py-1.5 text-[9px] font-bold text-white shadow-sm transition hover:bg-navy-800"
+                          >
+                            Kelola
+                          </Link>
+                        </Td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </Panel>
+
+            <p className="text-[10px] text-ink-soft">
         {customers.length} pelanggan terdaftar · data operasional diperbarui saat halaman dimuat.
       </p>
     </div>
