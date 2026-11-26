@@ -133,7 +133,7 @@ export default async function LayananPage({
             </div>
           </div>
           <a
-            href="https://wa.me/6281268008622?text=Halo%2C%20saya%20ingin%20melihat%20polis%20asuransi%20UNANG%20LOJA"
+            href="https://wa.me/6285143180788?text=Halo%2C%20saya%20ingin%20melihat%20polis%20asuransi%20UNANG%20LOJA"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg bg-gold-500 px-5 py-2.5 text-xs font-bold text-navy-900 transition hover:bg-gold-600 hover:text-white"

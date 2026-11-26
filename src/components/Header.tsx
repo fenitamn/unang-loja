@@ -88,7 +88,7 @@ export default function Header({ user = null }: { user?: HeaderUser }) {
 
         <div className="flex items-center gap-1.5">
           <a
-            href="tel:+6281268008622"
+            href="tel:+6285143180788"
             className="hidden items-center gap-2 rounded-lg border border-line bg-cream px-3 py-1.5 transition hover:border-gold-500 xl:flex"
           >
             <span
@@ -111,7 +111,7 @@ export default function Header({ user = null }: { user?: HeaderUser }) {
               <span className="block text-[8px] font-bold uppercase tracking-[0.14em] text-ink-soft">
                 {t("hotline")}
               </span>
-              <span className="block text-[10px] font-bold text-navy-900">+62 812-6800-8622</span>
+              <span className="block text-[10px] font-bold text-navy-900">+62 851-4318-0788</span>
             </span>
           </a>
 

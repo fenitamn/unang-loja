@@ -456,7 +456,7 @@ export default function BookingWizard({
   /* ---------- Layar sukses: voucher resi digital + PDF terpisah ---------- */
   if (orderNo) {
     const name = form.name.trim() || "Traveler";
-    const waLink = `https://wa.me/6281268008622?text=${encodeURIComponent(
+    const waLink = `https://wa.me/6285143180788?text=${encodeURIComponent(
       `Halo UNANG LOJA, saya ${name}. Nomor pesanan saya ${orderNo}.`,
     )}`;
     const paymentLabel = form.method ? t(`step4.methods.${form.method}`) : "—";

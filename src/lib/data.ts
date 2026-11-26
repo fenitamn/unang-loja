@@ -50,6 +50,18 @@ export const CROSS_SELL: Partial<Record<ServiceKey, ServiceKey[]>> = {
 };
 
 /**
+ * Nomor kontak & WhatsApp resmi UNANG LOJA untuk layanan pelanggan dan operasional.
+ * Format baku: +62 851-4318-0788 / wa.me/6285143180788
+ */
+export const OFFICIAL_WHATSAPP_NUMBER =
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || "6285143180788";
+export const OFFICIAL_WHATSAPP_DISPLAY = "+62 851-4318-0788";
+export const getWhatsAppLink = (message?: string) => {
+  const base = `https://wa.me/${OFFICIAL_WHATSAPP_NUMBER}`;
+  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+};
+
+/**
  * Nomor tujuan pembayaran. Isi lewat environment publik sebelum menerima
  * pembayaran nyata; tanpa konfigurasi, pelanggan diarahkan ke admin via WhatsApp
  * agar tidak pernah melihat nomor rekening contoh sebagai tujuan transfer.

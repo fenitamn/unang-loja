@@ -221,7 +221,7 @@ export default function StatusLookup({
       ? PAYMENT_METHOD_LABEL[result.paymentMethod] ?? result.paymentMethod
       : "—";
     const checkoutText = `Halo admin UNANG LOJA, saya ingin bertanya tentang resi ${result.resi}.`;
-    const waHref = `https://wa.me/6281268008622?text=${encodeURIComponent(checkoutText)}`;
+    const waHref = `https://wa.me/6285143180788?text=${encodeURIComponent(checkoutText)}`;
 
     return (
       <div className="space-y-6">

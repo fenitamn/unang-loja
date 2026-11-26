@@ -273,7 +273,7 @@ export default async function PemanduPage({
                   {t("cta.primary")}
                 </Link>
                 <a
-                  href="https://wa.me/6281268008622?text=Halo%20UNANG%20LOJA%2C%20saya%20ingin%20konsultasi%20rute%20pemandu"
+                  href="https://wa.me/6285143180788?text=Halo%20UNANG%20LOJA%2C%20saya%20ingin%20konsultasi%20rute%20pemandu"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-lg border border-navy-600 px-6 py-3 text-sm font-bold text-white transition hover:border-gold-500 hover:text-gold-200"

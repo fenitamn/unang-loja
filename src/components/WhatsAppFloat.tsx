@@ -6,7 +6,7 @@ export default function WhatsAppFloat() {
   const t = useTranslations("common");
   return (
     <a
-      href="https://wa.me/6281268008622?text=Halo%20UNANG%20LOJA"
+      href="https://wa.me/6285143180788?text=Halo%20UNANG%20LOJA"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t("whatsapp")}

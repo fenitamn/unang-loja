@@ -49,7 +49,7 @@ export default function Footer() {
 
           <div className="flex flex-wrap items-center gap-4">
             <a
-              href="tel:+6281268008622"
+              href="tel:+6285143180788"
               className="flex items-center gap-2.5 rounded-lg border border-navy-700 bg-navy-950 px-3.5 py-2.5 transition hover:border-gold-500"
             >
               <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-600/20 text-gold-200" aria-hidden="true">
@@ -61,7 +61,7 @@ export default function Footer() {
                 <span className="block text-[9px] font-bold uppercase tracking-[0.14em] text-gold-200">
                   {t("hotlineLabel")}
                 </span>
-                <span className="block text-xs font-bold text-white">+62 812-6800-8622</span>
+                <span className="block text-xs font-bold text-white">+62 851-4318-0788</span>
               </span>
             </a>
             <span className="inline-flex items-center gap-1.5 rounded-lg border border-navy-700 px-3 py-2 text-[11px] font-semibold text-navy-100">

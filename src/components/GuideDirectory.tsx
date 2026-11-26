@@ -440,7 +440,7 @@ export default function GuideDirectory({ guides = GUIDES }: { guides?: Guide[] }
           </div>
           <div className="shrink-0">
             <a
-              href="https://wa.me/6281268008622?text=Halo%20Admin%20UNANG%20LOJA%2C%20saya%20pramuwisata%20berlisensi%20HPI%20di%20Samosir%20dan%20ingin%20mendaftar%20sebagai%20mitra%20pemandu."
+              href="https://wa.me/6285143180788?text=Halo%20Admin%20UNANG%20LOJA%2C%20saya%20pramuwisata%20berlisensi%20HPI%20di%20Samosir%20dan%20ingin%20mendaftar%20sebagai%20mitra%20pemandu."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-emerald-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
