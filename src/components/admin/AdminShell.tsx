@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import Icon, { type IconName } from "@/components/admin/Icon";
@@ -61,9 +62,13 @@ export default function AdminShell({
   const nav = (
     <div className="flex h-full flex-col">
       <div className="flex items-center gap-2.5 border-b border-white/10 px-5 py-4">
-        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gold-500 text-[10px] font-black text-navy-950">
-          UL
-        </span>
+        <Image
+          src="/logo.png"
+          alt="Logo UNANG LOJA"
+          width={36}
+          height={36}
+          className="h-9 w-9 shrink-0 rounded-lg bg-white object-cover p-0.5 shadow-sm"
+        />
         <div className="min-w-0 leading-tight">
           <p className="truncate font-serif text-sm font-bold text-white">UNANG LOJA</p>
           <p className="truncate text-[8px] font-semibold uppercase tracking-[0.16em] text-gold-300">
