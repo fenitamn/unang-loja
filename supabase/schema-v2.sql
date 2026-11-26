@@ -109,3 +109,8 @@ on conflict (key) do nothing;
 -- Dibuat otomatis oleh aplikasi saat login admin pertama,
 -- menggunakan env ADMIN_EMAIL + ADMIN_PASSWORD (min. 8 karakter).
 -- Tidak ada password default di produksi.
+
+-- Pembaruan nomor WhatsApp hotline & admin UNANG LOJA (+62 851-4318-0788)
+update app_users
+set phone = '6285143180788'
+where role = 'admin';

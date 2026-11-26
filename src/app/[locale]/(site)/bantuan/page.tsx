@@ -61,7 +61,7 @@ export default async function HelpPage({
             <h2 className="mt-3 font-serif text-lg font-bold">{t("whatsappTitle")}</h2>
             <p className="mt-2 text-[13px] text-navy-100">{t("whatsappText")}</p>
             <a
-              href="https://wa.me/6281268008622?text=Halo%20UNANG%20LOJA"
+              href="https://wa.me/6285143180788?text=Halo%20UNANG%20LOJA"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-block rounded-lg bg-[#25d366] px-5 py-2.5 text-xs font-bold text-white transition hover:brightness-95"

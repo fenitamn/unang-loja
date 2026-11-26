@@ -65,8 +65,7 @@ Terakhir diperbarui: 20 November 2026.
 - Form rating di halaman bantuan diubah dari tampilan simulasi menjadi pengiriman nyata
   ke `/api/reviews` dengan validasi pesanan selesai, status login, dan pesan error server.
 - Label unggah bukti diselaraskan menjadi maksimal 2 MB.
-- Nomor WhatsApp lama diganti ke `+62 812-6800-8622`; hotline status/bantuan memakai
-  nomor yang sama.
+- Nomor WhatsApp resmi pelanggan & admin diperbarui ke `+62 851-4318-0788` (`6285143180788`); hotline status, floating WhatsApp button, dan bantuan memakai nomor yang sama.
 - Data contoh pada halaman status dihapus/digeneralisasi: tujuan hotel, kode segel,
   dan checklist segel tidak lagi mengklaim data spesifik yang tidak ada.
 - Notifikasi WhatsApp admin menormalkan nomor pelanggan ke format `62…`.

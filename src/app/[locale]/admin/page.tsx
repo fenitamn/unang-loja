@@ -123,12 +123,12 @@ export default async function AdminPortalPage({
             <p className="mt-1 text-[10px] text-ink-soft">
               Supervisor 24/7:{" "}
               <a
-                href="https://wa.me/6281268008622"
+                href="https://wa.me/6285143180788"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-bold text-brand-600 hover:underline"
               >
-                +62 812-6800-8622
+                +62 851-4318-0788
               </a>
             </p>
           </div>

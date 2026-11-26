@@ -181,7 +181,7 @@ export default async function LayananPage({
           </h3>
           <p className="text-[13px] text-ink-soft">{t("faq.customDesc")}</p>
           <a
-            href="https://wa.me/6281268008622?text=Halo%20UNANG%20LOJA"
+            href="https://wa.me/6285143180788?text=Halo%20UNANG%20LOJA"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-1 rounded-lg bg-brand-600 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-brand-700"

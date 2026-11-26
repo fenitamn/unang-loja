@@ -34,7 +34,7 @@ export default async function ForgotPasswordPage({
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <a
-              href="https://wa.me/6281268008622?text=Halo%20admin%20UNANG%20LOJA%2C%20saya%20ingin%20mengatur%20ulang%20kata%20sandi%20akun%20saya."
+              href="https://wa.me/6285143180788?text=Halo%20admin%20UNANG%20LOJA%2C%20saya%20ingin%20mengatur%20ulang%20kata%20sandi%20akun%20saya."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-lg bg-brand-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-700"

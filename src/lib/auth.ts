@@ -205,12 +205,16 @@ export async function ensureAdminAccount(): Promise<{
 
     const existing = await findUserByEmail(email);
     if (existing) {
+      const targetPhone = (process.env.ADMIN_WA ?? "6285143180788").trim();
+      if (existing.role === "admin" && targetPhone && existing.phone !== targetPhone) {
+        await updateUser(existing.id, { phone: targetPhone });
+      }
       return { ready: existing.role === "admin", email };
     }
     await createUser({
       name: process.env.ADMIN_NAME ?? "Admin UNANG LOJA",
       email,
-      phone: process.env.ADMIN_WA ?? "",
+      phone: (process.env.ADMIN_WA ?? "6285143180788").trim(),
       passwordHash: hashPassword(password),
       role: "admin",
     });
