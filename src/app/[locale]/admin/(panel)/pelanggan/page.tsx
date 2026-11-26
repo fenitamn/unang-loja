@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { EmptyState, PageHeader, Panel, Td, Th } from "@/components/admin/AdminUI";
 import { formatDate, rupiah } from "@/lib/admin-ui";

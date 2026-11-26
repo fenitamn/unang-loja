@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { EmptyState, PageHeader, Panel, StatusPill } from "@/components/admin/AdminUI";
 import OrderCard from "@/components/admin/OrderCard";

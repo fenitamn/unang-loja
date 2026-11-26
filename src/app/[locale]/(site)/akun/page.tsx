@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import Icon from "@/components/admin/Icon";
 import ProfileForm from "@/components/admin/ProfileForm";
@@ -39,7 +39,21 @@ export default async function AccountPage({
   const user = await requireCustomerPage(locale, `/${locale}/akun`);
   const t = await getTranslations("account");
 
-  const orders = await listOrders({ customerId: user.id, limit: 200 }).catch(() => [] as OrderRecord[]);
+  const [ordersByCustomer, allOrders] = await Promise.all([
+    listOrders({ customerId: user.id, limit: 200 }).catch(() => [] as OrderRecord[]),
+    listOrders({ limit: 500 }).catch(() => [] as OrderRecord[]),
+  ]);
+  const orderMap = new Map<string, OrderRecord>();
+  for (const o of ordersByCustomer) orderMap.set(o.id, o);
+  for (const o of allOrders) {
+    if (
+      (o.email && o.email.toLowerCase() === user.email.toLowerCase()) ||
+      (user.phone && o.phone && o.phone.replace(/\D/g, "") === user.phone.replace(/\D/g, ""))
+    ) {
+      orderMap.set(o.id, o);
+    }
+  }
+  const orders = Array.from(orderMap.values()).sort((a, b) => b.created_at.localeCompare(a.created_at));
   const active = orders.filter((order) => ACTIVE_STATUSES.includes(order.status));
   const done = orders.filter((order) => order.status === "SELESAI");
   const spent = orders

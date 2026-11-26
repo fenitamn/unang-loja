@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Link as LocaleLink } from "@/i18n/navigation";
 
 /** Label kecil huruf kapital warna emas di atas judul section. */

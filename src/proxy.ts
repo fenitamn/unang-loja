@@ -1,21 +1,27 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { routing } from "@/i18n/routing";
 
 /**
- * Meneruskan pathname asli ke Server Component.
- *
- * Layout tidak menerima `pathname`, sedangkan halaman login membutuhkan
- * tujuan asli (`?next=`). Header ini hanya berisi path internal yang dibuat
- * oleh Next.js, bukan input pengguna yang dipercaya begitu saja.
- *
- * Pemeriksaan sesi tetap dilakukan di server (layout/route handler), bukan
- * hanya mengandalkan Proxy.
+ * Proxy middleware:
+ * 1. Mengarahkan URL tanpa prefix bahasa (mis. /admin/pesanan, /akun/pesanan/UL-...)
+ *    ke locale default (/id/...) agar tidak menghasilkan 404.
+ * 2. Meneruskan pathname asli ke Server Component via header x-ul-pathname.
  */
 export function proxy(request: NextRequest) {
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set(
-    "x-ul-pathname",
-    `${request.nextUrl.pathname}${request.nextUrl.search}`,
+  const { pathname, search } = request.nextUrl;
+
+  const isSupportedLocale = routing.locales.some(
+    (loc) => pathname === `/${loc}` || pathname.startsWith(`/${loc}/`),
   );
+
+  if (!isSupportedLocale) {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = `/${routing.defaultLocale}${pathname === "/" ? "" : pathname}`;
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-ul-pathname", `${pathname}${search}`);
 
   return NextResponse.next({
     request: {
@@ -26,5 +32,5 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   // Jangan jalankan untuk API/static assets; route API punya guard sendiri.
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|icon.png|.*\\..*).*)"],
 };

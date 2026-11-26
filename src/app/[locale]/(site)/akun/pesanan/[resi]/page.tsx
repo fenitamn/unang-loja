@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import Icon from "@/components/admin/Icon";
@@ -15,7 +15,7 @@ import {
   statusProgress,
 } from "@/lib/admin-ui";
 import { requireCustomerPage } from "@/lib/auth";
-import { getOrderByResi, listGuides, listReviews } from "@/lib/store";
+import { getOrderByResi, listGuides, listReviews, updateOrder } from "@/lib/store";
 
 const STATUS_KEY = {
   BARU: "status.BARU",
@@ -46,7 +46,18 @@ export default async function AccountOrderPage({
   const t = await getTranslations("account");
 
   const order = await getOrderByResi(decodeURIComponent(resi));
-  if (!order || order.customer_id !== user.id) notFound();
+  const isOwner =
+    order &&
+    (order.customer_id === user.id ||
+      (order.email && order.email.toLowerCase() === user.email.toLowerCase()) ||
+      (user.phone && order.phone && order.phone.replace(/\D/g, "") === user.phone.replace(/\D/g, "")) ||
+      user.role === "admin");
+  if (!order || !isOwner) notFound();
+
+  // Sinkronkan customer_id jika pesanan sebelumnya dibuat belum tertaut id akun
+  if (!order.customer_id && user.id && user.role === "customer") {
+    await updateOrder(order.id, { customer_id: user.id }).catch(() => null);
+  }
 
   const [guides, reviews] = await Promise.all([
     listGuides().catch(() => []),

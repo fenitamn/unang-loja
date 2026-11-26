@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { EmptyState, PageHeader, Panel } from "@/components/admin/AdminUI";
 import Icon from "@/components/admin/Icon";
@@ -131,7 +131,12 @@ export default async function AdminOrdersPage({
       ) : (
         <div className="space-y-3">
           {filtered.map((order) => (
-            <OrderCard key={order.id} order={order} guides={guideOptions} />
+            <OrderCard
+              key={order.id}
+              order={order}
+              guides={guideOptions}
+              defaultOpen={Boolean(q || filtered.length === 1)}
+            />
           ))}
         </div>
       )}
