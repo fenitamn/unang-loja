@@ -193,6 +193,17 @@ export default function AuthForm({ mode, next = null }: { mode: Mode; next?: str
             </div>
           </label>
 
+          {!isRegister && (
+            <div className="-mt-1 text-right">
+              <Link
+                href="/lupa-sandi"
+                className="text-[11px] font-semibold text-ink-soft underline decoration-line underline-offset-2 hover:text-brand-600"
+              >
+                {t("forgotPassword")}
+              </Link>
+            </div>
+          )}
+
           {isRegister && (
             <label className="block">
               <span className="mb-1.5 block text-xs font-semibold text-navy-900">{t("confirm")}</span>
@@ -225,7 +236,9 @@ export default function AuthForm({ mode, next = null }: { mode: Mode; next?: str
         <p className="mt-5 text-center text-xs text-ink-soft">
           {isRegister ? t("haveAccount") : t("noAccount")}{" "}
           <Link
-            href={isRegister ? "/masuk" : "/daftar"}
+            href={`${isRegister ? "/masuk" : "/daftar"}${
+              next ? `?next=${encodeURIComponent(next)}` : ""
+            }`}
             className="font-bold text-navy-800 underline decoration-gold-400 underline-offset-2 hover:text-brand-600"
           >
             {isRegister ? t("toLogin") : t("toRegister")}

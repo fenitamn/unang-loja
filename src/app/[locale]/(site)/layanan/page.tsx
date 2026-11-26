@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import ServiceTabs from "@/components/ServiceTabs";
 import { Breadcrumb, Eyebrow, SectionTitle } from "@/components/ui";
+import { requireUserPage } from "@/lib/auth";
 
 export default async function LayananPage({
   params,
@@ -10,6 +11,7 @@ export default async function LayananPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  await requireUserPage(locale, `/${locale}/layanan`);
 
   const t = await getTranslations("services");
   const tnav = await getTranslations("nav");
@@ -43,6 +45,47 @@ export default async function LayananPage({
       </div>
 
       <ServiceTabs />
+
+      {/* Fitur Frame 4 yang kini tersedia di pemesanan */}
+      <section className="mt-14 overflow-hidden rounded-2xl border border-line bg-white">
+        <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="bg-navy-900 p-6 text-white md:p-8">
+            <Eyebrow tone="outline" icon="✦">
+              {t("bookingFeatures.eyebrow")}
+            </Eyebrow>
+            <h2 className="mt-4 font-serif text-2xl font-bold leading-tight md:text-3xl">
+              {t("bookingFeatures.title")}
+            </h2>
+            <p className="mt-3 text-[13px] leading-relaxed text-navy-100">
+              {t("bookingFeatures.subtitle")}
+            </p>
+            <Link
+              href="/pesan"
+              className="mt-6 inline-block rounded-lg bg-gold-500 px-5 py-2.5 text-xs font-bold text-navy-950 transition hover:bg-gold-400"
+            >
+              {t("bookingFeatures.cta")} →
+            </Link>
+          </div>
+          <div className="grid gap-3 p-5 sm:grid-cols-2 md:p-6">
+            {(["0", "1", "2", "3"] as const).map((i) => (
+              <div key={i} className="rounded-xl border border-line bg-cream/70 p-4">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-sm shadow-sm">
+                  {["🧳", "🚚", "🛡️", "🎓"][Number(i)]}
+                </span>
+                <h3 className="mt-3 font-serif text-sm font-bold text-navy-900">
+                  {t(`bookingFeatures.items.${i}.title`)}
+                </h3>
+                <p className="mt-1.5 text-[11px] leading-relaxed text-ink-soft">
+                  {t(`bookingFeatures.items.${i}.desc`)}
+                </p>
+                <p className="mt-2 text-[10px] font-bold uppercase tracking-wide text-gold-700">
+                  {t(`bookingFeatures.items.${i}.note`)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* SOP segel 4 sisi */}
       <section className="mt-16">

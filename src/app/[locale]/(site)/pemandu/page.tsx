@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { formatIDR, getGuide, type Guide } from "@/lib/data";
 import GuideDirectory from "@/components/GuideDirectory";
 import { listGuides } from "@/lib/store";
+import { requireUserPage } from "@/lib/auth";
 import {
   Breadcrumb,
   DividerIcon,
@@ -22,6 +23,7 @@ export default async function PemanduPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  await requireUserPage(locale, `/${locale}/pemandu`);
 
   const t = await getTranslations("guides");
   const tnav = await getTranslations("nav");

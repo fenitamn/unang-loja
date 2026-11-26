@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -9,9 +9,9 @@ import Icon, { type IconName } from "@/components/admin/Icon";
 type NavItem = { href: string; label: string; icon: IconName; badge?: number };
 
 const LABELS: Record<string, string> = {
-  dashboard: "Overview",
+  dashboard: "Ringkasan",
   pesanan: "Pesanan",
-  pembayaran: "Pembayaran",
+  pembayaran: "Verifikasi Pembayaran",
   bagasi: "Bagasi & Loker",
   pelacakan: "Pelacakan",
   pemandu: "Pemandu & Jadwal",
@@ -35,20 +35,31 @@ export default function AdminShell({
   const locale = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [station, setStation] = useState("Pos Tomok");
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("ul_admin_station");
+    if (saved) setStation(saved);
+  }, []);
 
   const ops: NavItem[] = [
-    { href: "/admin/dashboard", label: "Dashboard Overview", icon: "dashboard" },
-    { href: "/admin/pesanan", label: "Booking Management", icon: "receipt" },
-    { href: "/admin/pembayaran", label: "Payment Verification", icon: "card", badge: pendingPayments },
-    { href: "/admin/bagasi", label: "Luggage & Stalls", icon: "bag" },
-    { href: "/admin/pelacakan", label: "Tracking Management", icon: "route" },
+    { href: "/admin/dashboard", label: "Ringkasan", icon: "dashboard" },
+    { href: "/admin/pesanan", label: "Manajemen Pesanan", icon: "receipt" },
+    {
+      href: "/admin/pembayaran",
+      label: "Verifikasi Pembayaran",
+      icon: "card",
+      badge: pendingPayments,
+    },
+    { href: "/admin/bagasi", label: "Bagasi & Loker", icon: "bag" },
+    { href: "/admin/pelacakan", label: "Kontrol Pelacakan", icon: "route" },
   ];
   const mgmt: NavItem[] = [
-    { href: "/admin/pemandu", label: "Tour Guides & Schedule", icon: "calendar" },
-    { href: "/admin/pelanggan", label: "Customers", icon: "users" },
-    { href: "/admin/ulasan", label: "Customer Reviews", icon: "star" },
-    { href: "/admin/layanan", label: "Services", icon: "layers" },
-    { href: "/admin/pengaturan", label: "System Settings", icon: "settings" },
+    { href: "/admin/pemandu", label: "Pemandu & Jadwal", icon: "calendar" },
+    { href: "/admin/pelanggan", label: "Pelanggan", icon: "users" },
+    { href: "/admin/ulasan", label: "Ulasan Pelanggan", icon: "star" },
+    { href: "/admin/layanan", label: "Layanan & Tarif", icon: "layers" },
+    { href: "/admin/pengaturan", label: "Pengaturan Sistem", icon: "settings" },
   ];
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
@@ -72,13 +83,18 @@ export default function AdminShell({
         <div className="min-w-0 leading-tight">
           <p className="truncate font-serif text-sm font-bold text-white">UNANG LOJA</p>
           <p className="truncate text-[8px] font-semibold uppercase tracking-[0.16em] text-gold-300">
-            Admin Portal · Samosir
+            Samosir Tourism &amp; Logistics
           </p>
         </div>
       </div>
 
       <div className="mx-3 mt-3 rounded-lg border border-white/10 bg-white/5 px-3 py-2.5">
-        <p className="text-[8px] font-bold uppercase tracking-[0.16em] text-gold-300">Super Admin</p>
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-[8px] font-bold uppercase tracking-[0.16em] text-gold-300">Administrator</p>
+          <span className="rounded-full bg-gold-500/15 px-1.5 py-0.5 text-[8px] font-bold text-gold-300">
+            {station}
+          </span>
+        </div>
         <p className="mt-0.5 truncate text-xs font-bold text-white">{user.name}</p>
         <p className="truncate text-[9px] text-white/40">{user.email}</p>
       </div>
@@ -152,10 +168,10 @@ export default function AdminShell({
 
             <div className="hidden min-w-0 items-center gap-1.5 text-[10px] text-ink-soft sm:flex">
               <Link href="/admin/dashboard" className="font-semibold text-navy-800 hover:text-brand-600">
-                Admin
+                Operasional
               </Link>
               <span className="text-line">/</span>
-              <span className="truncate font-bold text-navy-900">{LABELS[segment] ?? "Overview"}</span>
+              <span className="truncate font-bold text-navy-900">{LABELS[segment] ?? "Ringkasan"}</span>
             </div>
 
             <form action={`/${locale}/admin/pesanan`} method="get" className="relative ml-auto w-full max-w-xs">

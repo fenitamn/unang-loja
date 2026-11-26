@@ -132,6 +132,29 @@ export async function getSession(): Promise<SessionUser | null> {
 
 /* ------------------------------- guards ------------------------------- */
 
+/**
+ * Hanya izinkan path internal sebagai tujuan setelah login.
+ * Mencegah open redirect (`//evil.com`, `https://evil.com`) dan loop ke API.
+ */
+export function safeNextPath(value: string | null | undefined): string | null {
+  if (typeof value !== "string") return null;
+  const next = value.trim();
+  if (!next || !next.startsWith("/") || next.startsWith("//") || next.includes("\\")) {
+    return null;
+  }
+  try {
+    const base = "https://unang-loja.local";
+    const url = new URL(next, base);
+    if (url.origin !== base || !url.pathname.startsWith("/")) return null;
+    if (url.pathname.startsWith("/api/")) return null;
+    // Jangan kembali ke halaman autentikasi (mencegah redirect loop).
+    if (/\/(?:masuk|daftar|lupa-sandi)(?:\/|$)/.test(url.pathname)) return null;
+    return `${url.pathname}${url.search}${url.hash}`;
+  } catch {
+    return null;
+  }
+}
+
 export async function requireAdminPage(locale: string): Promise<SessionUser> {
   const user = await getSession();
   if (!user) redirect(`/${locale}/admin`);
@@ -139,13 +162,23 @@ export async function requireAdminPage(locale: string): Promise<SessionUser> {
   return user;
 }
 
+/** Semua halaman situs pelanggan wajib login (customer maupun admin). */
+export async function requireUserPage(
+  locale: string,
+  nextPath = `/${locale}`,
+): Promise<SessionUser> {
+  const user = await getSession();
+  if (!user) {
+    redirect(`/${locale}/masuk?next=${encodeURIComponent(nextPath)}`);
+  }
+  return user;
+}
+
 export async function requireCustomerPage(
   locale: string,
   nextPath = `/${locale}/akun`,
 ): Promise<SessionUser> {
-  const user = await getSession();
-  if (!user) redirect(`/${locale}/masuk?next=${encodeURIComponent(nextPath)}`);
-  return user;
+  return requireUserPage(locale, nextPath);
 }
 
 /* --------------------------- admin seeding ---------------------------- */

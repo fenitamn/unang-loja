@@ -1,14 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession, sameOrigin } from "@/lib/auth";
 import { formatNewOrderMessage, sendAdminWhatsApp } from "@/lib/notify";
-import { getOrderByResi, listOrders, createOrder, storeAvailable, type PaymentStatus } from "@/lib/store";
+import {
+  getOrderByResi,
+  listGuides,
+  listOrders,
+  createOrder,
+  storeAvailable,
+  type PaymentStatus,
+} from "@/lib/store";
 import { generateResi } from "@/lib/supabase";
-import { SERVICES } from "@/lib/data";
+import { PAYMENT_METHODS, SERVICES } from "@/lib/data";
 
 type CreateOrderBody = {
   serviceKey?: string;
   serviceLabel?: string;
   addOns?: string[];
+  guideId?: string | null;
   date?: string;
   meetingPoint?: string;
   zone?: string | null;
@@ -45,10 +53,14 @@ export async function GET(req: NextRequest) {
   }
 }
 
-/** POST /api/orders — simpan pesanan baru (guest atau pelanggan login) + WA admin. */
+/** POST /api/orders — pelanggan login membuat pesanan + notifikasi WA admin. */
 export async function POST(req: NextRequest) {
   if (!sameOrigin(req)) {
     return NextResponse.json({ error: "Permintaan tidak valid." }, { status: 403 });
+  }
+  const user = await getSession();
+  if (!user) {
+    return NextResponse.json({ error: "Silakan masuk untuk membuat pesanan." }, { status: 401 });
   }
   if (!storeAvailable()) {
     return NextResponse.json(
@@ -58,21 +70,25 @@ export async function POST(req: NextRequest) {
   }
 
   const body = (await req.json().catch(() => ({}))) as CreateOrderBody;
-  const user = await getSession();
 
-  const phone = clean(body.phone, 24).replace(/[^0-9]/g, "");
+  const phone = clean(body.phone || user.phone, 24).replace(/[^0-9]/g, "");
   const serviceKey = clean(body.serviceKey, 40);
+  const method = body.paymentMethod ? clean(body.paymentMethod, 40) : "";
+  const parsedDate = body.date ? new Date(String(body.date)) : null;
   if (
     !SERVICES.some((s) => s.key === serviceKey) ||
-    !body.date ||
+    !parsedDate ||
+    Number.isNaN(parsedDate.getTime()) ||
     !body.meetingPoint?.trim() ||
-    !body.name?.trim() ||
     !phone
   ) {
     return NextResponse.json({ error: "Data pesanan belum lengkap." }, { status: 400 });
   }
   if (phone.length < 8) {
     return NextResponse.json({ error: "Nomor WhatsApp tidak valid." }, { status: 400 });
+  }
+  if (!method || !(method in PAYMENT_METHODS)) {
+    return NextResponse.json({ error: "Metode pembayaran wajib dipilih." }, { status: 400 });
   }
 
   const proof = typeof body.paymentProof === "string" ? body.paymentProof : null;
@@ -87,6 +103,17 @@ export async function POST(req: NextRequest) {
   const paymentStatus: PaymentStatus = proof ? "PENDING" : "UNPAID";
 
   try {
+    // Form mengirim slug pemandu (mis. "g4"). Database admin memakai UUID,
+    // jadi resolve ke id asli agar relasi guide_id tidak berisi slug.
+    const guideSlug = body.guideId ? clean(body.guideId, 80) : "";
+    let guideId: string | null = null;
+    if (guideSlug) {
+      const guide = (await listGuides()).find(
+        (record) => record.active && (record.slug === guideSlug || record.id === guideSlug),
+      );
+      guideId = guide?.id ?? null;
+    }
+
     let resi = generateResi();
     for (let i = 0; i < 3 && (await getOrderByResi(resi)); i += 1) {
       resi = generateResi();
@@ -94,19 +121,19 @@ export async function POST(req: NextRequest) {
 
     const order = await createOrder({
       resi,
-      customer_id: user?.id ?? null,
+      customer_id: user.id,
       service_key: serviceKey,
       add_ons: Array.isArray(body.addOns) ? body.addOns.map((a) => clean(a, 40)).slice(0, 10) : [],
-      date: new Date(String(body.date)).toISOString().slice(0, 10),
+      date: parsedDate.toISOString().slice(0, 10),
       meeting_point: clean(body.meetingPoint, 160),
       zone: body.zone ? clean(body.zone, 20) : null,
       suitcases: Math.max(1, Math.min(50, Math.round(Number(body.suitcases) || 1))),
       participants: Math.max(1, Math.min(50, Math.round(Number(body.participants) || 1))),
       notes: body.notes ? clean(body.notes, 1000) : null,
-      name: user ? user.name : clean(body.name, 120),
+      name: clean(user.name, 120),
       phone,
-      email: user?.email ?? (body.email ? clean(body.email, 160) : null),
-      payment_method: body.paymentMethod ? clean(body.paymentMethod, 40) : null,
+      email: user.email ? clean(user.email, 160) : null,
+      payment_method: method,
       payment_status: paymentStatus,
       payment_proof: proof,
       payment_ref: body.paymentRef ? clean(body.paymentRef, 80) : null,
@@ -115,7 +142,7 @@ export async function POST(req: NextRequest) {
       seal_code: null,
       total,
       status: "BARU",
-      guide_id: null,
+      guide_id: guideId,
     });
 
     const waOk = await sendAdminWhatsApp(

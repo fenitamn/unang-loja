@@ -5,7 +5,7 @@
   },
   "nav": {
     "home": "Home",
-    "services": "Services",
+    "services": "Services & Rates",
     "guides": "Our Guides",
     "book": "Book",
     "status": "Order Status",
@@ -43,9 +43,12 @@
       "destinationPlaceholder": "Choose your destination…",
       "date": "Date",
       "suitcases": "Number of Bags / Suitcases",
-      "searchCta": "Check Service Availability",
+      "searchCta": "Check Availability & Book Service",
       "resiPlaceholder": "e.g. UL-20261112-0001",
-      "resiCta": "Check Receipt Status"
+      "resiCta": "Check Receipt Status",
+      "serviceNote": "Final rates and locker availability are confirmed before payment.",
+      "resiLabel": "Receipt / booking number",
+      "resiNote": "Status is updated manually by staff. This is not real-time GPS tracking."
     },
     "heroCard": {
       "badgeTitle": "Certified Guides",
@@ -108,14 +111,20 @@
         "penitipan": "Tomok · Ambarita Counter",
         "antarDekat": "Pier · Hotel Delivery",
         "pemanduan": "Culture & History Tour",
-        "fleksibel": "All-In Combo"
+        "fleksibel": "All-In Combo",
+        "antarLintas": "Cross-zone Samosir",
+        "mystery": "Secret Route"
       },
       "descs": {
         "penitipan": "Private secure lockers with unique codes & 24-hour CCTV at the pier.",
         "antarDekat": "Delivered by van straight from the ferry to your hotel room in Tuk-Tuk.",
         "pemanduan": "4 hours of Bolon houses & historic sites with a licensed guide.",
-        "fleksibel": "Guiding + 2-suitcase van delivery to Tuk-Tuk + tour voucher."
-      }
+        "fleksibel": "Guiding + 2-suitcase van delivery to Tuk-Tuk + tour voucher.",
+        "antarLintas": "Luggage delivery to Simanindo, Pangururan and other far points in a covered vehicle.",
+        "mystery": "A secret route themed around heritage sites or Lake Toba sunsets, revealed H-1 via WhatsApp."
+      },
+      "subtitle": "Choose a single service or a value bundle. Every rate is transparent and recorded on your digital receipt.",
+      "guarantee": "Insurance guarantee & full refund policy"
     },
     "testimonials": {
       "ratingLabel": "4.8 / 5.0 (3,200+ reviews)",
@@ -144,7 +153,24 @@
       "verifiedNote": "Verified reviews from customers who completed their orders."
     },
     "ctaTitle": "Ready to explore without your suitcase?",
-    "ctaSubtitle": "Book now — we confirm via WhatsApp once the admin verifies your payment."
+    "ctaSubtitle": "Book now — we confirm via WhatsApp once the admin verifies your payment.",
+    "heroRatingNote": "Trusted by domestic and international travellers",
+    "heroImage": {
+      "eyebrow": "Samosir Island · Lake Toba",
+      "title": "Arrive at the pier, start exploring.",
+      "desc": "We handle the luggage, you enjoy Toba."
+    },
+    "mystery": {
+      "tag": "Mystery Tour Toba",
+      "title": "Let Samosir keep a surprise for you.",
+      "desc": "A secret route revealed H-1: megalithic sites, traditional villages, or hidden sunset spots.",
+      "items": [
+        "Licensed local HPI guide",
+        "Includes storage for 1 suitcase per participant",
+        "Route order stays secret until H-1"
+      ],
+      "cta": "Book Mystery Tour"
+    }
   },
   "services": {
     "eyebrow": "Integrated Lake Toba Logistics Standard & Licensed Guides",
@@ -297,6 +323,34 @@
       "customTitle": "Need a custom route or a tour bus group?",
       "customDesc": "Contact the UNANG LOJA Pier Customer Service, 24 hours, via WhatsApp.",
       "customCta": "Chat with Pier WhatsApp"
+    },
+    "bookingFeatures": {
+      "eyebrow": "New Booking Features",
+      "title": "Luggage & Delivery Details You Can Choose",
+      "subtitle": "The booking form now follows Frame 4: luggage size, delivery mode, optional protection, and an optional guide on one page.",
+      "items": [
+        {
+          "title": "Choose Luggage Size",
+          "desc": "Cabin/backpack 20 inches, medium 24 inches, or large/trunk 28 inches. Size is recorded for locker capacity and handling.",
+          "note": "Storage rate stays Rp25,000/suitcase/day per SPEC."
+        },
+        {
+          "title": "Delivery Mode",
+          "desc": "Leave it at the locker, deliver directly to a nearby hotel, or cross-zone delivery to Simanindo/Pangururan.",
+          "note": "Delivery rates follow the official service list."
+        },
+        {
+          "title": "Protection Insurance",
+          "desc": "Add optional luggage protection at checkout. It is recorded as a separate line in the payment summary.",
+          "note": "Rp10,000 per suitcase."
+        },
+        {
+          "title": "Optional HPI Guide",
+          "desc": "Add a licensed HPI guide to your luggage service, or choose a guide from the directory.",
+          "note": "Rate follows the guide profile."
+        }
+      ],
+      "cta": "Open Booking Form"
     }
   },
   "guides": {
@@ -345,7 +399,10 @@
       "photo": "Photography & Landscapes",
       "culinary": "Cuisine & Ulos Weaving",
       "nature": "Trekking & Samosir Nature",
-      "architecture": "Rumah Bolon Architecture"
+      "architecture": "Rumah Bolon Architecture",
+      "sigale": "Sigale-gale & Traditional Village",
+      "culture": "Cultural Tourism",
+      "lake": "Nature & Lake"
     },
     "directory": {
       "title": "Verified Tour Guide Directory",
@@ -535,26 +592,32 @@
     "title": "Sealed Luggage Booking & Storage Form",
     "subtitle": "Drop your suitcase at the pier, enjoy Lake Toba unburdened — we deliver it straight to your hotel room, safely.",
     "steps": [
-      "Choose Service",
-      "Date & Location",
-      "Your Details",
-      "Payment"
+      "Service & Time",
+      "Luggage & Seal",
+      "HPI Guide",
+      "Contact & Payment"
     ],
     "stepOf": "Step {current} of {total}",
     "back": "Back",
     "next": "Continue",
     "step1": {
-      "title": "1. Choose a Service",
-      "select": "Pick one of the services below.",
+      "title": "1. Service & Drop-off Point",
+      "select": "Choose the main service",
       "theme": "Choose a Mystery Tour theme",
       "suggestions": "Suggestions for you",
       "add": "Add",
       "switch": "Switch to this bundle",
       "added": "Added",
-      "upsellNote": "Save {saving} compared to buying separately."
+      "upsellNote": "Save {saving} compared to buying separately.",
+      "dropoffTitle": "Drop-off / pick-up point",
+      "dropoffDesc": "Choose an official UNANG LOJA location to hand over your luggage.",
+      "destination": "Delivery destination (hotel / homestay)",
+      "destinationPlaceholder": "Example: Hotel Carolina, Tuk Tuk",
+      "time": "Estimated service time",
+      "timeNote": "Staff will confirm the exact time via WhatsApp."
     },
     "step2": {
-      "title": "2. Drop-off Point & Delivery Destination",
+      "title": "2. Luggage & Delivery Details",
       "date": "Service date",
       "dateMin": "Bookings start from the next day.",
       "meetingPoint": "Meeting point",
@@ -565,62 +628,123 @@
       },
       "suitcases": "Number of suitcases",
       "participants": "Number of participants",
-      "notes": "Special notes for the pier courier",
-      "notesPlaceholder": "e.g. Navy suitcase, contains a camera…"
+      "notes": "Notes for staff",
+      "notesPlaceholder": "Example: Navy suitcase, contains a camera, leave at reception…",
+      "sizeTitle": "Luggage size",
+      "sizeDesc": "Choose the closest size to your suitcase.",
+      "sizes": {
+        "kabin": {
+          "name": "Cabin Suitcase / Backpack",
+          "cap": "20 inches",
+          "desc": "Ideal for light 1–3 day trips."
+        },
+        "medium": {
+          "name": "Medium Suitcase",
+          "cap": "24 inches",
+          "desc": "The most common size for family trips."
+        },
+        "large": {
+          "name": "Large Suitcase / Trunk",
+          "cap": "28 inches",
+          "desc": "For bulky gear, diving equipment, or groups."
+        }
+      },
+      "deliveryTitle": "Delivery mode",
+      "deliveryDesc": "Choose how your luggage reaches its destination.",
+      "delivery": {
+        "titip": {
+          "name": "Storage Only",
+          "desc": "Luggage stays in the locker until you collect it."
+        },
+        "dekat": {
+          "name": "Direct Hotel Delivery (Zone 1)",
+          "desc": "Tuk Tuk, Tomok, Ambarita, and around the pier."
+        },
+        "lintas": {
+          "name": "Cross-zone Delivery",
+          "desc": "Simanindo, Pangururan, and farther points."
+        }
+      },
+      "securityTitle": "Luggage protection",
+      "sealIncluded": "4-side tamper-evident seal",
+      "sealIncludedDesc": "Required for every suitcase. Four-side photos are sent to your WhatsApp.",
+      "insurance": "Luggage protection insurance",
+      "insuranceDesc": "Add Rp10,000 per suitcase, recorded as a separate line.",
+      "suitcasesHint": "Max. 20 suitcases per order."
     },
     "step3": {
-      "title": "3. Contact Details",
+      "title": "3. HPI Tour Guide (Optional)",
       "name": "Full Name (as on ID / Passport)",
       "phone": "Active WhatsApp Number",
       "email": "Email Address",
       "referral": "Referral code (optional)",
       "referralNote": "Referral codes are only recorded for our recommendation program — no discounts.",
-      "summary": "Booking summary"
+      "summary": "Booking summary",
+      "desc": "Add a licensed HPI cultural guide. A guide can also be added to a luggage service.",
+      "noGuide": "No guide",
+      "noGuideDesc": "I only need the luggage service.",
+      "addGuide": "Add guide assistance",
+      "guideFee": "Guide rate",
+      "guideNote": "Rate follows the selected guide profile.",
+      "selected": "Selected guide"
     },
     "step4": {
-      "title": "4. Confirmation & Payment",
+      "title": "4. Contact Information & Payment",
       "method": "Payment method",
       "chooseMethod": "Choose a payment method",
       "methods": {
-        "bca": "Bank Transfer — BCA",
-        "bsi": "Bank Transfer — BSI",
-        "gopay": "E-wallet — GoPay",
-        "ovo": "E-wallet — OVO",
-        "dana": "E-wallet — DANA"
+        "bca": "BCA Bank Transfer",
+        "bsi": "BSI Bank Transfer",
+        "gopay": "GoPay e-wallet",
+        "ovo": "OVO e-wallet",
+        "dana": "DANA e-wallet"
       },
-      "account": "Account number",
+      "account": "Destination account",
       "holder": "a.n. UNANG LOJA",
-      "amount": "Total to pay",
+      "amount": "Amount due",
       "upload": "Upload payment proof",
-      "uploadHint": "JPG/PNG/WEBP up to 2 MB. You can also send it to the admin via WhatsApp.",
-      "note": "Payments are verified manually by the admin (no payment gateway). Once paid, your booking locks the guide slot and you receive a confirmation.",
-      "submit": "Send Booking & Issue Receipt",
-      "uploading": "Selected file: {file}"
+      "uploadHint": "JPG/PNG/WEBP, maximum 2 MB. You can also send it to the admin WhatsApp.",
+      "note": "Payments are verified manually by an admin (no payment gateway). Once paid, your guide slot is locked and you receive confirmation.",
+      "submit": "Submit Order & Create Receipt",
+      "uploading": "Selected proof: {file}",
+      "contactTitle": "Contact information",
+      "language": "Communication language",
+      "languages": {
+        "id": "Indonesian",
+        "en": "English",
+        "de": "Deutsch",
+        "zh": "Mandarin",
+        "btk": "Batak Toba"
+      }
     },
     "sidebar": {
-      "title": "Booking Summary",
+      "title": "Reservation Summary",
       "calc": "Transparent Calculator",
       "total": "Total Payment",
-      "totalNote": "*Final price includes handling & VAT (PPN 11%).",
-      "cta": "Continue to Payment & Issue Receipt",
+      "totalNote": "*Final price includes handling and seal. Taxes follow applicable regulations.",
+      "cta": "Continue to Payment & Create Receipt",
       "methods": "Official Payment Methods",
       "guarantees": {
-        "title": "UNANG LOJA Service Guarantees",
+        "title": "UNANG LOJA Service Guarantee",
         "items": [
           {
             "title": "Integrated 4-Side Security Seal",
-            "desc": "The suitcase cannot be opened without breaking the serial number."
+            "desc": "The suitcase cannot be opened without damaging the serial number and barcode."
           },
           {
-            "title": "On-Time Check-In Guarantee",
-            "desc": "Luggage arrives at the hotel lobby before your check-in."
+            "title": "On-time Check-in Guarantee",
+            "desc": "Your luggage reaches the hotel lobby before your rest time."
           },
           {
             "title": "Official HPI Samosir Staff",
             "desc": "All guides are registered and licensed by DPC HPI Samosir Regency."
           }
         ]
-      }
+      },
+      "route": "Route",
+      "schedule": "Schedule",
+      "bags": "Luggage",
+      "due": "Amount Due"
     },
     "success": {
       "eyebrow": "Order Received",
@@ -700,6 +824,22 @@
         "desc": "Do not accept your suitcase at the hotel reception if any seal strip is torn or the serial number doesn't match the WhatsApp archive photos.",
         "staff": "Tomok Hub Staff",
         "courier": "Field Delivery Courier"
+      },
+      "digitalLabel": "Digital Receipt Voucher",
+      "printNote": "The PDF is created through your browser print dialog. The digital voucher stays on screen.",
+      "receipt": {
+        "title": "UNANG LOJA DIGITAL RECEIPT",
+        "subtitle": "Proof of booking for storage, delivery, and guiding services.",
+        "issuedTo": "Issued to",
+        "service": "Service",
+        "route": "Route",
+        "schedule": "Schedule",
+        "bags": "Luggage",
+        "payment": "Payment",
+        "total": "Total",
+        "seal": "Seal",
+        "note": "Show this receipt to staff. Payment status is verified manually by an admin.",
+        "footer": "UNANG LOJA · Samosir, Lake Toba · +62 812-6800-8622"
       }
     },
     "errors": {
@@ -707,7 +847,9 @@
       "date": "Please choose a service date.",
       "contact": "Please fill in your name and WhatsApp number.",
       "payment": "Please choose a payment method first.",
-      "proof": "Payment proof must be JPG/PNG/WEBP, max 2 MB."
+      "proof": "Payment proof must be JPG/PNG/WEBP, max 2 MB.",
+      "destination": "Please enter the hotel/homestay delivery destination for delivery mode.",
+      "phone": "WhatsApp number must be at least 8 digits."
     },
     "guideSelected": "Selected guide",
     "guideChange": "Change guide",
@@ -715,16 +857,19 @@
     "accountCta": "View my orders",
     "guestNote": "Order saved. Sign in so you can easily track its status.",
     "accountHint": "Sign in to save this order to your account.",
-    "loginLink": "Sign in"
+    "loginLink": "Sign in",
+    "submitting": "Processing your order…",
+    "submitError": "Could not create the order. Please try again.",
+    "networkError": "Connection failed. Check your network and try again."
   },
   "status": {
-    "title": "Suitcase Delivery Status Tracking",
-    "badge": "Anti-Tamper Seal Active",
-    "subtitle": "Enter your order number or luggage receipt number.",
+    "title": "Track Your Luggage Status & Journey",
+    "badge": "Pier Staff Checkpoint",
+    "subtitle": "Enter your receipt number to see staff checkpoints, luggage details, and your digital receipt voucher.",
     "placeholder": "Enter your order number, e.g. UL-20261119-0001",
     "search": "Check Receipt",
-    "otherCta": "Check Another Receipt",
-    "downloadCta": "Download Delivery Letter",
+    "otherCta": "Track Another Receipt",
+    "downloadCta": "Download PDF Proof",
     "sample": "Try a sample receipt",
     "notFound": "Order not found. Check your order/receipt number again or contact the admin via WhatsApp.",
     "hero": {
@@ -855,7 +1000,80 @@
       "PENDING": "Awaiting verification",
       "PAID": "Verified",
       "REJECTED": "Rejected"
-    }
+    },
+    "copy": "Copy Code",
+    "copied": "Copied",
+    "liveNote": "Status is updated manually by an admin — not real-time GPS tracking.",
+    "checkpoints": [
+      {
+        "title": "Order Received",
+        "desc": "Your order is recorded and awaiting admin confirmation."
+      },
+      {
+        "title": "Payment Verified",
+        "desc": "An admin verifies your payment proof."
+      },
+      {
+        "title": "Luggage Received & Sealed",
+        "desc": "Staff receive the suitcase, install 4-side seals, and take photos."
+      },
+      {
+        "title": "In Transit",
+        "desc": "Luggage is transported to the hotel or destination point."
+      },
+      {
+        "title": "Arrived at Destination",
+        "desc": "Luggage arrives at reception or the handover point."
+      },
+      {
+        "title": "Completed",
+        "desc": "Luggage is received by the owner and the order is complete."
+      }
+    ],
+    "summary": {
+      "title": "Order Summary",
+      "order": "Receipt Number",
+      "customer": "Owner",
+      "service": "Service",
+      "schedule": "Date",
+      "route": "Origin",
+      "bags": "Luggage Count",
+      "seal": "Seal Code",
+      "payment": "Payment",
+      "total": "Total",
+      "guide": "Guide"
+    },
+    "voucher": {
+      "title": "Digital Receipt Voucher",
+      "subtitle": "Show or download this receipt when handing over your luggage.",
+      "label": "DIGITAL RECEIPT",
+      "issued": "Issued to",
+      "service": "Service",
+      "route": "Route",
+      "schedule": "Schedule",
+      "bags": "Luggage",
+      "seal": "Seal",
+      "payment": "Payment",
+      "total": "Total",
+      "note": "The digital voucher is shown on screen. PDF is available as a separate download."
+    },
+    "mapNote": "Operational route illustration, not real-time GPS tracking.",
+    "destinationNote": "Hotel and recipient details are confirmed by an admin via WhatsApp.",
+    "statusLabels": {
+      "BARU": "New",
+      "DIKONFIRMASI": "Confirmed",
+      "DITUGASKAN": "Staff Assigned",
+      "DIJEMPUT": "In Transit",
+      "SELESAI": "Completed",
+      "BATAL": "Cancelled"
+    },
+    "checkpointDone": "Completed",
+    "checkpointCurrent": "In progress",
+    "checkpointWaiting": "Waiting",
+    "timelineTitle": "Luggage Journey Status",
+    "timelineDesc": "Six staff checkpoints from order received to luggage completion.",
+    "searching": "Checking…",
+    "receiptPrint": "Print / Save PDF"
   },
   "help": {
     "title": "Help Center, FAQ & Community Reviews",
@@ -924,7 +1142,8 @@
     "emergency": "Pier Emergency Help Center",
     "hotlineLabel": "24-Hour Pier Hotline",
     "secureBadge": "Protected 4-Side Seal",
-    "partnerBadge": "Official DPC HPI Samosir Partner"
+    "partnerBadge": "Official DPC HPI Samosir Partner",
+    "adminPortal": "Admin Portal"
   },
   "admin": {
     "title": "Admin Dashboard",
@@ -996,7 +1215,20 @@
     "benefit1": "Order history saved",
     "benefit2": "Upload payment proof",
     "benefit3": "Track status & luggage seals",
-    "passwordPlaceholder": "At least 8 characters"
+    "passwordPlaceholder": "At least 8 characters",
+    "forgotPassword": "Forgot your password?"
+  },
+  "forgot": {
+    "eyebrow": "ACCOUNT HELP",
+    "title": "Forgot Your Password?",
+    "subtitle": "For your security, password resets are verified and performed by a UNANG LOJA admin. We do not send automated reset links because email delivery is not configured.",
+    "steps": {
+      "0": "Prepare your registered email address and WhatsApp number.",
+      "1": "Contact the admin on WhatsApp with the subject “UNANG LOJA password reset”.",
+      "2": "The admin will verify your identity before changing your password."
+    },
+    "whatsapp": "Contact admin on WhatsApp",
+    "back": "Back to sign in"
   },
   "account": {
     "badge": "CUSTOMER DASHBOARD",

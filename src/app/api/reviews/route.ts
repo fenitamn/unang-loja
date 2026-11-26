@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 import { getSession, sameOrigin } from "@/lib/auth";
 import { createReview, getOrderByResi, listReviews, storeAvailable } from "@/lib/store";
 
-/** GET /api/reviews — ulasan yang sudah dipublikasikan. */
+/** GET /api/reviews — ulasan publik; hanya untuk pengguna yang sudah login. */
 export async function GET() {
+  const user = await getSession();
+  if (!user) return NextResponse.json({ error: "Silakan masuk." }, { status: 401 });
   if (!storeAvailable()) return NextResponse.json({ reviews: [] });
   try {
     const reviews = await listReviews();

@@ -18,12 +18,30 @@ type SortKey = "rating" | "experience" | "price";
 
 const AREA_KEYS: GuideArea[] = ["tomok", "tuktuk", "pusuk", "holbung"];
 const CATEGORY_KEYS: GuideCategory[] = [
+  "sigale",
+  "culture",
+  "lake",
   "history",
   "photo",
   "culinary",
   "nature",
   "architecture",
 ];
+
+/**
+ * Kategori baru tidak selalu tersimpan di database lama. Pencocokan kata kunci
+ * membuat filter tetap menghasilkan pemandu yang relevan tanpa migrasi data.
+ */
+const CATEGORY_KEYWORDS: Partial<Record<GuideCategory, RegExp>> = {
+  sigale: /(sigale|tari|edukasi|dongeng|desa adat|boneka)/i,
+  culture: /(budaya|adat|sejarah|megalitik|ulos|rumah bolon|arsitektur|huta)/i,
+  lake: /(danau|toba|sunset|senja|alam|trekking|holbung|pusuk|lanskap|fotografi)/i,
+  history: /(sejarah|megalitik|sidabutar|siallagan|raja|makam)/i,
+  photo: /(fotografi|lanskap|sunset|senja|spot foto)/i,
+  culinary: /(kuliner|gastronomi|kopi|ulos|tenun|pasar|makanan)/i,
+  nature: /(alam|trekking|holbung|bukit|gunung|danau)/i,
+  architecture: /(arsitektur|rumah bolon|gorga|konservasi|cagar budaya)/i,
+};
 const LANGUAGE_OPTIONS = [
   "Batak Toba",
   "Indonesia",
@@ -130,7 +148,11 @@ export default function GuideDirectory({ guides = GUIDES }: { guides?: Guide[] }
       const matchArea = area === "all" || g.area === area;
       const matchLang =
         lang === "all" || g.languages.some((l) => l === lang);
-      const matchCategory = category === "all" || g.category === category;
+      const categoryText = `${specialty} ${cert} ${focus} ${t(`categories.${g.category}`)}`.toLowerCase();
+      const matchCategory =
+        category === "all" ||
+        g.category === category ||
+        Boolean(CATEGORY_KEYWORDS[category]?.test(categoryText));
       return matchQuery && matchArea && matchLang && matchCategory;
     });
 

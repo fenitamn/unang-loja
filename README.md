@@ -7,6 +7,7 @@ pelacakan resi, dan portal admin untuk memproses pesanan.
 - Produksi: Next.js 16 (App Router, Turbopack), React 19, Tailwind CSS 4, next-intl.
 - Data: Supabase (produksi) atau file JSON lokal (pengembangan/uji).
 - Autentikasi: email + kata sandi, hash `scrypt`, cookie sesi HttpOnly bertanda tangan HMAC.
+  Seluruh halaman pelanggan wajib login; hanya masuk/daftar/lupa sandi dan login admin yang publik.
 - Pembayaran: transfer bank / dompet digital manual, unggah bukti, verifikasi oleh admin.
 - Tanpa payment gateway dan tanpa data transaksi palsu. Bila database/server belum
   dikonfigurasi, aplikasi menampilkan pesan konfigurasi, bukan transaksi simulasi.
@@ -110,13 +111,13 @@ Status pembayaran: `UNPAID`, `PENDING`, `PAID`, `REJECTED`.
 
 | Route | Akses | Keterangan |
 |---|---|---|
-| `/`, `/[locale]` | Publik | Beranda. |
-| `/[locale]/layanan` | Publik | Layanan & tarif. |
-| `/[locale]/pemandu` | Publik | Direktori pemandu. |
-| `/[locale]/pesan` | Publik | Formulir pemesanan 4 langkah. |
-| `/[locale]/status` | Publik | Pelacakan resi tersanitasi. |
-| `/[locale]/bantuan` | Publik | FAQ, WhatsApp, form ulasan. |
-| `/[locale]/masuk`, `/[locale]/daftar` | Publik | Autentikasi pelanggan. |
+| `/`, `/[locale]` | Wajib login | Beranda. |
+| `/[locale]/layanan` | Wajib login | Layanan & tarif. |
+| `/[locale]/pemandu` | Wajib login | Direktori pemandu. |
+| `/[locale]/pesan` | Wajib login | Formulir pemesanan 4 langkah. |
+| `/[locale]/status` | Wajib login | Pelacakan resi milik sendiri (admin: semua resi). |
+| `/[locale]/bantuan` | Wajib login | FAQ, WhatsApp, form ulasan. |
+| `/[locale]/masuk`, `/[locale]/daftar`, `/[locale]/lupa-sandi` | Publik | Autentikasi & bantuan akun. |
 | `/[locale]/akun` | Pelanggan | Dashboard & profil pelanggan. |
 | `/[locale]/akun/pesanan/[resi]` | Pelanggan | Detail pesanan, bukti bayar, ulasan. |
 | `/[locale]/admin` | Publik | Login Admin Portal. |
@@ -133,7 +134,15 @@ Status pembayaran: `UNPAID`, `PENDING`, `PAID`, `REJECTED`.
 
 API internal: `/api/auth/*`, `/api/orders`, `/api/orders/[id]`, `/api/account`,
 `/api/account/orders/[id]/proof`, `/api/track`, `/api/reviews`, dan `/api/admin/*`.
-Semua endpoint mutasi memeriksa origin, sesi, dan role di server.
+Semua endpoint mutasi memeriksa origin, sesi, dan role di server. Endpoint data
+pelanggan hanya mengembalikan data milik sesi tersebut; endpoint admin menolak
+pelanggan dengan `401`.
+
+> **Catatan autentikasi:** repo ini memakai autentikasi aplikasi di atas tabel
+> `app_users` Supabase (password `scrypt`, cookie HMAC HttpOnly). Supabase Auth/
+> GoTrue belum dikonfigurasi di repo ini (tidak ada `@supabase/ssr` atau kunci
+> anon), sehingga tidak diaktifkan agar akun lama tidak terkunci. Bila ingin
+> migrasi ke Supabase Auth, siapkan kunci anon + migrasi pengguna lebih dahulu.
 
 ## Build & deploy
 
@@ -156,7 +165,8 @@ Untuk Vercel:
 - Kata sandi di-hash `scrypt` dengan salt acak; sesi HttpOnly + SameSite=Lax.
 - Setiap halaman/API admin memeriksa role dari sesi server, bukan hanya UI.
 - Pelanggan hanya dapat membaca pesanan miliknya sendiri.
-- Endpoint lacak publik tidak mengembalikan telepon, email, atau bukti bayar.
+- Endpoint lacak hanya untuk pengguna login: pelanggan hanya melihat resi miliknya,
+  admin dapat melihat semua resi. Telepon, email, dan bukti bayar tidak dikembalikan.
 - Rate limit dasar pada login dan registrasi.
 - Pelacakan status bersifat manual (diperbarui admin), bukan GPS real-time.
 - Ulasan hanya dapat dikirim untuk pesanan `SELESAI` milik sendiri dan menunggu moderasi.

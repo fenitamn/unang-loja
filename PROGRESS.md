@@ -6,14 +6,14 @@ Terakhir diperbarui: 20 November 2026.
 
 | Fase | Status |
 |---|---|
-| 1. Halaman publik, dua bahasa, responsif, data awal | Selesai |
+| 1. Halaman pelanggan (wajib login), dua bahasa, responsif, data awal | Selesai |
 | 2. Database + pemesanan + pembayaran + resi + status | Selesai (Supabase + fallback file lokal untuk dev) |
 | 3. Panel admin + aturan bisnis | Selesai |
 | 4. Ulasan persisten, referral, SEO, README deploy | Selesai untuk inti; referral hanya dicatat (tanpa diskon) |
 
 ## Ringkasan implementasi
 
-### Publik
+### Halaman pelanggan (wajib login)
 
 - Beranda, layanan/tarif, direktori pemandu, formulir pemesanan 4 langkah, status resi,
   bantuan/FAQ, dan dua bahasa (ID/EN) dengan desain navy–maroon–gold–cream.
@@ -29,8 +29,10 @@ Terakhir diperbarui: 20 November 2026.
 ### Pelanggan
 
 - Registrasi/login email + kata sandi, hash `scrypt`, cookie sesi HttpOnly bertanda tangan.
+  Semua halaman pelanggan dilindungi di server; hanya masuk/daftar/lupa sandi yang publik.
 - Dashboard akun, detail pesanan, unggah ulang bukti bayar (maks. 2 MB), dan form ulasan.
-- Pesanan yang dibuat saat login terhubung ke `customer_id`; pesanan tamu tetap diizinkan.
+- Pesanan hanya dapat dibuat setelah login dan terhubung ke `customer_id`; pelacakan
+  pelanggan dibatasi ke resi miliknya (admin dapat melihat semua resi).
 - Ulasan hanya untuk pesanan `SELESAI` milik sendiri dan menunggu moderasi admin.
 
 ### Admin

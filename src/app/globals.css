@@ -117,3 +117,39 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Voucher PDF: hanya blok resi yang dicetak, bukan seluruh halaman. */
+.print-receipt {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print-receipt {
+    display: block !important;
+    visibility: visible;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background: #fff;
+  }
+
+  .print-receipt * {
+    visibility: visible;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

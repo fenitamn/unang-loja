@@ -1,11 +1,12 @@
+import { headers } from "next/headers";
 import { setRequestLocale } from "next-intl/server";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { getSession } from "@/lib/auth";
+import { requireUserPage, safeNextPath } from "@/lib/auth";
 
-// Header menampilkan sesi pengguna, jadi semua halaman situs harus dirender
-// dinamis. Tanpa ini Next.js mencoba static generation dan `cookies()` gagal.
+// Header dan guard sesi membaca cookie, jadi seluruh halaman situs dirender
+// dinamis. Guard di layout ini melindungi semua halaman pelanggan sekaligus.
 export const dynamic = "force-dynamic";
 
 export default async function SiteLayout({
@@ -17,11 +18,16 @@ export default async function SiteLayout({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const user = await getSession();
+
+  // Proxy meneruskan pathname asli agar pengguna kembali ke halaman yang
+  // dituju setelah berhasil masuk.
+  const requestedPath = (await headers()).get("x-ul-pathname");
+  const nextPath = safeNextPath(requestedPath) ?? `/${locale}`;
+  const user = await requireUserPage(locale, nextPath);
 
   return (
     <>
-      <Header user={user ? { name: user.name, role: user.role } : null} />
+      <Header user={{ name: user.name, role: user.role }} />
       <main className="flex-1">{children}</main>
       <WhatsAppFloat />
       <Footer />
