@@ -78,13 +78,14 @@ export const MEETING_POINTS = [
 ] as const;
 
 export type GuideCategory =
-  | "history"
-  | "photo"
-  | "culinary"
+  | "culture"
   | "nature"
+  | "adventure"
+  | "culinary"
+  | "photo"
+  | "history"
   | "architecture"
   | "sigale"
-  | "culture"
   | "lake";
 
 export type GuideArea = "tomok" | "tuktuk" | "pusuk" | "holbung";

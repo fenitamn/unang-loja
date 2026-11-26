@@ -17,30 +17,34 @@ import { StarRow } from "@/components/ui";
 type SortKey = "rating" | "experience" | "price";
 
 const AREA_KEYS: GuideArea[] = ["tomok", "tuktuk", "pusuk", "holbung"];
+/**
+ * 5 Pilar Kategori Wisata Tematik Samosir:
+ * Disederhanakan dari 8 subkategori agar wisatawan mudah memilih tanpa bingung.
+ * Semua pemandu dipetakan secara dinamis ke 5 pilar ini menggunakan CATEGORY_KEYWORDS.
+ */
 const CATEGORY_KEYS: GuideCategory[] = [
-  "sigale",
   "culture",
-  "lake",
-  "history",
-  "photo",
-  "culinary",
   "nature",
-  "architecture",
+  "adventure",
+  "culinary",
+  "photo",
 ];
 
 /**
- * Kategori baru tidak selalu tersimpan di database lama. Pencocokan kata kunci
- * membuat filter tetap menghasilkan pemandu yang relevan tanpa migrasi data.
+ * Kategori tematik dipetakan dengan pencocokan kata kunci agar pemandu
+ * dapat ditemukan secara akurat tanpa perlu migrasi basis data.
  */
 const CATEGORY_KEYWORDS: Partial<Record<GuideCategory, RegExp>> = {
-  sigale: /(sigale|tari|edukasi|dongeng|desa adat|boneka)/i,
-  culture: /(budaya|adat|sejarah|megalitik|ulos|rumah bolon|arsitektur|huta)/i,
-  lake: /(danau|toba|sunset|senja|alam|trekking|holbung|pusuk|lanskap|fotografi)/i,
-  history: /(sejarah|megalitik|sidabutar|siallagan|raja|makam)/i,
-  photo: /(fotografi|lanskap|sunset|senja|spot foto)/i,
-  culinary: /(kuliner|gastronomi|kopi|ulos|tenun|pasar|makanan)/i,
-  nature: /(alam|trekking|holbung|bukit|gunung|danau)/i,
-  architecture: /(arsitektur|rumah bolon|gorga|konservasi|cagar budaya)/i,
+  culture:
+    /(budaya|adat|sejarah|megalitik|sidabutar|siallagan|sigale|tari|rumah bolon|arsitektur|gorga|makam|huta)/i,
+  nature:
+    /(alam|danau|toba|geowisata|holbung|bukit|air terjun|efrata|tele|geopark)/i,
+  adventure:
+    /(trekking|petualangan|hiking|pusuk buhit|pendakian|sianjur|bukit|jelajah|gunung)/i,
+  culinary:
+    /(kuliner|gastronomi|kopi|ulos|tenun|pasar|makanan|lumban)/i,
+  photo:
+    /(fotografi|lanskap|sunset|senja|spot foto|golden hour|panorama)/i,
 };
 const LANGUAGE_OPTIONS = [
   "Batak Toba",
@@ -148,7 +152,9 @@ export default function GuideDirectory({ guides = GUIDES }: { guides?: Guide[] }
       const matchArea = area === "all" || g.area === area;
       const matchLang =
         lang === "all" || g.languages.some((l) => l === lang);
-      const categoryText = `${specialty} ${cert} ${focus} ${t(`categories.${g.category}`)}`.toLowerCase();
+      const quote = t(`people.${g.id}.quote`).toLowerCase();
+      const categoryText =
+        `${specialty} ${cert} ${focus} ${quote} ${g.scene} ${t(`categories.${g.category}`)} ${g.category}`.toLowerCase();
       const matchCategory =
         category === "all" ||
         g.category === category ||
@@ -412,6 +418,50 @@ export default function GuideDirectory({ guides = GUIDES }: { guides?: Guide[] }
           </button>
         </nav>
       )}
+
+      {/* ================= BANNER KEMITRAAN PRAMUWISATA DPC HPI ================= */}
+      <div className="card mt-10 overflow-hidden border-2 border-gold-200/80 bg-gradient-to-br from-cream to-white p-6 shadow-sm md:p-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-gold-800">
+              <IconShield className="h-3.5 w-3.5 text-gold-700" />
+              {t("partnership.badge")}
+            </span>
+            <h3 className="mt-3 font-serif text-xl font-bold text-navy-900 md:text-2xl">
+              {t("partnership.title")}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+              {t("partnership.subtitle")}
+            </p>
+            <div className="mt-3 flex items-center gap-2 text-xs font-semibold text-brand-700">
+              <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
+              {t("partnership.requirements")}
+            </div>
+          </div>
+          <div className="shrink-0">
+            <a
+              href="https://wa.me/6281268008622?text=Halo%20Admin%20UNANG%20LOJA%2C%20saya%20pramuwisata%20berlisensi%20HPI%20di%20Samosir%20dan%20ingin%20mendaftar%20sebagai%20mitra%20pemandu."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-emerald-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+            >
+              <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29" />
+              </svg>
+              {t("partnership.cta")}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= DISCLAIMER KEMITRAAN & PRIVASI (UU PDP) ================= */}
+      <div className="mt-4 flex items-start gap-3 rounded-xl border border-line bg-cream/60 p-4 text-xs text-ink-soft">
+        <IconShield className="mt-0.5 h-4 w-4 shrink-0 text-navy-700" />
+        <div>
+          <span className="font-bold text-navy-900">{t("partnership.disclaimerTitle")}: </span>
+          <span>{t("partnership.disclaimerText")}</span>
+        </div>
+      </div>
 
       {/* Modal profil pemandu */}
       {active && (

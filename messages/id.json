@@ -395,13 +395,14 @@
     },
     "categories": {
       "all": "Semua Pemandu",
+      "culture": "Sejarah & Budaya Batak",
+      "nature": "Alam & Geowisata Toba",
+      "adventure": "Trekking & Petualangan",
+      "culinary": "Kuliner & Kampung Ulos",
+      "photo": "Fotografi & Spot Senja",
       "history": "Sejarah & Megalitikum",
-      "photo": "Fotografi & Lanskap",
-      "culinary": "Kuliner & Kerajinan Ulos",
-      "nature": "Trekking & Alam Samosir",
       "architecture": "Arsitektur Rumah Bolon",
       "sigale": "Sigale-gale & Desa Adat",
-      "culture": "Wisata Budaya",
       "lake": "Wisata Alam & Danau"
     },
     "directory": {
@@ -425,6 +426,15 @@
       "officialBadge": "DPC HPI Samosir Resmi",
       "empty": "Tidak ada pemandu yang cocok dengan filter Anda.",
       "years": "tahun"
+    },
+    "partnership": {
+      "badge": "Peluang Kemitraan Resmi DPC HPI",
+      "title": "Anda Pramuwisata Berlisensi di Samosir?",
+      "subtitle": "UNANG LOJA membuka kemitraan resmi dengan rekan-rekan pramuwisata DPC HPI (Himpunan Pramuwisata Indonesia) Kabupaten Samosir. Dapatkan pesanan tur wisatawan secara digital, transparan, dan terpercaya.",
+      "cta": "Daftar Jadi Mitra via WhatsApp",
+      "requirements": "Wajib memiliki KTP & Lisensi Pemandu Resmi (KPP/KTK) yang masih aktif",
+      "disclaimerTitle": "Kemitraan Resmi & Perlindungan Privasi (UU PDP)",
+      "disclaimerText": "Seluruh profil dan penugasan pramuwisata di platform UNANG LOJA dikoordinasikan secara kemitraan resmi bersama DPC HPI Kabupaten Samosir. Kami menjunjung tinggi kode etik pariwisata dan regulasi perlindungan data pribadi: profil ditampilkan secara etis untuk kepastian reservasi tanpa mempublikasikan informasi pribadi tanpa izin."
     },
     "pagination": {
       "prev": "Sebelumnya",

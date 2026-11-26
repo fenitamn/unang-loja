@@ -395,13 +395,14 @@
     },
     "categories": {
       "all": "All Guides",
+      "culture": "Batak History & Culture",
+      "nature": "Toba Nature & Geotourism",
+      "adventure": "Trekking & Adventure",
+      "culinary": "Culinary & Ulos Weaving",
+      "photo": "Photography & Sunset Spots",
       "history": "History & Megaliths",
-      "photo": "Photography & Landscapes",
-      "culinary": "Cuisine & Ulos Weaving",
-      "nature": "Trekking & Samosir Nature",
       "architecture": "Rumah Bolon Architecture",
       "sigale": "Sigale-gale & Traditional Village",
-      "culture": "Cultural Tourism",
       "lake": "Nature & Lake"
     },
     "directory": {
@@ -425,6 +426,15 @@
       "officialBadge": "Official DPC HPI Samosir",
       "empty": "No guides match your filters.",
       "years": "years"
+    },
+    "partnership": {
+      "badge": "Official Partnership Opportunity",
+      "title": "Are You a Licensed Guide in Samosir?",
+      "subtitle": "UNANG LOJA partners with the Indonesian Tour Guide Association (DPC HPI) Samosir Regency. Register to connect with domestic and international travelers digitally with a transparent commission system.",
+      "cta": "Register as a Partner via WhatsApp",
+      "requirements": "Must hold an active official HPI tour guide license (KPP/KTK)",
+      "disclaimerTitle": "Official Partnership & Privacy Protection",
+      "disclaimerText": "All tour guide assignments on UNANG LOJA are coordinated officially in partnership with DPC HPI Samosir Regency. We uphold tourism codes of ethics and personal data protection regulations: personas and credentials are displayed in a verified manner for booking security without publishing sensitive personal data without consent."
     },
     "pagination": {
       "prev": "Previous",
