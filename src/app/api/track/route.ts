@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { getOrderByResi, listGuides, storeAvailable } from "@/lib/store";
+import { getOrderByResi, listGuides, storeAvailable, updateOrder } from "@/lib/store";
+import { normalizeResi } from "@/lib/data";
 
-/** GET /api/track?resi=UL-... — data pelacakan milik pelanggan login (admin: semua). */
+/** GET /api/track?resi=UL-... — data pelacakan publik (aman: tidak ada bukti bayar / kontak pribadi). */
 export async function GET(req: NextRequest) {
-  const user = await getSession();
-  if (!user) {
-    return NextResponse.json({ error: "Silakan masuk untuk melacak pesanan." }, { status: 401 });
-  }
-
-  const resi = req.nextUrl.searchParams.get("resi")?.trim().toUpperCase();
+  const rawResi = req.nextUrl.searchParams.get("resi") ?? "";
+  const resi = normalizeResi(rawResi);
   if (!resi) {
     return NextResponse.json({ error: "Resi wajib diisi." }, { status: 400 });
   }
@@ -19,10 +16,21 @@ export async function GET(req: NextRequest) {
 
   try {
     const order = await getOrderByResi(resi);
-    if (!order || (user.role !== "admin" && order.customer_id !== user.id)) {
-      // Jangan bocorkan keberadaan pesanan milik pelanggan lain.
+    if (!order) {
       return NextResponse.json({ error: "Resi tidak ditemukan." }, { status: 404 });
     }
+
+    const user = await getSession();
+    // Jika pelanggan sedang login dan pesanan cocok (atau belum tertaut customer_id), sinkronkan otomatis ke database
+    if (user && user.role === "customer" && !order.customer_id) {
+      if (
+        (order.email && user.email && order.email.toLowerCase() === user.email.toLowerCase()) ||
+        (order.phone && user.phone && order.phone.replace(/\D/g, "") === user.phone.replace(/\D/g, ""))
+      ) {
+        await updateOrder(order.id, { customer_id: user.id }).catch(() => null);
+      }
+    }
+
     const guides = await listGuides();
     const guide = order.guide_id ? guides.find((g) => g.id === order.guide_id) : null;
 

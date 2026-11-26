@@ -10,7 +10,7 @@
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { GUIDES, SERVICES, type ServiceKey } from "@/lib/data";
+import { GUIDES, SERVICES, normalizeResi, type ServiceKey } from "@/lib/data";
 import { getDb, isDbConfigured } from "@/lib/supabase";
 
 export type Role = "admin" | "customer";
@@ -382,15 +382,18 @@ export async function getOrderById(id: string): Promise<OrderRecord | null> {
 }
 
 export async function getOrderByResi(resi: string): Promise<OrderRecord | null> {
-  const normalized = resi.trim().toUpperCase();
+  const normalized = normalizeResi(resi);
+  const rawTrimmed = resi.trim().toUpperCase();
   if (storageMode() === "local") {
     const db = await readLocal();
-    return db.orders.find((o) => o.resi === normalized) ?? null;
+    return (
+      db.orders.find((o) => o.resi === normalized || o.resi === rawTrimmed) ?? null
+    );
   }
   const { data } = await getDb()
     .from("orders")
     .select("*")
-    .eq("resi", normalized)
+    .or(`resi.eq.${normalized},resi.eq.${rawTrimmed}`)
     .maybeSingle<OrderRecord>();
   return data ?? null;
 }

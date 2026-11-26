@@ -4,6 +4,7 @@ import { EmptyState, PageHeader, Panel } from "@/components/admin/AdminUI";
 import Icon from "@/components/admin/Icon";
 import OrderCard from "@/components/admin/OrderCard";
 import { listGuides, listOrders, type OrderRecord } from "@/lib/store";
+import { normalizeResi } from "@/lib/data";
 
 export default async function AdminOrdersPage({
   params,
@@ -22,10 +23,12 @@ export default async function AdminOrdersPage({
   ]);
 
   const needle = q.trim().toLowerCase();
+  const cleanResi = normalizeResi(q).toLowerCase();
   const filtered = orders.filter((order) => {
     const matchQ =
       !needle ||
       order.resi.toLowerCase().includes(needle) ||
+      (cleanResi && order.resi.toLowerCase().includes(cleanResi)) ||
       order.name.toLowerCase().includes(needle) ||
       order.phone.includes(needle) ||
       order.meeting_point.toLowerCase().includes(needle);

@@ -62,6 +62,22 @@ export const getWhatsAppLink = (message?: string) => {
 };
 
 /**
+ * Normalisasi nomor resi / kode pesanan:
+ * - Menghilangkan tanda baca di awal/akhir (mis. titik dari kalimat seperti "UL-20261126-5308.")
+ * - Menangani variasi format spasi, huruf kecil, dan nomor 12 digit (YYYYMMDDXXXX).
+ */
+export function normalizeResi(raw: string): string {
+  if (!raw) return "";
+  const trimmed = raw.trim();
+  const cleaned = trimmed.replace(/^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$/g, "").toUpperCase();
+  const digitsOnly = cleaned.replace(/[^0-9]/g, "");
+  if (digitsOnly.length === 12) {
+    return `UL-${digitsOnly.slice(0, 8)}-${digitsOnly.slice(8)}`;
+  }
+  return cleaned;
+}
+
+/**
  * Nomor tujuan pembayaran. Isi lewat environment publik sebelum menerima
  * pembayaran nyata; tanpa konfigurasi, pelanggan diarahkan ke admin via WhatsApp
  * agar tidak pernah melihat nomor rekening contoh sebagai tujuan transfer.

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { MEETING_POINTS } from "@/lib/data";
+import { MEETING_POINTS, normalizeResi } from "@/lib/data";
 
 const DESTINATIONS = [
   "Hotel Carolina, Tuk Tuk",
@@ -34,7 +34,8 @@ export default function WidgetTabs() {
   }
 
   function searchResi() {
-    router.push(resi.trim() ? `/status?q=${encodeURIComponent(resi.trim())}` : "/status");
+    const clean = normalizeResi(resi);
+    router.push(clean ? `/status?q=${encodeURIComponent(clean)}` : "/status");
   }
 
   return (

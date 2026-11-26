@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { formatIDR, type ServiceKey } from "@/lib/data";
+import { formatIDR, normalizeResi, type ServiceKey } from "@/lib/data";
 import { Eyebrow } from "@/components/ui";
 
 const PAYMENT_METHOD_LABEL: Record<string, string> = {
@@ -154,14 +154,14 @@ export default function StatusLookup({
   const t = useTranslations("status");
   const ts = useTranslations("services");
   const locale = useLocale();
-  const [query, setQuery] = useState(initialQuery);
+  const [query, setQuery] = useState(normalizeResi(initialQuery));
   const [result, setResult] = useState<TrackedOrder | null | undefined>(undefined);
   const [unavailable, setUnavailable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
 
   async function search(q: string) {
-    const s = q.trim().toUpperCase();
+    const s = normalizeResi(q);
     if (!s) return;
     setLoading(true);
     setUnavailable(false);
@@ -659,7 +659,7 @@ export default function StatusLookup({
             </div>
             <p className="mt-4 text-[10px] leading-relaxed text-[#6b7280]">{t("voucher.note")}</p>
             <p className="mt-6 border-t border-[#d8d2c4] pt-3 text-center text-[9px] text-[#6b7280]">
-              UNANG LOJA · Samosir, Danau Toba · +62 812-6800-8622
+              UNANG LOJA · Samosir, Danau Toba · +62 851-4318-0788
             </p>
           </div>
         </div>

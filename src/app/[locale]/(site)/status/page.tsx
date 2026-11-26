@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import StatusLookup from "@/components/StatusLookup";
 import { Breadcrumb, Eyebrow } from "@/components/ui";
 import { requireUserPage } from "@/lib/auth";
+import { normalizeResi } from "@/lib/data";
 
 export default async function StatusPage({
   params,
@@ -14,9 +15,9 @@ export default async function StatusPage({
   const { q, resi } = await searchParams;
   setRequestLocale(locale);
 
+  const cleanQuery = normalizeResi(resi ?? q ?? "");
   const nextParams = new URLSearchParams();
-  if (resi) nextParams.set("resi", resi);
-  else if (q) nextParams.set("q", q);
+  if (cleanQuery) nextParams.set("resi", cleanQuery);
   const nextQuery = nextParams.toString();
   await requireUserPage(
     locale,
@@ -40,7 +41,7 @@ export default async function StatusPage({
           </p>
         </div>
       </div>
-      <StatusLookup initialQuery={resi ?? q ?? ""} />
+      <StatusLookup initialQuery={cleanQuery} />
     </div>
   );
 }
