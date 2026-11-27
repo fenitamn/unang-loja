@@ -61,6 +61,7 @@ export default async function AdminPaymentsPage({
       >
         <a
           href="/api/admin/export"
+          download
           className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-white px-3 py-2 text-[10px] font-bold text-navy-800 hover:border-gold-500 hover:text-gold-700"
         >
           <Icon name="external" className="h-3.5 w-3.5" /> Ekspor CSV

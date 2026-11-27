@@ -10,6 +10,13 @@ import { routing } from "@/i18n/routing";
 export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
+  // Tangani jika endpoint /api tidak sengaja diawali prefix bahasa (mis. /id/api/... atau /en/api/...)
+  if (/^\/(?:id|en)\/api(\/.*)?$/.test(pathname)) {
+    const apiUrl = request.nextUrl.clone();
+    apiUrl.pathname = pathname.replace(/^\/(?:id|en)/, "");
+    return NextResponse.rewrite(apiUrl);
+  }
+
   const isSupportedLocale = routing.locales.some(
     (loc) => pathname === `/${loc}` || pathname.startsWith(`/${loc}/`),
   );

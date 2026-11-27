@@ -47,12 +47,13 @@ export default async function AdminOrdersPage({
         title="Manajemen Pemesanan"
         subtitle="Cari, filter, dan proses pesanan pelanggan. Perubahan status langsung terlihat di akun pelanggan dan halaman lacak."
       >
-        <Link
+        <a
           href="/api/admin/export"
+          download
           className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-white px-2.5 py-2 text-[10px] font-bold text-navy-800 hover:border-navy-300"
         >
           <Icon name="external" className="h-3.5 w-3.5" /> Ekspor CSV
-        </Link>
+        </a>
       </PageHeader>
 
       <Panel>
