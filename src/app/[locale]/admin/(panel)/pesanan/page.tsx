@@ -47,13 +47,24 @@ export default async function AdminOrdersPage({
         title="Manajemen Pemesanan"
         subtitle="Cari, filter, dan proses pesanan pelanggan. Perubahan status langsung terlihat di akun pelanggan dan halaman lacak."
       >
-        <a
-          href="/api/admin/export"
-          download
-          className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-white px-2.5 py-2 text-[10px] font-bold text-navy-800 hover:border-navy-300"
-        >
-          <Icon name="external" className="h-3.5 w-3.5" /> Ekspor CSV
-        </a>
+        <div className="flex flex-wrap items-center gap-2">
+          <a
+            href="/api/admin/export?format=xlsx"
+            download
+            className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-300 bg-emerald-50 px-2.5 py-2 text-[10px] font-bold text-emerald-800 shadow-sm hover:bg-emerald-100 hover:border-emerald-400 transition"
+            title="Unduh laporan Excel (.xlsx) dengan kolom rapi dan format otomatis"
+          >
+            <Icon name="receipt" className="h-3.5 w-3.5 text-emerald-700" /> Ekspor Excel (.xlsx)
+          </a>
+          <a
+            href="/api/admin/export?format=csv"
+            download
+            className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-white px-2.5 py-2 text-[10px] font-bold text-navy-800 hover:border-navy-300 transition"
+            title="Unduh file CSV dengan pemisah titik-koma kompatibel Excel"
+          >
+            <Icon name="external" className="h-3.5 w-3.5" /> Ekspor CSV
+          </a>
+        </div>
       </PageHeader>
 
       <Panel>
